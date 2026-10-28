@@ -49,19 +49,113 @@ type Connection = {
 };
 
 const CLIENTS = [
-  { id: "codex", label: "Codex (app)", mark: "Cx", bg: "#1c1917", fg: "#fff" },
-  { id: "chatgpt", label: "ChatGPT (web)", mark: "GPT", bg: "#10a37f", fg: "#fff" },
-  { id: "workbuddy", label: "WorkBuddy", mark: "WB", bg: "#2563eb", fg: "#fff" },
-  { id: "claude", label: "Claude (web / desktop)", mark: "Cl", bg: "#d97757", fg: "#fff" },
-  { id: "claude-code", label: "Claude Code (CLI)", mark: ">", bg: "#c4654a", fg: "#fff" },
-  { id: "grok", label: "Grok (web)", mark: "✕", bg: "#111111", fg: "#fff" },
-  { id: "accio", label: "Accio Work", mark: "Ac", bg: "#111111", fg: "#fff" },
-  { id: "coze", label: "Coze 扣子", mark: "扣", bg: "#4f46e5", fg: "#fff" },
-  { id: "minimax", label: "MiniMax Agent", mark: "Mm", bg: "#7c3aed", fg: "#fff" },
-  { id: "openclaw", label: "OpenClaw", mark: "OC", bg: "#0f766e", fg: "#fff" },
-  { id: "hermes", label: "Hermes", mark: "He", bg: "#b45309", fg: "#fff" },
-  { id: "deepseek", label: "DeepSeek Harness (app)", mark: "DS", bg: "#4d6bfe", fg: "#fff" },
+  { id: "codex", label: "Codex (app)" },
+  { id: "chatgpt", label: "ChatGPT (web)" },
+  { id: "workbuddy", label: "WorkBuddy" },
+  { id: "claude", label: "Claude (web / desktop)" },
+  { id: "claude-code", label: "Claude Code (CLI)" },
+  { id: "grok", label: "Grok (web)" },
+  { id: "accio", label: "Accio Work" },
+  { id: "coze", label: "Coze 扣子" },
+  { id: "minimax", label: "MiniMax Agent" },
+  { id: "openclaw", label: "OpenClaw" },
+  { id: "hermes", label: "Hermes" },
+  { id: "deepseek", label: "DeepSeek Harness (app)" },
 ] as const;
+
+function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
+  const common = "h-7 w-7";
+  if (id === "codex") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <rect width="32" height="32" rx="8" fill="#4f7cff" />
+        <path d="M9 18.5c2.2-4 6.2-5.2 10.2-3.2 1.2.6 2.1 1.3 2.8 2.2-2.6 2-6.2 3.2-9.4 2.6-1.6-.3-2.8-1-3.6-1.6z" fill="white" />
+        <circle cx="18.5" cy="14.2" r="1.1" fill="#4f7cff" />
+      </svg>
+    );
+  }
+  if (id === "chatgpt") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <path d="M16 6.2l2.1 3.6 4.1.6-3 2.9.7 4.1L16 15.4l-3.9 2 0.7-4.1-3-2.9 4.1-.6z" fill="none" stroke="#111" strokeWidth="1.6" />
+        <circle cx="16" cy="16" r="3.1" fill="none" stroke="#111" strokeWidth="1.6" />
+        <path d="M16 9.2v3.2M16 19.6V23M9.8 12.4l2.8 1.6M19.4 18l2.8 1.6M9.8 19.6l2.8-1.6M19.4 14l2.8-1.6" stroke="#111" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (id === "workbuddy") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <circle cx="16" cy="16" r="8" fill="none" stroke="#16a34a" strokeWidth="2.2" />
+        <path d="M12 16c1.2-2.4 2.6-3.6 4-3.6 2.2 0 3.2 2 4.8 2" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (id === "claude" || id === "claude-code") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <path d="M16 5l1.6 6.2L24 12l-5.2 2.4L18.6 21 16 15.8 13.4 21 12 14.4 6.8 12l6.4-.8z" fill={id === "claude" ? "#e07a3d" : "#ef9a4a"} />
+      </svg>
+    );
+  }
+  if (id === "grok") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <path d="M8 16c0-4 3-7 7-7 2.4 0 4 .8 5.2 2.2" fill="none" stroke="#111" strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M24 16c0 4-3 7-7 7-2.4 0-4-.8-5.2-2.2" fill="none" stroke="#111" strokeWidth="2.2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (id === "accio") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <path d="M16 6l9 18H7z" fill="#1a1a1a" />
+        <path d="M12.5 18h7" stroke="white" strokeWidth="1.6" />
+      </svg>
+    );
+  }
+  if (id === "coze") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <rect x="6" y="6" width="20" height="20" rx="6" fill="#5b5bd6" />
+        <circle cx="13" cy="15" r="2" fill="#8fd3ff" />
+        <circle cx="19" cy="15" r="2" fill="#ffd36e" />
+      </svg>
+    );
+  }
+  if (id === "minimax") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <rect x="7" y="8" width="18" height="16" rx="5" fill="#3b82f6" />
+        <circle cx="13" cy="15" r="1.3" fill="white" />
+        <circle cx="19" cy="15" r="1.3" fill="white" />
+        <path d="M13 19c1.2 1 4.8 1 6 0" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (id === "openclaw") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <path d="M8 20c2-6 4-8 8-8s6 2 8 8" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M11 14l-2-4M16 12V7M21 14l2-4" stroke="#111" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (id === "hermes") {
+    return (
+      <svg viewBox="0 0 32 32" className={common} aria-hidden>
+        <circle cx="16" cy="16" r="7" fill="none" stroke="#e07a3d" strokeWidth="2" />
+        <path d="M12 16h8M16 12v8" stroke="#e07a3d" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 32 32" className={common} aria-hidden>
+      <path d="M7 18c4-7 8-8 12-5 2 1.4 3.4 3 5 3-2 3-5 5-9 5-3 0-6-1-8-3z" fill="#3b6cff" />
+      <circle cx="20" cy="15" r="1" fill="white" />
+    </svg>
+  );
+}
 
 const MARKETS = ["United States", "Canada", "Mexico", "United Kingdom", "Germany", "Japan"];
 
@@ -249,74 +343,104 @@ export function GetStarted({
         {open === "ai" && (
           <div className="mt-4">
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-              {CLIENTS.map((item) => (
-                <button key={item.id} onClick={() => { setClient(item.id); setConnName(item.label.split(" (")[0]); }} className={`rounded-xl border px-2 py-3 text-center text-xs leading-4 ${client === item.id ? "border-orange bg-[#fff7f2]" : "border-line bg-white"}`}>
-                  <span className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-lg text-[11px] font-semibold" style={{ background: item.bg, color: item.fg }}>{item.mark}</span>
-                  {item.label}
-                </button>
-              ))}
+              {CLIENTS.map((item) => {
+                const selected = client === item.id;
+                return (
+                  <button key={item.id} onClick={() => { setClient(item.id); setConnName(item.label.split(" (")[0]); }} className={`flex min-h-[92px] flex-col items-center justify-center rounded-xl border bg-white px-2 py-3 text-center text-[12px] leading-4 ${selected ? "border-[#e36a33] text-orange shadow-[0_0_0_1px_#e36a33]" : "border-[#eee6df] text-[#3f3a36]"}`}>
+                    <ClientGlyph id={item.id} />
+                    <span className="mt-1.5">{item.label}</span>
+                  </button>
+                );
+              })}
             </div>
-            <div className="mt-4 flex gap-2 text-sm">
-              <button className={`rounded-full px-3 py-1 ${mode === "install" ? "bg-peach text-orange" : "bg-chip"}`} onClick={() => setMode("install")}>{tx(locale, "让 AI 自己安装", "Let the AI install it")}</button>
-              <button className={`rounded-full px-3 py-1 ${mode === "manual" ? "bg-peach text-orange" : "bg-chip"}`} onClick={() => setMode("manual")}>{tx(locale, "手动添加", "Add it manually")}</button>
+            <div className="mt-4 flex gap-2 text-[13px]">
+              <button className={`rounded-full px-3 py-1 ${mode === "install" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`} onClick={() => setMode("install")}>{tx(locale, "让 AI 自己安装", "Let the AI install it")}</button>
+              <button className={`rounded-full px-3 py-1 ${mode === "manual" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`} onClick={() => setMode("manual")}>{tx(locale, "手动添加", "Add it manually")}</button>
             </div>
             {mode === "install" ? (
               <div className="mt-4 text-sm">
-                <p className="text-muted">{tx(locale, "把提示词贴进 Codex，它会自己写配置。不行就改用「手动添加」。", "Paste a prompt into Codex and it writes its own config. Didn't work? Switch to \"Add it manually\".")}</p>
-                <ol className="mt-3 space-y-3">
+                <p className="text-[13px] leading-5 text-muted">
+                  {tx(locale, `把提示词贴进 ${connName || "Codex"}，它会自己写配置。不行就改用「手动添加」。`, `Paste a prompt into ${connName || "Codex"} and it writes its own config. Didn't work? Switch to "Add it manually".`)}
+                </p>
+                <ol className="mt-4 space-y-4">
                   <li>
-                    <div className="mb-2">1 {tx(locale, "生成安装提示词并复制", "Generate the install prompt and copy it")}</div>
-                    <div className="flex flex-wrap gap-2">
-                      <input className="field" value={connName} onChange={(e) => setConnName(e.target.value)} />
-                      <button className="btn-orange" onClick={() => { setPrompt(installPrompt); copyText(installPrompt); flash(tx(locale, "已复制", "Copied")); }}>{tx(locale, "生成", "Generate")}</button>
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="grid h-5 w-5 place-items-center rounded-full bg-[#f3eee8] text-xs text-[#6b645c]">1</span>
+                      {tx(locale, "生成安装提示词并复制", "Generate the install prompt and copy it")}
+                    </div>
+                    <div className="mt-2 flex flex-wrap items-center gap-2 pl-7">
+                      <span className="text-sm text-muted">{tx(locale, "名称", "Name")}</span>
+                      <input className="field w-44" value={connName} onChange={(e) => setConnName(e.target.value)} />
+                      <button
+                        className="h-9 rounded-full bg-orange px-4 text-sm font-medium text-white"
+                        onClick={async () => {
+                          setPrompt(installPrompt);
+                          await copyText(installPrompt);
+                          flash(tx(locale, "已复制", "Copied"));
+                          if (connections[0]) await patchConn(connections[0].id, { name: connName || "Codex" });
+                          else await post("/api/connections", { name: connName || "Codex", client });
+                        }}
+                      >
+                        {tx(locale, "生成", "Generate")}
+                      </button>
                     </div>
                     {prompt && <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs leading-5">{prompt}</pre>}
                   </li>
-                  <li>2 {tx(locale, "贴进 Codex，它会自己安装", "Paste it into Codex. It installs itself")}</li>
-                  <li>3 {tx(locale, "新开一个对话，再问店铺的事", "Start a new chat and ask about your store")}</li>
+                  <li className="flex items-center gap-2">
+                    <span className="grid h-5 w-5 place-items-center rounded-full bg-[#f3eee8] text-xs text-[#6b645c]">2</span>
+                    {tx(locale, `贴进 ${connName || "Codex"}，它会自己安装`, `Paste it into ${connName || "Codex"}. It installs itself`)}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="grid h-5 w-5 place-items-center rounded-full bg-[#f3eee8] text-xs text-[#6b645c]">3</span>
+                    {tx(locale, "新开一个对话，再问店铺的事", "Start a new chat and ask about your store")}
+                  </li>
                 </ol>
-                <Warn>
-                  {tx(locale, "必须新开一个对话。多宝鱼只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。", "You must start a NEW chat! Duobaoyu only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.")}
-                </Warn>
+                <div className="mt-3">
+                  <Warn>
+                    {tx(locale, "必须新开一个对话。多宝鱼只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。", "You must start a NEW chat! Duobaoyu only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.")}
+                  </Warn>
+                </div>
               </div>
             ) : (
               <div className="mt-4 text-sm">
-                <p className="text-muted">{tx(locale, "把下面的地址加到客户端。这是本机沙盒，不是 listingapp.duobaoyu.ai。", "Add this URL in the client. It is this machine's sandbox, not listingapp.duobaoyu.ai.")}</p>
+                <p className="text-[13px] leading-5 text-muted">{tx(locale, "把下面的地址加到客户端。这是本机沙盒，不是 listingapp.duobaoyu.ai。", "Add this URL in the client. It is this machine's sandbox, not listingapp.duobaoyu.ai.")}</p>
                 <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{`{\n  "mcpServers": {\n    "duobaoyu-sandbox": {\n      "url": "http://127.0.0.1:43123/api/mcp"\n    }\n  }\n}`}</pre>
-                <Link className="mt-3 inline-flex text-orange" href="/v2/tools">{tx(locale, "打开工具实验室", "Open the tool lab")} →</Link>
               </div>
             )}
 
             <div className="mt-5 text-sm font-medium">{tx(locale, "已连接的 AI", "Connected AI assistants")}</div>
             <div className="mt-2 space-y-2">
               {connections.map((conn) => (
-                <div key={conn.id} className="rounded-xl border border-line px-3 py-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-peach text-orange">{conn.name.slice(0, 1)}</span>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-1 font-medium">{conn.name} <Pencil className="h-3.5 w-3.5 text-muted" /></div>
-                      <div className="text-xs text-muted">connected {conn.connectedAt.slice(0, 10)} · last used {conn.lastUsedAt.slice(0, 10)}</div>
+                <div key={conn.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-[#eee6df] px-3 py-3">
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#fff1e8] text-orange">
+                    <ClientGlyph id={client} />
+                  </span>
+                  <div className="min-w-[180px]">
+                    <div className="flex items-center gap-1 text-sm font-medium">{conn.name} <Pencil className="h-3.5 w-3.5 text-muted" /></div>
+                    <div className="text-xs text-muted">
+                      {tx(locale, "连接于", "connected")} {conn.connectedAt.slice(0, 10)} · {tx(locale, "最近使用", "last used")} {conn.lastUsedAt.slice(0, 10)}
                     </div>
-                    <label className="ml-auto flex items-center gap-2 text-sm">
-                      <input type="checkbox" checked={conn.allowMarketResearch} onChange={(e) => patchConn(conn.id, { allowMarketResearch: e.target.checked })} />
-                      {tx(locale, "允许市场调研", "Allow market research")}
-                    </label>
-                    <label className="flex items-center gap-2 text-sm">
-                      <input type="checkbox" checked={conn.allowAiExecute} onChange={(e) => patchConn(conn.id, { allowAiExecute: e.target.checked })} />
-                      {tx(locale, "允许 AI 执行操作", "Allow AI to execute actions")}
-                    </label>
-                    <button aria-label="Delete" onClick={() => fetch(`/api/connections/${conn.id}`, { method: "DELETE" }).then(() => router.refresh())}><Trash2 className="h-4 w-4 text-muted" /></button>
                   </div>
+                  <label className="ml-auto flex items-center gap-2 text-sm">
+                    <input className="h-4 w-4 accent-[#e86a2c]" type="checkbox" checked={conn.allowMarketResearch} onChange={(e) => patchConn(conn.id, { allowMarketResearch: e.target.checked })} />
+                    {tx(locale, "允许市场调研", "Allow market research")}
+                  </label>
+                  <label className="flex items-center gap-2 text-sm">
+                    <input className="h-4 w-4 accent-[#e86a2c]" type="checkbox" checked={conn.allowAiExecute} onChange={(e) => patchConn(conn.id, { allowAiExecute: e.target.checked })} />
+                    {tx(locale, "允许 AI 执行操作", "Allow AI to execute actions")}
+                  </label>
+                  <button aria-label="Refresh" className="text-muted" onClick={() => patchConn(conn.id, { name: conn.name })}><RefreshCw className="h-4 w-4" /></button>
+                  <button aria-label="Delete" className="text-muted" onClick={() => fetch(`/api/connections/${conn.id}`, { method: "DELETE" }).then(() => router.refresh())}><Trash2 className="h-4 w-4" /></button>
                 </div>
               ))}
             </div>
-            <form className="mt-3 flex flex-wrap gap-2" onSubmit={(e) => { e.preventDefault(); post("/api/connections", { name: connName || "Codex", client }); }}>
-              <button className="btn-ghost" type="submit"><Plus className="h-3.5 w-3.5" /> {tx(locale, "添加这条连接", "Add this connection")}</button>
-            </form>
-            <div className="mt-4 flex items-center justify-between rounded-xl bg-canvas px-3 py-3 text-sm">
-              <span>{tx(locale, "刚接触这些 AI 工具？", "New to these AI tools?")}</span>
-              <Link className="font-medium text-orange" href="/v2/courses/codex-basics">{tx(locale, "AI 基础课", "AI basics class")} →</Link>
-            </div>
+            <Link href="/v2/courses/codex-basics" className="mt-3 flex items-center justify-between rounded-xl bg-[#fff4ee] px-4 py-3 text-sm">
+              <span className="flex items-center gap-2 text-[#3f3a36]">
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-white text-orange">AI</span>
+                {tx(locale, "刚接触这些 AI 工具？", "New to these AI tools?")}
+              </span>
+              <span className="font-medium text-orange">{tx(locale, "AI 基础课", "AI basics class")} →</span>
+            </Link>
           </div>
         )}
       </section>
