@@ -178,9 +178,14 @@ export function GetStarted({
                     </button>
                     {syncFor === store.id && (
                       <div className="absolute right-0 z-10 mt-1 w-44 rounded-xl border border-line bg-white p-1 text-sm shadow">
-                        {["all", "orders", "inventory", "ads"].map((kind) => (
+                        {[
+                          ["all", "全部", "Sync all"],
+                          ["orders", "订单", "Orders"],
+                          ["inventory", "库存", "Inventory"],
+                          ["ads", "广告", "Ads"],
+                        ].map(([kind, zh, en]) => (
                           <button key={kind} className="block w-full rounded-lg px-3 py-1.5 text-left hover:bg-canvas" onClick={() => { setSyncFor(null); post("/api/stores", { action: "sync", id: store.id, kind }); }}>
-                            {kind}
+                            {tx(locale, zh, en)}
                           </button>
                         ))}
                       </div>

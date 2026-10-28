@@ -45,8 +45,14 @@ export function ApprovalList({ locale, items, executeOn }: { locale: Locale; ite
       </div>
       {error && <p className="mb-3 text-sm text-red-700">{error}</p>}
       <div className="mb-3 flex gap-2">
-        {["all", "ads", "restock", "listing", "other"].map((id) => (
-          <button key={id} onClick={() => setFilter(id)} className={`rounded-full px-3 py-1 text-sm ${filter === id ? "bg-ink text-white" : "bg-chip"}`}>{id}</button>
+        {[
+          ["all", "全部", "All"],
+          ["ads", "广告", "Ads"],
+          ["restock", "补货", "Restock"],
+          ["listing", "Listing", "Listing"],
+          ["other", "其他", "Other"],
+        ].map(([id, zh, en]) => (
+          <button key={id} onClick={() => setFilter(id)} className={`rounded-full px-3 py-1 text-sm ${filter === id ? "bg-ink text-white" : "bg-chip"}`}>{tx(locale, zh, en)}</button>
         ))}
       </div>
       <div className="space-y-3">

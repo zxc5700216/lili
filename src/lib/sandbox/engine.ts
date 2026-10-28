@@ -479,6 +479,49 @@ function readPayload(name: string, input: Json, ctx: Awaited<ReturnType<typeof l
     };
   }
 
+  if (name.startsWith("restock_")) {
+    const skus = ctx.products.map((p) => ({
+      sku: p.sku,
+      asin: p.asin,
+      fulfillable: p.fulfillable,
+      days_of_cover: p.daysOfCover,
+      eligible: p.daysOfCover <= 45,
+    }));
+    return {
+      ...base,
+      skus,
+      shipments: ctx.shipments,
+      inbound_plans: ctx.shipments.map((s) => ({ id: s.id, name: s.name, status: s.status, dest: s.dest })),
+      labels: { page_type: "PackageLabel_Letter_6", ready: false },
+    };
+  }
+  if (name.startsWith("listing_")) {
+    return {
+      ...base,
+      aplus: ctx.products.slice(0, 2).map((p) => ({ asin: p.asin, status: "DRAFT", modules: ["STANDARD_HEADER", "STANDARD_THREE_IMAGE_TEXT"] })),
+      uploads: [],
+    };
+  }
+  if (name.startsWith("market_") || name.startsWith("competitor_")) {
+    return {
+      ...base,
+      sample: true,
+      nodes: [
+        { node_id: "1055398", name: "Home & Kitchen" },
+        { node_id: "2972638011", name: "Sports & Outdoors" },
+      ],
+      vendor_tools: ["product_search", "keyword_trend", "review_mining"],
+      items: sampleProducts(ctx),
+    };
+  }
+  if (name.startsWith("meta_")) {
+    return {
+      ...base,
+      workflow_runs: [],
+      note: "Sandbox has no saved remote workflow run for this id. Open Workflow Templates to rehearse one.",
+    };
+  }
+
   return {
     ...base,
     sample: sampleProducts(ctx),

@@ -143,7 +143,7 @@ export function Shell({
             </Link>
           </div>
         </header>
-        <div className="px-4 pb-16 pt-2 lg:px-7">{children}</div>
+        <div key={locale} className="px-4 pb-16 pt-2 lg:px-8">{children}</div>
       </div>
 
       {dialog === "feedback" && <FeedbackDialog locale={locale} onClose={() => openDialog(null)} />}

@@ -37,6 +37,8 @@ npm run dev
 
 顶栏：反馈、支持、帮助中心、积分 / 充值。侧栏底部：中文 / EN、退出。
 
+逐条状态见 [COVERAGE.md](COVERAGE.md)。
+
 ## 覆盖清单
 
 `GET /api/health` 应返回 `tools: 107`、`skills: 116`、`workflows: 12`、`stores: 2`。
