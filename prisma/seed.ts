@@ -112,6 +112,7 @@ async function main() {
   await prisma.toolRun.deleteMany();
   await prisma.workflowRun.deleteMany();
   await prisma.feedbackNote.deleteMany();
+  await prisma.creditOrder.deleteMany();
   await prisma.aiConnection.deleteMany();
   await prisma.toolDef.deleteMany();
   await prisma.skill.deleteMany();
