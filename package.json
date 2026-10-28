@@ -10,6 +10,7 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:setup": "prisma generate && prisma db push && prisma db seed",
+    "workflow:selection": "tsx scripts/run-selection-doc.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {

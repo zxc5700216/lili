@@ -1,0 +1,45 @@
+{
+  "keyword": "arrow bag quiver",
+  "marketplace": "US",
+  "fixture": true,
+  "inferred": [
+    "amazon-product-selection uses public private-label + profit-analyzer plus the golden hard gates"
+  ],
+  "paidRequests": 0,
+  "replayedLedgerSize": 27,
+  "step1Budget": 10,
+  "step1Calls": 10,
+  "niches": [
+    {
+      "id": "A",
+      "name": "三管腰挂靶场箭袋",
+      "stance": "优先深研",
+      "why": "节点样本里形态集中，评论能指向齐套、围度和拉链"
+    },
+    {
+      "id": "B",
+      "name": "传统皮革背负箭袋",
+      "stance": "可选",
+      "why": "材质和税目都不同于纺织面，不与 A 混算"
+    },
+    {
+      "id": "C",
+      "name": "功能型布料背负箭袋",
+      "stance": "有条件",
+      "why": "背负结构不同，宽词结果污染"
+    },
+    {
+      "id": "D",
+      "name": "反曲弓/传统弓挂载箭筒",
+      "stance": "有条件",
+      "why": "标题含 recurve 不足以证明结构相同"
+    },
+    {
+      "id": "E",
+      "name": "可伸缩保护运输箭筒",
+      "stance": "候补",
+      "why": "配送成本问题，不进入本次深研"
+    }
+  ],
+  "pauseGate1": "A"
+}

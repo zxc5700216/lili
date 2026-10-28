@@ -1,6 +1,6 @@
 # 覆盖清单
 
-工作流 **12/12 done**。技能 **116/116 done**。工具 **107/107 done**。
+界面卡片仍覆盖 12 个模板。端到端可演示的只有 **选品开品文档 `selection-doc`**。其余 11 条模板的全流程树仍是 pending。技能 116、工具 107 的沙盒调用仍可用。
 
 `done` 表示这条能在沙盒里打开，并按清单完成主路径。写入类的主路径是生成审批预览，不调用亚马逊。
 
@@ -15,22 +15,24 @@
 - 工作流详情和充值页没有单独的实拍可逐像素对照。
 - 企业微信、课程报名和付款不会离开这台机器。
 
-## 工作流 12/12
+## 工作流
+
+端到端只完成选品开品文档。其余模板仍是卡片。
 
 | 状态 | slug | 标题 |
 | --- | --- | --- |
-| done | `monday-review` | Monday business review |
-| done | `ads-stop-bleeding` | Stop the ad bleed |
-| done | `sales-drop` | Diagnose a sales drop end to end |
-| done | `new-listing-to-ads` | Launch: listing to ads |
-| done | `selection-doc` | From idea to product brief |
-| done | `competitor-teardown` | Full competitor teardown |
-| done | `restock-to-ship` | Restock through to shipment |
-| done | `profit-checkup` | Profit health check |
-| done | `peak-prep` | Get ready for a sales peak |
-| done | `sunset-sku` | Retire an aging product |
-| done | `returns-push` | Bring returns down |
-| done | `monthly-report` | Monthly business report |
+| pending | `monday-review` | Monday business review |
+| pending | `ads-stop-bleeding` | Stop the ad bleed |
+| pending | `sales-drop` | Diagnose a sales drop end to end |
+| pending | `new-listing-to-ads` | Launch: listing to ads |
+| done（可演示） | `selection-doc` | 选品开品文档。`npm run workflow:selection` |
+| pending | `competitor-teardown` | Full competitor teardown |
+| pending | `restock-to-ship` | Restock through to shipment |
+| pending | `profit-checkup` | Profit health check |
+| pending | `peak-prep` | Get ready for a sales peak |
+| pending | `sunset-sku` | Retire an aging product |
+| pending | `returns-push` | Bring returns down |
+| pending | `monthly-report` | Monthly business report |
 
 ## 技能 116/116
 

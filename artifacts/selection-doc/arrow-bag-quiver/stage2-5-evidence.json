@@ -1,0 +1,693 @@
+{
+  "keyword": "arrow bag quiver",
+  "marketplace": "US",
+  "fixture": true,
+  "inferred": [
+    "amazon-product-selection uses public private-label + profit-analyzer plus the golden hard gates"
+  ],
+  "paidRequests": 0,
+  "replayedLedgerSize": 27,
+  "step1Budget": 10,
+  "step1Calls": 10,
+  "niches": [
+    {
+      "id": "A",
+      "name": "三管腰挂靶场箭袋",
+      "stance": "优先深研",
+      "why": "节点样本里形态集中，评论能指向齐套、围度和拉链"
+    },
+    {
+      "id": "B",
+      "name": "传统皮革背负箭袋",
+      "stance": "可选",
+      "why": "材质和税目都不同于纺织面，不与 A 混算"
+    },
+    {
+      "id": "C",
+      "name": "功能型布料背负箭袋",
+      "stance": "有条件",
+      "why": "背负结构不同，宽词结果污染"
+    },
+    {
+      "id": "D",
+      "name": "反曲弓/传统弓挂载箭筒",
+      "stance": "有条件",
+      "why": "标题含 recurve 不足以证明结构相同"
+    },
+    {
+      "id": "E",
+      "name": "可伸缩保护运输箭筒",
+      "stance": "候补",
+      "why": "配送成本问题，不进入本次深研"
+    }
+  ],
+  "pauseGate1": "A",
+  "nicheChoice": "A",
+  "competitors": [
+    {
+      "asin": "B09CQ7DGD8",
+      "brand": "SUNYA",
+      "price": 25.99,
+      "rating": 4.7,
+      "unitsMonth": 180
+    },
+    {
+      "asin": "B082P5JF2M",
+      "brand": "LEGEND",
+      "price": 24.99,
+      "rating": 4.6,
+      "unitsMonth": 150
+    },
+    {
+      "asin": "B0D7LJVMDX",
+      "brand": "KRATARC",
+      "price": 23.99,
+      "rating": 4.6,
+      "unitsMonth": 140
+    },
+    {
+      "asin": "B00IEPFDLO",
+      "brand": "Easton",
+      "price": 22.99,
+      "rating": 4.8,
+      "unitsMonth": 160
+    },
+    {
+      "asin": "B0DQKBHSMK",
+      "brand": "SPG",
+      "price": 21.99,
+      "rating": 4.6,
+      "unitsMonth": 146
+    },
+    {
+      "asin": "B0D8XSZQDS",
+      "brand": "SHENG-RUI",
+      "price": 19.99,
+      "rating": 4.9,
+      "unitsMonth": 140
+    }
+  ],
+  "keywordResearch": {
+    "keyword": "hip quiver",
+    "searches": 2859,
+    "purchaseEstimate": 46,
+    "products": 211,
+    "note": "replayed figure from the golden ledger; 12% CVR is not derived from this"
+  },
+  "reviews": [
+    {
+      "id": "DGD8-1",
+      "asin": "B09CQ7DGD8",
+      "stars": 2,
+      "date": "2026-04-16",
+      "excerpt": "Didnt come with belt",
+      "included": true,
+      "themes": [
+        "缺腰带"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "DGD8-2",
+      "asin": "B09CQ7DGD8",
+      "stars": 1,
+      "date": "2025-08-09",
+      "excerpt": "They were broken when I took them out of package",
+      "included": true,
+      "themes": [
+        "到货破损"
+      ],
+      "reason": "纳入：部件未明，不扩大成普遍缺陷"
+    },
+    {
+      "id": "DGD8-3",
+      "asin": "B09CQ7DGD8",
+      "stars": 3,
+      "date": "2023-11-02",
+      "excerpt": "no tube shape inside… flops",
+      "included": false,
+      "themes": [],
+      "reason": "排除：Vine 且疑似软袋混款"
+    },
+    {
+      "id": "DGD8-4",
+      "asin": "B09CQ7DGD8",
+      "stars": 3,
+      "date": "2023-01-24",
+      "excerpt": "zipper on the main pocket came detached",
+      "included": true,
+      "themes": [
+        "拉链"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "DGD8-5",
+      "asin": "B09CQ7DGD8",
+      "stars": 1,
+      "date": "2022-10-16",
+      "excerpt": "material is very thin and flops",
+      "included": false,
+      "themes": [],
+      "reason": "排除：Vine 且疑似软袋混款"
+    },
+    {
+      "id": "JF2M-1",
+      "asin": "B082P5JF2M",
+      "stars": 3,
+      "date": "2023-02-18",
+      "excerpt": "40in waist so the belt just barely fit",
+      "included": true,
+      "themes": [
+        "腰带围度",
+        "噪声"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "JF2M-2",
+      "asin": "B082P5JF2M",
+      "stars": 2,
+      "date": "2022-03-09",
+      "excerpt": "llegó con zipper dañado",
+      "included": true,
+      "themes": [
+        "拉链"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "JF2M-3",
+      "asin": "B082P5JF2M",
+      "stars": 3,
+      "date": "2021-07-06",
+      "excerpt": "ordered purple, got black",
+      "included": true,
+      "themes": [
+        "错色"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "JF2M-4",
+      "asin": "B082P5JF2M",
+      "stars": 3,
+      "date": "2021-05-11",
+      "excerpt": "up to 42in waist… short on my 40in waist",
+      "included": true,
+      "themes": [
+        "腰带围度",
+        "噪声"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "JF2M-5",
+      "asin": "B082P5JF2M",
+      "stars": 1,
+      "date": "2020-12-31",
+      "excerpt": "arrows fall out with the slightest movement",
+      "included": true,
+      "themes": [
+        "短袋掉箭"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "VMDX-1",
+      "asin": "B0D7LJVMDX",
+      "stars": 3,
+      "date": "2026-09-10",
+      "excerpt": "Average",
+      "included": true,
+      "themes": [
+        "无明确问题"
+      ],
+      "reason": "纳入：保留在分母，不猜问题"
+    },
+    {
+      "id": "VMDX-2",
+      "asin": "B0D7LJVMDX",
+      "stars": 3,
+      "date": "2026-02-03",
+      "excerpt": "[无正文]",
+      "included": false,
+      "themes": [],
+      "reason": "排除：无正文"
+    },
+    {
+      "id": "VMDX-3",
+      "asin": "B0D7LJVMDX",
+      "stars": 3,
+      "date": "2022-04-16",
+      "excerpt": "arrived without the American Flag",
+      "included": true,
+      "themes": [
+        "旗帜章预期"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "VMDX-4",
+      "asin": "B0D7LJVMDX",
+      "stars": 1,
+      "date": "2019-10-15",
+      "excerpt": "no American flag",
+      "included": true,
+      "themes": [
+        "旗帜章预期"
+      ],
+      "reason": "纳入"
+    },
+    {
+      "id": "VMDX-5",
+      "asin": "B0D7LJVMDX",
+      "stars": 1,
+      "date": "2019-06-12",
+      "excerpt": "Missing the belt and flag patch",
+      "included": true,
+      "themes": [
+        "缺腰带",
+        "旗帜章预期"
+      ],
+      "reason": "纳入"
+    }
+  ],
+  "reviewDenominator": 12,
+  "sourcing": [
+    {
+      "id": "M25",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_similar_product",
+        "arguments_json": "{\"search_name\":\"射箭 三管 腰挂 箭袋\",\"page\":1}"
+      },
+      "price": 0,
+      "moq": 0,
+      "usableQuote": false
+    },
+    {
+      "id": "M26",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_product_request",
+        "arguments_json": "{\"product_id\":\"681213530361\"}"
+      },
+      "price": 0,
+      "moq": 0,
+      "usableQuote": false
+    },
+    {
+      "id": "M27",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_similar_product",
+        "arguments_json": "{\"search_name\":\"三管箭袋\",\"page\":1}"
+      },
+      "price": 0,
+      "moq": 0,
+      "usableQuote": false
+    }
+  ],
+  "ledger": [
+    {
+      "id": "M01",
+      "at": "10-27 01:55:59",
+      "tool": "market_mine_keywords",
+      "args": {
+        "keyword": "arrow quiver",
+        "marketplace": "US",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "找 arrow quiver 相关表达；不是直接确定市场规模",
+      "step": 1,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M02",
+      "at": "10-27 01:56:18",
+      "tool": "market_mine_keywords",
+      "args": {
+        "keyword": "arrow bag",
+        "marketplace": "US",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "补 arrow bag 相关需求；相近词不相加为独立买家",
+      "step": 1,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M03",
+      "at": "10-27 01:56:31",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "quiver",
+        "marketplace": "US",
+        "size": 100,
+        "page": 1,
+        "sort_by": "units",
+        "sort_desc": true
+      },
+      "purpose": "sort_by=units 触发参数错误；不用于市场结论",
+      "step": 1,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M04",
+      "at": "10-27 01:56:57",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "quiver",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "修正 total_units；宽词结果仍需识别形态",
+      "step": 1,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M05",
+      "at": "10-27 01:56:57",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "back quiver",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "探索背负款；多词结果污染，不能直接加销量",
+      "step": 1,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M06",
+      "at": "10-27 01:56:57",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "hip quiver",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "探索腰挂款；多词结果污染，改用节点和人工识别",
+      "step": 1,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M07",
+      "at": "10-27 01:56:57",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "arrow tube",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "探索运输筒；多词误匹配不用于规模",
+      "step": 1,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M08",
+      "at": "10-27 01:56:58",
+      "tool": "market_find_products",
+      "args": {
+        "keyword": "recurve bow quiver",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "探索弓挂款；标题含 recurve 不足以证明结构相同",
+      "step": 1,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M09",
+      "at": "10-27 01:57:26",
+      "tool": "market_aba_trend",
+      "args": {
+        "keyword": "hip quiver",
+        "marketplace": "US",
+        "granularity": "week",
+        "last_n": 52
+      },
+      "purpose": "52 周搜索轨迹支持持续搜索，不支持高速增长结论",
+      "step": 1,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M10",
+      "at": "10-27 01:57:27",
+      "tool": "market_find_products",
+      "args": {
+        "node_id_path": "3375251:706813011:3395321:3395631",
+        "marketplace": "US",
+        "size": 100,
+        "page": 1,
+        "sort_by": "total_units",
+        "sort_desc": true
+      },
+      "purpose": "限定射箭节点读取第一页 100 行",
+      "step": 1,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M11",
+      "at": "10-27 02:17:47",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B0DQKBHSMK",
+        "marketplace": "US"
+      },
+      "purpose": "SPG 详情",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M12",
+      "at": "10-27 02:17:47",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B09CQ7DGD8",
+        "marketplace": "US"
+      },
+      "purpose": "SUNYA 详情，FBA 费用估计参考",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M13",
+      "at": "10-27 02:17:47",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B0D8XSZQDS",
+        "marketplace": "US"
+      },
+      "purpose": "SHENG-RUI 详情",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M14",
+      "at": "10-27 02:17:47",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B00IEPFDLO",
+        "marketplace": "US"
+      },
+      "purpose": "Easton 详情",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M15",
+      "at": "10-27 02:17:47",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B082P5JF2M",
+        "marketplace": "US"
+      },
+      "purpose": "LEGEND 详情，42in 腰围宣传",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M16",
+      "at": "10-27 02:17:48",
+      "tool": "market_research_keyword",
+      "args": {
+        "keywords": "hip quiver",
+        "marketplace": "US",
+        "size": 50,
+        "page": 1
+      },
+      "purpose": "搜索 2859、购买估计 46、商品 211；12% 广告 CVR 并非由此得出",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M17",
+      "at": "10-27 02:17:51",
+      "tool": "market_list_competitors",
+      "args": {
+        "asin": "B09CQ7DGD8",
+        "marketplace": "US",
+        "size": 20
+      },
+      "purpose": "关联竞品混有其他形态，排除直接市场计算",
+      "step": 2,
+      "usedForConclusion": false
+    },
+    {
+      "id": "M18",
+      "at": "10-27 02:18:21",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B082P5JF2M",
+        "marketplace": "US",
+        "stars": "1,2,3",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "LEGEND 1–3 星 5 条",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M19",
+      "at": "10-27 02:18:21",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B00IEPFDLO",
+        "marketplace": "US",
+        "stars": "1,2,3",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "Easton 1–3 星 0 条；不证明没有差评",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M20",
+      "at": "10-27 02:18:21",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B0D7LJVMDX",
+        "marketplace": "US",
+        "stars": "1,2,3",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "KRATARC 1–3 星 5 条",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M21",
+      "at": "10-27 02:18:21",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B09CQ7DGD8",
+        "marketplace": "US",
+        "stars": "1,2,3",
+        "size": 100,
+        "page": 1
+      },
+      "purpose": "SUNYA 1–3 星 5 条；排除 2 条 Vine 疑似软袋混款",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M22",
+      "at": "10-27 02:19:41",
+      "tool": "market_get_asin",
+      "args": {
+        "asin": "B0D7LJVMDX",
+        "marketplace": "US"
+      },
+      "purpose": "补 KRATARC 当前详情",
+      "step": 2,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M23",
+      "at": "10-27 02:19:41",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B09CQ7DGD8",
+        "marketplace": "US",
+        "stars": "4,5",
+        "size": 20,
+        "page": 1
+      },
+      "purpose": "SUNYA 高星 20 条",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M24",
+      "at": "10-27 02:19:41",
+      "tool": "market_get_reviews",
+      "args": {
+        "asin": "B082P5JF2M",
+        "marketplace": "US",
+        "stars": "4,5",
+        "size": 20,
+        "page": 1
+      },
+      "purpose": "LEGEND 高星 20 条，其中 1 条无正文",
+      "step": 3,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M25",
+      "at": "10-27 02:19:46",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_similar_product",
+        "arguments_json": "{\"search_name\":\"射箭 三管 腰挂 箭袋\",\"page\":1}"
+      },
+      "purpose": "1688 搜索；price/MOQ 缺失",
+      "step": 4,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M26",
+      "at": "10-27 02:20:20",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_product_request",
+        "arguments_json": "{\"product_id\":\"681213530361\"}"
+      },
+      "purpose": "offer 详情仍无有效报价",
+      "step": 4,
+      "usedForConclusion": true
+    },
+    {
+      "id": "M27",
+      "at": "10-27 02:22:56",
+      "tool": "market_query_sorftime",
+      "args": {
+        "tool": "ali1688_similar_product",
+        "arguments_json": "{\"search_name\":\"三管箭袋\",\"page\":1}"
+      },
+      "purpose": "换词再搜仍缺数，停止重复花费",
+      "step": 4,
+      "usedForConclusion": true
+    }
+  ]
+}

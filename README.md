@@ -14,7 +14,15 @@ npx prisma db seed
 npm run dev
 ```
 
-浏览器打开 [http://127.0.0.1:43123](http://127.0.0.1:43123) ，在登录页进入沙盒。数据库连接写在 `.env.example`：
+浏览器打开 [http://127.0.0.1:43123](http://127.0.0.1:43123) ，在登录页进入沙盒。
+
+选品开品文档（目前唯一可演示的端到端工作流）：
+
+```bash
+npm run workflow:selection -- --keyword "arrow bag quiver"
+```
+
+产出在 `artifacts/selection-doc/arrow-bag-quiver/`：`flow-tree.md`、`evidence.json`、`stage2-5-evidence.json`、`calculations.json`、`review.html`。不调用付费多宝鱼 API。数据库连接写在 `.env.example`：
 
 `postgresql://duobaoyu:duobaoyu@localhost:54329/duobaoyu`
 
