@@ -1,0 +1,303 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Store {
+  id            String   @id
+  name          String
+  code          String
+  marketplace   String
+  marketplaceId String
+  region        String
+  currency      String
+  sellerId      String
+  adsProfileId  String
+  timezone      String
+  spConnected   Boolean  @default(false)
+  adsConnected  Boolean  @default(false)
+  lastSyncedAt  DateTime?
+  products      Product[]
+  profiles      AdsProfile[]
+  campaigns     Campaign[]
+  shipments     ShipmentDraft[]
+  listings      ListingDraft[]
+}
+
+model Product {
+  id             String  @id
+  storeId        String
+  store          Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  asin           String
+  sku            String
+  title          String
+  titleEn        String
+  brand          String
+  category       String
+  price          Float
+  cost           Float
+  shippingCost   Float
+  fbaFee         Float
+  referralRate   Float
+  fulfillable    Int
+  inbound        Int
+  reserved       Int
+  unsellable     Int
+  daysOfCover    Int
+  velocity30     Float
+  suggestedQty   Int
+  latestOrderIn  Int
+  ageDays        Int
+  storageFeeMo   Float
+  bsr            Int
+  rating         Float
+  reviewCount    Int
+  buyBox         Boolean
+  buyBoxPrice    Float?
+  sessions7      Int
+  sessionsPrev   Int
+  conversion7    Float
+  conversionPrev Float
+  units7         Int
+  units30        Int
+  sales7         Float
+  sales30        Float
+  refundRate     Float
+  status         String
+  hue            Int
+
+  @@unique([storeId, asin])
+  @@index([storeId])
+}
+
+model Campaign {
+  id          String    @id
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  name        String
+  adType      String
+  targeting   String
+  status      String
+  dailyBudget Float
+  spend7      Float
+  spend30     Float
+  sales7      Float
+  sales30     Float
+  clicks7     Int
+  clicks30    Int
+  impr7       Int
+  impr30      Int
+  orders7     Int
+  orders30    Int
+  asin        String
+  keywords    Keyword[]
+
+  @@index([storeId])
+}
+
+model Keyword {
+  id           String   @id
+  campaignId   String
+  campaign     Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  text         String
+  matchType    String
+  bid          Float
+  suggestedBid Float
+  spend30      Float
+  sales30      Float
+  clicks30     Int
+  orders30     Int
+  wasted       Boolean  @default(false)
+}
+
+model Recommendation {
+  id           String @id
+  storeId      String
+  campaignName String
+  kind         String
+  target       String
+  matchType    String
+  currentBid   Float
+  proposedBid  Float
+  reasonZh     String
+  reasonEn     String
+  monthlyWaste Float
+  status       String
+
+  @@index([storeId])
+}
+
+model ToolDef {
+  name        String  @id
+  description String
+  category    String
+  readOnly    Boolean
+  idempotent  Boolean
+  destructive Boolean
+  inputSchema Json
+  docs        String
+}
+
+model AdsProfile {
+  id           String    @id
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  name         String
+  country      String
+  countryCode  String
+  enabled      Boolean   @default(false)
+  neverSynced  Boolean   @default(true)
+  lastSyncedAt DateTime?
+}
+
+model AiConnection {
+  id                  String   @id
+  name                String
+  client              String
+  allowMarketResearch Boolean  @default(false)
+  allowAiExecute      Boolean  @default(false)
+  connectedAt         DateTime @default(now())
+  lastUsedAt          DateTime @default(now())
+}
+
+model Skill {
+  slug         String  @id
+  nameZh       String
+  nameEn       String
+  category     String
+  summaryZh    String
+  summaryEn    String
+  bodyZh       String
+  bodyEn       String
+  stepsZh      Json
+  stepsEn      Json
+  relatedTools Json
+  promptZh     String
+  promptEn     String
+  featured     Boolean @default(false)
+  isNew        Boolean @default(false)
+  sort         Int     @default(100)
+}
+
+model WorkflowTemplate {
+  slug       String @id
+  index      Int
+  category   String
+  titleZh    String
+  titleEn    String
+  summaryZh  String
+  summaryEn  String
+  promptZh   String
+  promptEn   String
+  steps      Json
+}
+
+model WorkflowRun {
+  id           String   @id
+  templateSlug String
+  storeId      String
+  status       String
+  reportHtml   String
+  log          Json
+  createdAt    DateTime @default(now())
+}
+
+model Course {
+  slug      String @id
+  titleZh   String
+  titleEn   String
+  summaryZh String
+  summaryEn String
+  level     String
+  minutes   Int
+  track     String
+  lessons   Json
+}
+
+model TeamMember {
+  id       String @id
+  name     String
+  email    String
+  role     String
+  status   String
+  lastSeen String
+}
+
+model AppSetting {
+  id               String  @id @default("default")
+  locale           String  @default("en")
+  credits          Int     @default(0)
+  displayName      String
+  email            String
+  aiConnected      Boolean @default(false)
+  spAuthorized     Boolean @default(false)
+  adsAuthorized    Boolean @default(false)
+  toppedUp         Boolean @default(false)
+  shopifyShop      String  @default("")
+  shopifyConnected Boolean @default(false)
+  adsTargetAcos    Float   @default(0.35)
+}
+
+model Approval {
+  id         String    @id
+  storeId    String
+  kind       String
+  toolName   String
+  title      String
+  summary    String
+  payload    Json
+  preview    Json
+  status     String
+  createdAt  DateTime  @default(now())
+  decidedAt  DateTime?
+}
+
+model ToolRun {
+  id         String   @id
+  storeId    String?
+  toolName   String
+  input      Json
+  output     Json
+  status     String
+  approvalId String?
+  createdAt  DateTime @default(now())
+
+  @@index([toolName])
+}
+
+model FeedbackNote {
+  id        String   @id
+  kind      String
+  body      String
+  contact   String
+  createdAt DateTime @default(now())
+}
+
+model ShipmentDraft {
+  id        String   @id
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  name      String
+  status    String
+  skus      Json
+  dest      String
+  fee       Float
+  createdAt DateTime @default(now())
+}
+
+model ListingDraft {
+  id          String   @id
+  storeId     String
+  store       Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  sku         String
+  asin        String?
+  title       String
+  bullets     Json
+  searchTerms String
+  status      String
+  createdAt   DateTime @default(now())
+}

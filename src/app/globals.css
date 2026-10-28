@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #f6f3ef;
+  --color-ink: #1f1a17;
+  --color-muted: #8d847b;
+  --color-line: #efe8e1;
+  --color-orange: #e86a2c;
+  --color-peach: #fdeee6;
+  --color-chip: #f3eee8;
+}
+
+html, body { min-height: 100%; }
+body { background: var(--color-canvas); color: var(--color-ink); font-family: var(--font-sans); }
+
+button, input, select, textarea { font: inherit; }
+::selection { background: #f8d7c4; }
+
+.card {
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+}
+.btn-orange {
+  background: var(--color-orange);
+  color: white;
+  border-radius: 10px;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-orange:hover { background: #d85d22; }
+.btn-ghost {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-line);
+  background: white;
+  color: #4a433d;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-ghost:hover { background: #faf7f4; }
+.field {
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #eadfd6;
+  background: white;
+  padding: 0 12px;
+  font-size: 14px;
+  outline: none;
+}
+.field:focus { border-color: #e86a2c; }
