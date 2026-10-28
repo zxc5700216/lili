@@ -52,20 +52,26 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
         ))}
       </ol>
 
-      {usedBy.length > 0 && (
-        <>
-          <h2 className="mb-3 mt-8 text-lg font-semibold">{tx(locale, "用在这些工作流里", "Used in these workflows")}</h2>
-          <ul className="space-y-2">
-            {usedBy.map((workflow) => (
+      <h2 className="mb-3 mt-8 text-lg font-semibold">{tx(locale, "用在这些工作流里", "Used in these workflows")}</h2>
+      {usedBy.length === 0 ? (
+        <p className="text-sm leading-6 text-muted">
+          {tx(locale, "上传的 12 条工作流没有把这个技能写成必经步骤。它可以单独复制提示词使用。", "None of the 12 workflow templates name this skill as a required step. You can still copy its prompt on its own.")}
+        </p>
+      ) : (
+        <ul className="space-y-2">
+          {usedBy.map((workflow) => {
+            const hit = (workflow.steps as { zh: string; en: string; skill: string | null }[]).find((step) => step.skill === short);
+            return (
               <li key={workflow.slug}>
                 <Link href={`/v2/cases/${workflow.slug}`} className="card block px-4 py-3 hover:border-orange">
                   <span className="text-xs text-orange">{String(workflow.index).padStart(2, "0")} · {tagLabel(locale, workflow.category)}</span>
                   <span className="mt-1 block font-medium">{tx(locale, workflow.titleZh, workflow.titleEn)}</span>
+                  {hit && <span className="mt-1 block text-sm leading-6 text-[#5c564f]">{tx(locale, hit.zh, hit.en)}</span>}
                 </Link>
               </li>
-            ))}
-          </ul>
-        </>
+            );
+          })}
+        </ul>
       )}
 
       <h2 className="mb-3 mt-8 text-lg font-semibold">{tx(locale, "相关工具", "Related tools")}</h2>
@@ -73,6 +79,7 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
         {toolNames.map((name) => {
           const tool = toolByName.get(name);
           const write = tool ? !tool.readOnly : false;
+          const docs = tool?.docs?.split("\n").map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && !line.startsWith("```")).slice(0, 2).join(" ") ?? "";
           return (
             <li key={name}>
               <Link href={`/v2/tools/${name}`} className="card block px-4 py-3 hover:border-orange">
@@ -85,6 +92,7 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
                 <span className="mt-1 block text-sm leading-6 text-[#5c564f]">
                   {tool?.description || tx(locale, "清单里没有这条工具说明。", "No description in the tool list.")}
                 </span>
+                {docs && <span className="mt-1 block text-xs leading-5 text-muted">{docs.slice(0, 360)}</span>}
               </Link>
             </li>
           );

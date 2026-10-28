@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { prisma } from "../prisma";
+import { fixtureFor } from "./fixtures";
 
 const PREPARE = new Set([
   "ads_prepare_changes",
@@ -478,6 +479,14 @@ function readPayload(name: string, input: Json, ctx: Awaited<ReturnType<typeof l
       product_types: ["KITCHEN", "HOME", "SPORTING_GOODS", "ELECTRONIC_CABLE", "COMPUTER_ADD_ON"],
     };
   }
+
+  const fixture = fixtureFor(name, input, {
+    store: ctx.store,
+    products: ctx.products,
+    campaigns: ctx.campaigns,
+    shipments: ctx.shipments,
+  });
+  if (fixture) return { ...base, ...fixture };
 
   if (name.startsWith("restock_")) {
     const skus = ctx.products.map((p) => ({

@@ -49,18 +49,18 @@ type Connection = {
 };
 
 const CLIENTS = [
-  ["codex", "Codex (app)"],
-  ["chatgpt", "ChatGPT (web)"],
-  ["workbuddy", "WorkBuddy"],
-  ["claude", "Claude (web / desktop)"],
-  ["claude-code", "Claude Code (CLI)"],
-  ["grok", "Grok (web)"],
-  ["accio", "Accio Work"],
-  ["coze", "Coze 扣子"],
-  ["minimax", "MiniMax Agent"],
-  ["openclaw", "OpenClaw"],
-  ["hermes", "Hermes"],
-  ["deepseek", "DeepSeek Harness (app)"],
+  { id: "codex", label: "Codex (app)", mark: "Cx", bg: "#1c1917", fg: "#fff" },
+  { id: "chatgpt", label: "ChatGPT (web)", mark: "GPT", bg: "#10a37f", fg: "#fff" },
+  { id: "workbuddy", label: "WorkBuddy", mark: "WB", bg: "#2563eb", fg: "#fff" },
+  { id: "claude", label: "Claude (web / desktop)", mark: "Cl", bg: "#d97757", fg: "#fff" },
+  { id: "claude-code", label: "Claude Code (CLI)", mark: ">", bg: "#c4654a", fg: "#fff" },
+  { id: "grok", label: "Grok (web)", mark: "✕", bg: "#111111", fg: "#fff" },
+  { id: "accio", label: "Accio Work", mark: "Ac", bg: "#111111", fg: "#fff" },
+  { id: "coze", label: "Coze 扣子", mark: "扣", bg: "#4f46e5", fg: "#fff" },
+  { id: "minimax", label: "MiniMax Agent", mark: "Mm", bg: "#7c3aed", fg: "#fff" },
+  { id: "openclaw", label: "OpenClaw", mark: "OC", bg: "#0f766e", fg: "#fff" },
+  { id: "hermes", label: "Hermes", mark: "He", bg: "#b45309", fg: "#fff" },
+  { id: "deepseek", label: "DeepSeek Harness (app)", mark: "DS", bg: "#4d6bfe", fg: "#fff" },
 ] as const;
 
 const MARKETS = ["United States", "Canada", "Mexico", "United Kingdom", "Germany", "Japan"];
@@ -113,7 +113,7 @@ export function GetStarted({
   const [market, setMarket] = useState("United States");
   const [adding, setAdding] = useState(false);
   const [storeName, setStoreName] = useState("");
-  const [client, setClient] = useState<(typeof CLIENTS)[number][0]>("codex");
+  const [client, setClient] = useState<(typeof CLIENTS)[number]["id"]>("codex");
   const [mode, setMode] = useState<"install" | "manual">("install");
   const [connName, setConnName] = useState("Codex");
   const [prompt, setPrompt] = useState("");
@@ -131,7 +131,7 @@ export function GetStarted({
   }
 
   const installPrompt = useMemo(() => {
-    const label = CLIENTS.find((item) => item[0] === client)?.[1] ?? client;
+    const label = CLIENTS.find((item) => item.id === client)?.label ?? client;
     return [
       `Add an MCP server for the Duobaoyu study sandbox. Connection name: ${connName || label}.`,
       `Client: ${label}.`,
@@ -249,10 +249,10 @@ export function GetStarted({
         {open === "ai" && (
           <div className="mt-4">
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-              {CLIENTS.map(([id, label]) => (
-                <button key={id} onClick={() => { setClient(id); setConnName(label.split(" (")[0]); }} className={`rounded-xl border px-2 py-3 text-center text-xs ${client === id ? "border-orange bg-peach text-orange" : "border-line bg-white"}`}>
-                  <span className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-lg bg-canvas font-semibold">{label.slice(0, 1)}</span>
-                  {label}
+              {CLIENTS.map((item) => (
+                <button key={item.id} onClick={() => { setClient(item.id); setConnName(item.label.split(" (")[0]); }} className={`rounded-xl border px-2 py-3 text-center text-xs leading-4 ${client === item.id ? "border-orange bg-[#fff7f2]" : "border-line bg-white"}`}>
+                  <span className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-lg text-[11px] font-semibold" style={{ background: item.bg, color: item.fg }}>{item.mark}</span>
+                  {item.label}
                 </button>
               ))}
             </div>

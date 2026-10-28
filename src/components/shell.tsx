@@ -76,17 +76,17 @@ export function Shell({
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[248px_1fr]">
       <aside className={`${navOpen ? "fixed inset-0 z-40 flex" : "hidden"} lg:sticky lg:top-0 lg:flex h-screen flex-col bg-white lg:border-r lg:border-line`}>
-        <div className="flex items-start gap-2.5 px-4 pb-2 pt-4">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-orange text-white">
+        <div className="flex items-start gap-2 px-4 pb-1 pt-5">
+          <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-[10px] bg-orange text-white">
             <svg viewBox="0 0 32 32" className="h-5 w-5" aria-hidden>
               <path d="M5 17c4-6 10-7.2 16-4 2 1 3.2 2 4 3.4-4 3-9 4.8-14 3.8-2.4-.5-4.2-1.6-6-3.2z" fill="white" />
               <circle cx="20" cy="14.5" r="1.2" fill="#e86a2c" />
             </svg>
           </span>
           <div className="min-w-0">
-            <div className="text-[15px] font-semibold leading-5">Duobaoyu AI Assistant</div>
-            <div className="mt-1 flex items-center gap-1.5 text-[11px] text-muted">
-              <span className="rounded bg-peach px-1 py-0.5 font-medium text-orange">Beta</span>
+            <div className="text-[14px] font-semibold leading-5">Duobaoyu AI Assistant</div>
+            <div className="mt-0.5 flex items-center gap-1 text-[11px] leading-4 text-muted">
+              <span className="rounded bg-[#fde7da] px-1 py-px text-[10px] font-medium text-orange">Beta</span>
               <span>{tx(locale, "11 月 1 日正式发布", "Official launch Nov 1")}</span>
             </div>
           </div>
@@ -95,7 +95,7 @@ export function Shell({
           </button>
         </div>
 
-        <nav className="mt-4 space-y-1 px-3">
+        <nav className="mt-5 space-y-0.5 px-3">
           {TOP.map((item) => (
             <NavLink key={item.href} {...item} locale={locale} pathname={pathname} onNavigate={() => setNav(false)} />
           ))}
