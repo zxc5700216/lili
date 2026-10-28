@@ -23,6 +23,29 @@ export type SkillCard = {
   isNew: boolean;
 };
 
+const PLAYBOOK = {
+  exampleEn: "Using the Duobaoyu MCP skill ads-playbook-interview: Interview me and write down how I run my Amazon ads.",
+  exampleZh: "使用多宝鱼技能 ads-playbook-interview：采访我，并写下我是怎么投亚马逊广告的。",
+  keywords: ["grill me", "ads playbook", "ads playbook interview", "interview me", "document my ads process"],
+};
+
+function triggerKeywords(item: SkillCard, short: string) {
+  if (item.slug === "duobaoyu-ads-playbook-interview") return PLAYBOOK.keywords;
+  const words = item.nameEn.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((word) => word.length > 2);
+  const phrase = words.slice(0, 3).join(" ");
+  return [...new Set([phrase, words[0], short.replace(/-/g, " "), `my ${words[0] || "workflow"}`])].filter(Boolean).slice(0, 5);
+}
+
+function exampleRequest(item: SkillCard, short: string, locale: Locale) {
+  if (item.slug === "duobaoyu-ads-playbook-interview") return tx(locale, PLAYBOOK.exampleZh, PLAYBOOK.exampleEn);
+  const summary = tx(locale, item.summaryZh, item.summaryEn);
+  return tx(
+    locale,
+    `使用多宝鱼 MCP 技能 ${short}：${summary}`,
+    `Using the Duobaoyu MCP skill ${short}: ${summary}`,
+  );
+}
+
 const CHIPS = [
   ["all", "全部", "All"],
   ["featured", "精选", "Featured"],
@@ -43,6 +66,7 @@ export function SkillGrid({ locale, items }: { locale: Locale; items: SkillCard[
   const [q, setQ] = useState("");
   const [open, setOpen] = useState<string | null>(null);
   const flash = useUI((s) => s.flash);
+  const sandboxExtras = useUI((s) => s.sandboxExtras);
   const counts = useMemo(() => {
     const map = new Map<string, number>();
     for (const item of items) map.set(item.category, (map.get(item.category) ?? 0) + 1);
@@ -73,41 +97,48 @@ export function SkillGrid({ locale, items }: { locale: Locale; items: SkillCard[
         })}
       </div>
       {shown.length === 0 && <p className="text-sm text-muted">{tx(locale, "没有匹配的技能。", "No skills match.")}</p>}
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid items-start gap-3 md:grid-cols-2 xl:grid-cols-3">
         {shown.map((item) => {
           const short = item.slug.replace(/^duobaoyu-/, "");
           const label = short.length > 18 ? `${short.slice(0, 16)}…` : short;
           const expanded = open === item.slug;
+          const example = exampleRequest(item, short, locale);
+          const keywords = triggerKeywords(item, short);
           return (
             <article key={item.slug} className="card flex flex-col p-4">
               <div className="flex items-start gap-2">
                 <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-orange" />
-                <Link href={`/v2/skills/${item.slug}`} className="font-semibold leading-5 hover:text-orange">
-                  {tx(locale, item.nameZh, item.nameEn)}
-                </Link>
-                {item.isNew && <span className="ml-auto text-xs font-medium text-orange">{tx(locale, "新", "New")}</span>}
+                <h3 className="font-semibold leading-5">{tx(locale, item.nameZh, item.nameEn)}</h3>
+                {item.isNew && <span className="ml-auto shrink-0 text-xs font-medium text-orange">{tx(locale, "新", "New")}</span>}
               </div>
               <p className={`mt-2 text-sm leading-5 text-[#5c564f] ${expanded ? "" : "line-clamp-3"}`}>
                 {tx(locale, item.summaryZh, item.summaryEn)}
               </p>
               {expanded && (
-                <div className="mt-2 text-sm text-[#5c564f]">
-                  <ol className="list-decimal space-y-1 pl-4">
-                    {(locale === "en" ? item.stepsEn : item.stepsZh).map((step) => <li key={step}>{step}</li>)}
-                  </ol>
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {item.tools.map((tool) => (
-                      <Link key={tool} href={`/v2/tools/${tool}`} className="rounded-full bg-chip px-2 py-0.5 text-xs">{tool}</Link>
+                <div className="mt-3 text-sm text-[#3f3a36]">
+                  <div className="text-xs text-muted">{tx(locale, "示例请求", "Example request")}</div>
+                  <p className="mt-1 leading-6">{example}</p>
+                  <div className="mt-3 text-xs text-muted">{tx(locale, "触发词", "Trigger keywords")}</div>
+                  <div className="mt-1 flex flex-wrap gap-1.5">
+                    {keywords.map((word) => (
+                      <span key={word} className="rounded-full bg-chip px-2 py-0.5 text-xs">{word}</span>
                     ))}
                   </div>
+                  {sandboxExtras && (
+                    <Link href={`/v2/lab/skills/${item.slug}`} className="mt-2 inline-block text-xs text-orange">
+                      {tx(locale, "沙盒笔记", "Sandbox notes")}
+                    </Link>
+                  )}
                 </div>
               )}
               <div className="mt-3 flex items-center gap-2">
-                <button className="flex items-center gap-1 text-xs text-muted" onClick={() => setOpen(expanded ? null : item.slug)}>
-                  {label} <ChevronDown className={`h-3.5 w-3.5 ${expanded ? "rotate-180" : ""}`} /> {tx(locale, "展开", "Show more")}
+                <button className="flex min-w-0 items-center gap-1 text-xs text-muted" onClick={() => setOpen(expanded ? null : item.slug)}>
+                  <span className="truncate">{label}</span>
+                  <ChevronDown className={`h-3.5 w-3.5 shrink-0 ${expanded ? "rotate-180" : ""}`} />
+                  {expanded ? tx(locale, "收起", "Show less") : tx(locale, "展开", "Show more")}
                 </button>
                 <button
-                  className="btn-orange ml-auto"
+                  className="btn-orange ml-auto !rounded-full"
                   onClick={() => {
                     copyText(tx(locale, item.promptZh, item.promptEn));
                     flash(tx(locale, "已复制", "Copied"));

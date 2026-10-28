@@ -36,7 +36,7 @@ const BOTTOM = [
 ];
 
 function titleFor(pathname: string, locale: Locale) {
-  const all = [...TOP, ...BOTTOM, { href: "/v2/recharge", icon: Coins, zh: "充值", en: "Top up" }, { href: "/v2/tools", icon: Sparkles, zh: "工具实验室", en: "Tool lab" }, { href: "/v2/approvals", icon: Settings, zh: "审批", en: "Approvals" }];
+  const all = [...TOP, ...BOTTOM, { href: "/v2/recharge", icon: Coins, zh: "充值", en: "Top Up" }, { href: "/v2/tools", icon: Sparkles, zh: "工具实验室", en: "Tool lab" }, { href: "/v2/approvals", icon: Settings, zh: "审批", en: "Approvals" }];
   const hit = all.find((item) => pathname === item.href || pathname.startsWith(item.href + "/"));
   if (!hit) return { icon: Rocket, label: "Duobaoyu" };
   return { icon: hit.icon, label: tx(locale, hit.zh, hit.en) };
@@ -259,6 +259,15 @@ function SupportDialog({ locale, onClose }: { locale: Locale; onClose: () => voi
           "This does not reach Duobaoyu support and does not open a real ticket. Write study notes in Feedback. Tools and approvals live on the two sandbox pages below.",
         )}
       </p>
+      <label className="mt-4 flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          className="h-4 w-4 accent-[#e86a2c]"
+          checked={useUI((s) => s.sandboxExtras)}
+          onChange={(e) => useUI.getState().setSandboxExtras(e.target.checked)}
+        />
+        {tx(locale, "显示沙盒演练（正式产品没有）", "Show sandbox rehearsal (not in the live product)")}
+      </label>
       <div className="mt-4 flex gap-2">
         <Link className="btn-orange" href="/v2/tools" onClick={onClose}>{tx(locale, "工具实验室", "Tool lab")}</Link>
         <Link className="btn-ghost" href="/v2/approvals" onClick={onClose}>{tx(locale, "审批", "Approvals")}</Link>

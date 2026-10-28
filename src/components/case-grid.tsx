@@ -45,6 +45,7 @@ const CHIPS = [
 export function CaseGrid({ locale, items }: { locale: Locale; items: CaseCard[] }) {
   const [cat, setCat] = useState("all");
   const flash = useUI((s) => s.flash);
+  const sandboxExtras = useUI((s) => s.sandboxExtras);
   const counts = useMemo(() => {
     const map = new Map<string, number>();
     for (const item of items) map.set(item.category, (map.get(item.category) ?? 0) + 1);
@@ -65,19 +66,17 @@ export function CaseGrid({ locale, items }: { locale: Locale; items: CaseCard[] 
         })}
       </div>
       {shown.length === 0 && <p className="text-sm text-muted">{tx(locale, "这个分类下没有模板。", "No templates in this filter.")}</p>}
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="flex flex-wrap gap-3">
         {shown.map((item) => {
           const Icon = ICONS[item.category as keyof typeof ICONS] ?? Lightbulb;
           const sunset = item.slug === "sunset-sku";
           return (
-            <article key={item.slug} className="card flex flex-col p-4">
+            <article key={item.slug} className="card flex w-full flex-col p-4 sm:w-[280px]">
               {sunset ? <Archive className="h-4 w-4 text-orange" /> : <Icon className="h-4 w-4 text-orange" />}
-              <Link href={`/v2/cases/${item.slug}`} className="mt-2 font-semibold leading-5 hover:text-orange">
-                {tx(locale, item.titleZh, item.titleEn)}
-              </Link>
-              <p className="mt-1 line-clamp-3 flex-1 text-sm leading-5 text-[#5c564f]">{tx(locale, item.summaryZh, item.summaryEn)}</p>
+              <h3 className="mt-2 truncate text-[15px] font-semibold">{tx(locale, item.titleZh, item.titleEn)}</h3>
+              <p className="mt-1 line-clamp-2 text-sm leading-5 text-[#6b645c]">{tx(locale, item.summaryZh, item.summaryEn)}</p>
               <button
-                className="btn-orange mt-4 self-start"
+                className="btn-orange mt-3 self-start !rounded-full"
                 onClick={() => {
                   copyText(tx(locale, item.promptZh, item.promptEn));
                   flash(tx(locale, "已复制", "Copied"));
@@ -85,6 +84,11 @@ export function CaseGrid({ locale, items }: { locale: Locale; items: CaseCard[] 
               >
                 <Copy className="h-3.5 w-3.5" /> {tx(locale, "复制提示词", "Copy prompt")}
               </button>
+              {sandboxExtras && (
+                <Link href={`/v2/lab/cases/${item.slug}`} className="mt-2 text-xs text-orange">
+                  {tx(locale, "沙盒演练", "Sandbox rehearsal")}
+                </Link>
+              )}
             </article>
           );
         })}

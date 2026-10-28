@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type Dialog = null | "feedback" | "support" | "notice";
 
@@ -9,23 +10,32 @@ type UIState = {
   dialog: Dialog;
   notice: string;
   toast: string;
+  sandboxExtras: boolean;
   setNav: (open: boolean) => void;
   openDialog: (dialog: Dialog, notice?: string) => void;
   flash: (toast: string) => void;
+  setSandboxExtras: (on: boolean) => void;
 };
 
-export const useUI = create<UIState>((set) => ({
-  navOpen: false,
-  dialog: null,
-  notice: "",
-  toast: "",
-  setNav: (navOpen) => set({ navOpen }),
-  openDialog: (dialog, notice = "") => set({ dialog, notice }),
-  flash: (toast) => {
-    set({ toast });
-    window.setTimeout(() => set({ toast: "" }), 1600);
-  },
-}));
+export const useUI = create<UIState>()(
+  persist(
+    (set) => ({
+      navOpen: false,
+      dialog: null,
+      notice: "",
+      toast: "",
+      sandboxExtras: false,
+      setNav: (navOpen) => set({ navOpen }),
+      openDialog: (dialog, notice = "") => set({ dialog, notice }),
+      flash: (toast) => {
+        set({ toast });
+        window.setTimeout(() => set({ toast: "" }), 1600);
+      },
+      setSandboxExtras: (sandboxExtras) => set({ sandboxExtras }),
+    }),
+    { name: "dby-ui", partialize: (state) => ({ sandboxExtras: state.sandboxExtras }) },
+  ),
+);
 
 export async function copyText(text: string) {
   try {

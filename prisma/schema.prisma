@@ -269,6 +269,15 @@ model ToolRun {
   @@index([toolName])
 }
 
+model CreditOrder {
+  id        String   @id
+  code      String
+  credits   Int
+  amountCny Float
+  status    String
+  createdAt DateTime @default(now())
+}
+
 model FeedbackNote {
   id        String   @id
   kind      String

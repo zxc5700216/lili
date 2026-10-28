@@ -375,6 +375,17 @@ async function main() {
     })),
   });
 
+  await prisma.creditOrder.create({
+    data: {
+      id: "ord-seed-1",
+      code: "ORD-20261027-SANDBOX01",
+      credits: 50,
+      amountCny: 5,
+      status: "credited",
+      createdAt: new Date("2026-10-27T09:42:00.000Z"),
+    },
+  });
+
   const [toolCount, skillCount, caseCount] = await Promise.all([
     prisma.toolDef.count(),
     prisma.skill.count(),

@@ -27,6 +27,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
 
   return (
     <article className="mx-auto max-w-[860px]">
+      <p className="mb-3 rounded-xl bg-[#fff4ee] px-3 py-2 text-xs text-[#9a5b3c]">{tx(locale, "沙盒演练。正式产品的工作流卡片只有复制提示词，没有这一页。", "Sandbox rehearsal. The live workflow cards only copy a prompt. This page is not in the product.")}</p>
       <Link href="/v2/cases" className="text-sm text-muted">
         {tx(locale, "← 全部工作流模板", "← All workflow templates")}
       </Link>

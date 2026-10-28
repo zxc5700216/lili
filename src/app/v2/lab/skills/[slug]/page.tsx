@@ -29,6 +29,7 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
 
   return (
     <article className="mx-auto max-w-[860px]">
+      <p className="mb-3 rounded-xl bg-[#fff4ee] px-3 py-2 text-xs text-[#9a5b3c]">{tx(locale, "沙盒笔记。正式产品在技能网格里展开，没有单独页面。", "Sandbox notes. The live product expands the skill on the grid and has no separate page.")}</p>
       <Link href="/v2/skills" className="text-sm text-muted">{tx(locale, "← 全部技能", "← All skills")}</Link>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-chip px-3 py-1 text-xs">{tagLabel(locale, row.category)}</span>
