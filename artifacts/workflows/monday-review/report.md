@@ -1,0 +1,47 @@
+# 周一经营例会 / Monday business review
+
+模式：fixture。缺真实密钥时这是 fixture，不会假装已经调通多宝鱼。
+
+## 01｜步骤
+
+1. store-weekly-review
+2. weekly-ads-review-routine
+3. buybox-competition-watch
+4. turbot-inventory-restock
+
+## 02｜技能表
+
+| 技能 | 介入 |
+| --- | --- |
+| store-weekly-review | 第 1 步 |
+| weekly-ads-review-routine | 第 2 步 |
+| buybox-competition-watch | 第 3 步 |
+| turbot-inventory-restock | 第 4 步 |
+
+## 03｜三句话
+
+1. NS店近 7 天销售 $3006.00，广告花费 $456.00，ACOS 66.1%。
+2. 3 个 SKU 两周内可能断货，1 个 ASIN 不在购物车。
+3. 近 30 天浪费花费约 $214.00，先做否定预览。
+
+## 04｜动作
+
+| 优先级 | 环节 | 动作 | 本周指标 |
+| --- | --- | --- | --- |
+| 1 | 库存 | NS-KETTLE-SS、NS-LAMP-WD、NS-ORG-4P 按建议量补货 | 可售天数 |
+| 2 | 广告 | 浪费词先预览否定，不直接改 | 花费无订单 |
+| 3 | 定价 | 台灯购物车在 $36.50，先确认是不是价格 | Buy Box |
+
+## 请求账本
+
+模式 `fixture`。fixture 下列出本应调用的多宝鱼工具名，响应是 NS 店种子，不是远程 JSON。
+
+| 工具 | 用途 |
+| --- | --- |
+| meta_list_stores | 确认店铺 |
+| data_query | 销售与流量 |
+| ads_list_entities | 广告花费 |
+| restock_get_stockout_alerts | 断货 |
+
+
+推断处标 `inferred`。没有采购放行，也没有改真实店铺。

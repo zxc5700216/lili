@@ -22,7 +22,19 @@ npm run dev
 npm run workflow:selection -- --keyword "arrow bag quiver"
 ```
 
-产出在 `artifacts/selection-doc/arrow-bag-quiver/`：`flow-tree.md`、`evidence.json`、`stage2-5-evidence.json`、`calculations.json`、`review.html`。不调用付费多宝鱼 API。数据库连接写在 `.env.example`：
+产出在 `artifacts/selection-doc/arrow-bag-quiver/`。十二条一起跑（fixture，不需要密钥）：
+
+```bash
+npm run workflow:all
+```
+
+单条真调用（缺密钥会退出并写明缺哪一项，不会假装成功）：
+
+```bash
+npm run workflow:run -- --slug monday-review --live
+```
+
+密钥在网页 `/v2/tool-config` 填写，加密存在 `.secrets/`，口令在 `.env.local`。演示报告列表是 `/v2/workflows`。数据库连接写在 `.env.example`：
 
 `postgresql://duobaoyu:duobaoyu@localhost:54329/duobaoyu`
 

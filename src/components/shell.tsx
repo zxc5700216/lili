@@ -8,6 +8,7 @@ import {
   Coins,
   Globe,
   Headset,
+  KeyRound,
   Lightbulb,
   LogOut,
   Menu,
@@ -31,12 +32,13 @@ const TOP = [
 ];
 
 const BOTTOM = [
+  { href: "/v2/tool-config", icon: KeyRound, zh: "工具配置", en: "Tool setup" },
   { href: "/v2/team", icon: Users, zh: "团队", en: "Team" },
   { href: "/v2/settings", icon: Settings, zh: "设置", en: "Settings" },
 ];
 
 function titleFor(pathname: string, locale: Locale) {
-  const all = [...TOP, ...BOTTOM, { href: "/v2/recharge", icon: Coins, zh: "充值", en: "Top Up" }, { href: "/v2/tools", icon: Sparkles, zh: "工具实验室", en: "Tool lab" }, { href: "/v2/approvals", icon: Settings, zh: "审批", en: "Approvals" }];
+  const all = [...TOP, ...BOTTOM, { href: "/v2/recharge", icon: Coins, zh: "充值", en: "Top Up" }, { href: "/v2/workflows", icon: Lightbulb, zh: "演示报告", en: "Demo reports" }, { href: "/v2/tools", icon: Sparkles, zh: "工具实验室", en: "Tool lab" }, { href: "/v2/approvals", icon: Settings, zh: "审批", en: "Approvals" }];
   const hit = all.find((item) => pathname === item.href || pathname.startsWith(item.href + "/"));
   if (!hit) return { icon: Rocket, label: "Duobaoyu" };
   return { icon: hit.icon, label: tx(locale, hit.zh, hit.en) };

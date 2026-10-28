@@ -11,6 +11,8 @@
     "db:seed": "prisma db seed",
     "db:setup": "prisma generate && prisma db push && prisma db seed",
     "workflow:selection": "tsx scripts/run-selection-doc.ts",
+    "workflow:all": "tsx scripts/run-workflow.ts --all",
+    "workflow:run": "tsx scripts/run-workflow.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
