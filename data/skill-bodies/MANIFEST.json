@@ -1,0 +1,715 @@
+{
+  "generated_at_asia_shanghai": "2026-10-29 22:55+08",
+  "count": 116,
+  "total_bytes": 1230833,
+  "min_bytes": 4046,
+  "max_bytes": 25317,
+  "brand": "粒粒/lili",
+  "wired_into": [
+    "prisma/seed.ts bodyZh/bodyEn",
+    "src/lib/codex-bundle.ts skillToMarkdown"
+  ],
+  "sources": {
+    "replay_or_template_imported": 55,
+    "synthesized_from_zhSum_steps_tools_playbooks": 61
+  },
+  "note": "Replay had only 7 SKILL.md; external Amazon skill templates supplied ~52; remainder expanded via category playbooks + tool-docs + cousin excerpts. Brand normalized to 粒粒/lili.",
+  "skills": [
+    {
+      "slug": "acos-reduction-plan",
+      "cat": "ads",
+      "bytes": 12427,
+      "sections": 20
+    },
+    {
+      "slug": "acos-spike-triage",
+      "cat": "ads",
+      "bytes": 12098,
+      "sections": 20
+    },
+    {
+      "slug": "acos-target-setting",
+      "cat": "ads",
+      "bytes": 12123,
+      "sections": 20
+    },
+    {
+      "slug": "ads-build-from-scratch",
+      "cat": "ads",
+      "bytes": 12691,
+      "sections": 20
+    },
+    {
+      "slug": "ads-data-health-interpretation",
+      "cat": "ads",
+      "bytes": 9806,
+      "sections": 17
+    },
+    {
+      "slug": "ads-data-pull",
+      "cat": "ads",
+      "bytes": 9913,
+      "sections": 17
+    },
+    {
+      "slug": "ads-metrics-glossary",
+      "cat": "ads",
+      "bytes": 6113,
+      "sections": 14
+    },
+    {
+      "slug": "ads-playbook-interview",
+      "cat": "ads",
+      "bytes": 6197,
+      "sections": 14
+    },
+    {
+      "slug": "ads-sunset-wind-down",
+      "cat": "ads",
+      "bytes": 12306,
+      "sections": 20
+    },
+    {
+      "slug": "ads-tune-live",
+      "cat": "ads",
+      "bytes": 12329,
+      "sections": 20
+    },
+    {
+      "slug": "amazon-a-plus-content",
+      "cat": "listing",
+      "bytes": 24202,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-ads-analysis-operator",
+      "cat": "ads",
+      "bytes": 6224,
+      "sections": 14
+    },
+    {
+      "slug": "amazon-ads-funnel-sop",
+      "cat": "ads",
+      "bytes": 12746,
+      "sections": 20
+    },
+    {
+      "slug": "amazon-ads-funnel-sop-keywords-negatives",
+      "cat": "ads",
+      "bytes": 6910,
+      "sections": 14
+    },
+    {
+      "slug": "amazon-ads-funnel-sop-pitfalls",
+      "cat": "ads",
+      "bytes": 12060,
+      "sections": 20
+    },
+    {
+      "slug": "amazon-ads-funnel-sop-report-rules",
+      "cat": "ads",
+      "bytes": 6667,
+      "sections": 14
+    },
+    {
+      "slug": "amazon-ads-funnel-sop-structure-bids",
+      "cat": "ads",
+      "bytes": 12996,
+      "sections": 20
+    },
+    {
+      "slug": "amazon-ads-performance-report",
+      "cat": "report",
+      "bytes": 4305,
+      "sections": 10
+    },
+    {
+      "slug": "amazon-advertising-strategy",
+      "cat": "ads",
+      "bytes": 22556,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-backend-keywords",
+      "cat": "listing",
+      "bytes": 21991,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-boutique-rank-tracker",
+      "cat": "research",
+      "bytes": 4831,
+      "sections": 10
+    },
+    {
+      "slug": "amazon-brand-analytics",
+      "cat": "research",
+      "bytes": 11873,
+      "sections": 14
+    },
+    {
+      "slug": "amazon-buy-box",
+      "cat": "ops",
+      "bytes": 18689,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-competitor-analysis",
+      "cat": "research",
+      "bytes": 6977,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-competitor-monitoring",
+      "cat": "research",
+      "bytes": 8465,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-deal-finder",
+      "cat": "promo",
+      "bytes": 19852,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-display-ads",
+      "cat": "ads",
+      "bytes": 25317,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-fba-calculator",
+      "cat": "profit",
+      "bytes": 4393,
+      "sections": 10
+    },
+    {
+      "slug": "amazon-fba-prep",
+      "cat": "inventory",
+      "bytes": 13562,
+      "sections": 21
+    },
+    {
+      "slug": "amazon-fba-shipment-kit",
+      "cat": "inventory",
+      "bytes": 7715,
+      "sections": 13
+    },
+    {
+      "slug": "amazon-global-selling",
+      "cat": "ops",
+      "bytes": 13502,
+      "sections": 22
+    },
+    {
+      "slug": "amazon-keyword-research",
+      "cat": "research",
+      "bytes": 9980,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-keyword-tracker",
+      "cat": "research",
+      "bytes": 22376,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-listing-images",
+      "cat": "listing",
+      "bytes": 24300,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-listing-optimization",
+      "cat": "listing",
+      "bytes": 19477,
+      "sections": 32
+    },
+    {
+      "slug": "amazon-negative-keywords",
+      "cat": "ads",
+      "bytes": 21255,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-niche-finder",
+      "cat": "research",
+      "bytes": 14931,
+      "sections": 13
+    },
+    {
+      "slug": "amazon-ppc-campaign",
+      "cat": "ads",
+      "bytes": 24999,
+      "sections": 32
+    },
+    {
+      "slug": "amazon-product-intelligence-report",
+      "cat": "report",
+      "bytes": 7979,
+      "sections": 13
+    },
+    {
+      "slug": "amazon-product-photography",
+      "cat": "listing",
+      "bytes": 14802,
+      "sections": 20
+    },
+    {
+      "slug": "amazon-product-research",
+      "cat": "research",
+      "bytes": 14847,
+      "sections": 13
+    },
+    {
+      "slug": "amazon-product-selection",
+      "cat": "research",
+      "bytes": 14896,
+      "sections": 13
+    },
+    {
+      "slug": "amazon-profit-analysis",
+      "cat": "profit",
+      "bytes": 15834,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-rank-tracker",
+      "cat": "research",
+      "bytes": 22764,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-repricing-strategy",
+      "cat": "ops",
+      "bytes": 17881,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-return-weekly-analysis",
+      "cat": "report",
+      "bytes": 4764,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-review-analyzer",
+      "cat": "research",
+      "bytes": 7644,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-sales-estimator",
+      "cat": "research",
+      "bytes": 12192,
+      "sections": 21
+    },
+    {
+      "slug": "amazon-search-optimization",
+      "cat": "listing",
+      "bytes": 20191,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-seller-analytics",
+      "cat": "report",
+      "bytes": 15695,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-shipping-calculator",
+      "cat": "profit",
+      "bytes": 19149,
+      "sections": 12
+    },
+    {
+      "slug": "amazon-trending-products",
+      "cat": "research",
+      "bytes": 11102,
+      "sections": 13
+    },
+    {
+      "slug": "auto-campaign-strategy",
+      "cat": "ads",
+      "bytes": 12633,
+      "sections": 20
+    },
+    {
+      "slug": "bid-adjustment-strategy",
+      "cat": "ads",
+      "bytes": 12474,
+      "sections": 20
+    },
+    {
+      "slug": "bid-floor-ceiling-guardrails",
+      "cat": "ads",
+      "bytes": 12142,
+      "sections": 20
+    },
+    {
+      "slug": "branded-vs-generic-split",
+      "cat": "ads",
+      "bytes": 13088,
+      "sections": 20
+    },
+    {
+      "slug": "budget-capped-campaigns",
+      "cat": "ads",
+      "bytes": 12418,
+      "sections": 20
+    },
+    {
+      "slug": "budget-pacing-review",
+      "cat": "ads",
+      "bytes": 12315,
+      "sections": 20
+    },
+    {
+      "slug": "buybox-competition-watch",
+      "cat": "ops",
+      "bytes": 18739,
+      "sections": 12
+    },
+    {
+      "slug": "campaign-structure-audit",
+      "cat": "ads",
+      "bytes": 11969,
+      "sections": 20
+    },
+    {
+      "slug": "category-node-scan",
+      "cat": "research",
+      "bytes": 8184,
+      "sections": 13
+    },
+    {
+      "slug": "clearance-aging-decision",
+      "cat": "inventory",
+      "bytes": 15582,
+      "sections": 24
+    },
+    {
+      "slug": "competitor-playbook-teardown",
+      "cat": "research",
+      "bytes": 4818,
+      "sections": 10
+    },
+    {
+      "slug": "cross-border-bestseller-radar",
+      "cat": "research",
+      "bytes": 8282,
+      "sections": 13
+    },
+    {
+      "slug": "fba-inbound-shipment",
+      "cat": "inventory",
+      "bytes": 8204,
+      "sections": 13
+    },
+    {
+      "slug": "harvest-search-terms",
+      "cat": "ads",
+      "bytes": 12652,
+      "sections": 20
+    },
+    {
+      "slug": "impression-drop-diagnosis",
+      "cat": "ads",
+      "bytes": 12192,
+      "sections": 20
+    },
+    {
+      "slug": "keyword-benchmark-diagnosis",
+      "cat": "ads",
+      "bytes": 10328,
+      "sections": 17
+    },
+    {
+      "slug": "keyword-match-type-strategy",
+      "cat": "ads",
+      "bytes": 10268,
+      "sections": 17
+    },
+    {
+      "slug": "keyword-role-taxonomy",
+      "cat": "ads",
+      "bytes": 10155,
+      "sections": 17
+    },
+    {
+      "slug": "listing-direct-creation",
+      "cat": "listing",
+      "bytes": 6397,
+      "sections": 14
+    },
+    {
+      "slug": "listing-new-product-oneshot",
+      "cat": "listing",
+      "bytes": 6393,
+      "sections": 14
+    },
+    {
+      "slug": "low-conversion-diagnosis",
+      "cat": "ads",
+      "bytes": 5675,
+      "sections": 13
+    },
+    {
+      "slug": "low-ctr-diagnosis",
+      "cat": "ads",
+      "bytes": 4081,
+      "sections": 9
+    },
+    {
+      "slug": "mcf-fulfillment",
+      "cat": "inventory",
+      "bytes": 4046,
+      "sections": 10
+    },
+    {
+      "slug": "multi-marketplace-ads-review",
+      "cat": "report",
+      "bytes": 7519,
+      "sections": 13
+    },
+    {
+      "slug": "negative-keyword-strategy",
+      "cat": "ads",
+      "bytes": 21259,
+      "sections": 12
+    },
+    {
+      "slug": "new-product-launch-ads",
+      "cat": "ads",
+      "bytes": 12355,
+      "sections": 20
+    },
+    {
+      "slug": "placement-optimization",
+      "cat": "ads",
+      "bytes": 12338,
+      "sections": 20
+    },
+    {
+      "slug": "post-peak-wind-down",
+      "cat": "ads",
+      "bytes": 6912,
+      "sections": 16
+    },
+    {
+      "slug": "product-selection",
+      "cat": "research",
+      "bytes": 14920,
+      "sections": 13
+    },
+    {
+      "slug": "profit-fee-analysis",
+      "cat": "profit",
+      "bytes": 4624,
+      "sections": 10
+    },
+    {
+      "slug": "promotions-review",
+      "cat": "promo",
+      "bytes": 24255,
+      "sections": 27
+    },
+    {
+      "slug": "recommendation-review-workflow",
+      "cat": "ads",
+      "bytes": 6265,
+      "sections": 14
+    },
+    {
+      "slug": "reimbursement-recovery",
+      "cat": "profit",
+      "bytes": 5059,
+      "sections": 13
+    },
+    {
+      "slug": "report-spec",
+      "cat": "report",
+      "bytes": 7874,
+      "sections": 13
+    },
+    {
+      "slug": "review-solicitation",
+      "cat": "ops",
+      "bytes": 4444,
+      "sections": 11
+    },
+    {
+      "slug": "search-term-cleanup",
+      "cat": "ads",
+      "bytes": 6508,
+      "sections": 14
+    },
+    {
+      "slug": "seasonal-peak-preparation",
+      "cat": "ads",
+      "bytes": 6721,
+      "sections": 16
+    },
+    {
+      "slug": "sorftime-multiplatform",
+      "cat": "research",
+      "bytes": 8306,
+      "sections": 13
+    },
+    {
+      "slug": "sponsored-products-funnel-metrics",
+      "cat": "ads",
+      "bytes": 12132,
+      "sections": 20
+    },
+    {
+      "slug": "store-weekly-review",
+      "cat": "report",
+      "bytes": 8135,
+      "sections": 13
+    },
+    {
+      "slug": "sync-cadence-and-freshness",
+      "cat": "ops",
+      "bytes": 7962,
+      "sections": 13
+    },
+    {
+      "slug": "tariff-calculator-amazon",
+      "cat": "profit",
+      "bytes": 7008,
+      "sections": 13
+    },
+    {
+      "slug": "traffic-conversion-triage",
+      "cat": "report",
+      "bytes": 7705,
+      "sections": 12
+    },
+    {
+      "slug": "turbot-account-health-appeal",
+      "cat": "ops",
+      "bytes": 4546,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-ad-scheduling",
+      "cat": "ads",
+      "bytes": 4182,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-brand-promotions",
+      "cat": "promo",
+      "bytes": 4427,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-brand-registry",
+      "cat": "ops",
+      "bytes": 4129,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-bundling",
+      "cat": "listing",
+      "bytes": 4510,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-coupon-strategy",
+      "cat": "promo",
+      "bytes": 4490,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-inventory-restock",
+      "cat": "inventory",
+      "bytes": 4536,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-listing-localization",
+      "cat": "listing",
+      "bytes": 4520,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-private-label",
+      "cat": "ops",
+      "bytes": 4409,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-product-compliance",
+      "cat": "ops",
+      "bytes": 4211,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-return-reduction",
+      "cat": "ops",
+      "bytes": 4431,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-review-compliance",
+      "cat": "ops",
+      "bytes": 4327,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-seasonal-planning",
+      "cat": "inventory",
+      "bytes": 4574,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-storefront",
+      "cat": "listing",
+      "bytes": 4466,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-subscribe-save",
+      "cat": "promo",
+      "bytes": 4502,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-variation-strategy",
+      "cat": "listing",
+      "bytes": 4456,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-vine",
+      "cat": "promo",
+      "bytes": 4498,
+      "sections": 11
+    },
+    {
+      "slug": "turbot-wholesale-sourcing",
+      "cat": "profit",
+      "bytes": 4436,
+      "sections": 11
+    },
+    {
+      "slug": "wasted-spend-audit",
+      "cat": "ads",
+      "bytes": 6524,
+      "sections": 14
+    },
+    {
+      "slug": "weekday-dayparting-review",
+      "cat": "ads",
+      "bytes": 4210,
+      "sections": 11
+    },
+    {
+      "slug": "weekly-ads-review-routine",
+      "cat": "ads",
+      "bytes": 6219,
+      "sections": 14
+    }
+  ]
+}

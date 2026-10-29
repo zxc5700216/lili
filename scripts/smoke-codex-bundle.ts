@@ -28,7 +28,10 @@ async function main() {
   for (const skill of skills) {
     const md = skillToMarkdown(skill);
     if (!md.startsWith("---\nname:")) throw new Error(`Bad frontmatter for ${skill.slug}`);
-    if (!md.includes("## 步骤")) throw new Error(`Missing Chinese steps for ${skill.slug}`);
+    if (!md.includes("## 步骤") && !md.includes("## 粒粒步骤") && !md.includes("## 工作流程")) {
+      throw new Error(`Missing Chinese steps for ${skill.slug}`);
+    }
+    if (md.length < 1500) throw new Error(`Body too short for ${skill.slug}: ${md.length}`);
     const name = skillFolderName(skill.slug);
     if (!name) throw new Error(`Empty folder for ${skill.slug}`);
     folders.add(name);

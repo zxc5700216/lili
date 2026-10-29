@@ -61,6 +61,19 @@ function parseWorkflows(raw: string) {
     });
 }
 
+function loadExpandedBody(slug: string): string | null {
+  const file = path.join(process.cwd(), "data", "skill-bodies", `${slug}.md`);
+  if (!fs.existsSync(file)) return null;
+  return fs.readFileSync(file, "utf8");
+}
+
+function stripFrontmatter(md: string): string {
+  if (!md.startsWith("---")) return md;
+  const end = md.indexOf("\n---", 3);
+  if (end === -1) return md;
+  return md.slice(end + 4).replace(/^\n+/, "");
+}
+
 function body(title: string, summary: string, steps: string[], tools: string[], zh: boolean) {
   const head = zh ? "这个技能做什么" : "What this skill does";
   const when = zh ? "什么时候用" : "When to use it";
@@ -316,8 +329,15 @@ async function main() {
         category: tax?.cat ?? skill.cat,
         summaryZh: skill.zhSum,
         summaryEn,
-        bodyZh: body(skill.zh, skill.zhSum, skill.stepsZh, skill.tools, true),
-        bodyEn: body(nameEn, summaryEn, skill.stepsEn, skill.tools, false),
+        bodyZh: (() => {
+          const expanded = loadExpandedBody(skill.slug);
+          return expanded ? stripFrontmatter(expanded) : body(skill.zh, skill.zhSum, skill.stepsZh, skill.tools, true);
+        })(),
+        bodyEn: (() => {
+          const expanded = loadExpandedBody(skill.slug);
+          // Full bilingual handbook doubles as EN body; short template only when missing.
+          return expanded ? stripFrontmatter(expanded) : body(nameEn, summaryEn, skill.stepsEn, skill.tools, false);
+        })(),
         stepsZh: skill.stepsZh,
         stepsEn: skill.stepsEn,
         relatedTools: skill.tools,
