@@ -2,7 +2,7 @@
 
 粒粒lili 本地可运行副本。数据全部是模拟的，不会连接 Amazon、广告接口、Shopify、Sorftime，也不会向官方客服或支付通道发任何请求。
 
-侧栏副标题沿用了实拍里的 “Official launch Nov 1”，只为对照版式。这个仓库是粒粒lili（原 study-lab / 多宝鱼学习沙盒）准备投入使用的产品副本。
+侧栏副标题沿用了实拍里的 “Official launch Nov 1”，只为对照版式。这个仓库是粒粒lili（原 study-lab / 粒粒学习沙盒）准备投入使用的产品副本。
 
 ## 本地运行
 

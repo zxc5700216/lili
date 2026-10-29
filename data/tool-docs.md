@@ -1,8 +1,8 @@
-# 多宝鱼 MCP 工具清单
+# 粒粒 MCP 工具清单
 
 工具数量：107
 
-包含工具名称、功能说明和参数定义。调用仍需要联网，由多宝鱼远程服务器执行；本文件不包含连接密钥或店铺数据。
+包含工具名称、功能说明和参数定义。调用仍需要联网，由粒粒远程服务器执行；本文件不包含连接密钥或店铺数据。
 
 ## 索引
 
@@ -1121,7 +1121,7 @@ The competitor ASINs Amazon and shoppers actually associate with one ASIN. Use t
 
 ## market_list_sorftime_tools
 
-List the Sorftime multi-platform data tools 多宝鱼 can query for you — Walmart, TikTok Shop, Shopee, Temu, 1688 sourcing (incl. search by image), Reddit / Quora consumer discussions, and Amazon views not covered by the market_* tools (customer-says summaries, 2-year monthly product snapshots, historical hot-keyword lists, category trends, seller search). Returns each tool's name, purpose, parameters and credit cost. Free. Call it before market_query_sorftime; pass platform to narrow.
+List the Sorftime multi-platform data tools 粒粒 can query for you — Walmart, TikTok Shop, Shopee, Temu, 1688 sourcing (incl. search by image), Reddit / Quora consumer discussions, and Amazon views not covered by the market_* tools (customer-says summaries, 2-year monthly product snapshots, historical hot-keyword lists, category trends, seller search). Returns each tool's name, purpose, parameters and credit cost. Free. Call it before market_query_sorftime; pass platform to narrow.
 
 ### 输入参数（JSON Schema）
 
@@ -1138,7 +1138,7 @@ List the Sorftime multi-platform data tools 多宝鱼 can query for you — Walm
 
 ## market_list_xiyou_tools
 
-List the 西柚洞察 (Xiyou) competitor-traffic tools 多宝鱼 can query for you — any ASIN's (competitors included) keyword reverse lookup with organic / ad traffic and rank, keyword → which ASINs take its traffic, multi-ASIN keyword comparison, and daily traffic / rank / BSR / price / listing-change / ad trends. Returns each tool's name, purpose, parameters and how its credits are counted. Free. Call it before market_query_xiyou; pass group (asin / asin_trend / keyword) to narrow.
+List the 西柚洞察 (Xiyou) competitor-traffic tools 粒粒 can query for you — any ASIN's (competitors included) keyword reverse lookup with organic / ad traffic and rank, keyword → which ASINs take its traffic, multi-ASIN keyword comparison, and daily traffic / rank / BSR / price / listing-change / ad trends. Returns each tool's name, purpose, parameters and how its credits are counted. Free. Call it before market_query_xiyou; pass group (asin / asin_trend / keyword) to narrow.
 
 ### 输入参数（JSON Schema）
 
@@ -1504,7 +1504,7 @@ Enable or disable a workflow's daily schedule. Enabling requires a completed dry
 
 ## meta_submit_feedback
 
-把卖家的功能需求、问题反馈或其它意见提交给多宝鱼团队。只在卖家明确要求反馈 / 提需求 / 报问题时调用，不要把普通抱怨或你自己的想法替卖家提交。调用前先把要提交的内容用一两句话复述给卖家，得到同意后再提交。kind 取 request（功能需求）/ bug（问题）/ other（其它）；body 用卖家的原意写清楚想要什么或遇到了什么。只收文字——卖家要附截图、表格等文件时，告诉他在多宝鱼网页右上角的「反馈」里上传。
+把卖家的功能需求、问题反馈或其它意见提交给粒粒团队。只在卖家明确要求反馈 / 提需求 / 报问题时调用，不要把普通抱怨或你自己的想法替卖家提交。调用前先把要提交的内容用一两句话复述给卖家，得到同意后再提交。kind 取 request（功能需求）/ bug（问题）/ other（其它）；body 用卖家的原意写清楚想要什么或遇到了什么。只收文字——卖家要附截图、表格等文件时，告诉他在粒粒网页右上角的「反馈」里上传。
 
 ### 输入参数（JSON Schema）
 
@@ -1715,7 +1715,7 @@ List this store's promotions LIVE from Amazon — coupons, lightning/best deals,
 
 ## restock_check_inbound_eligibility
 
-FBA 入库资格检查（实时，Inbound Eligibility 直通）: 「这个 ASIN 能进 FBA 吗」——建货件前先查，免得 createInboundPlan 才报错。返回 eligible 与不合格原因列表。program 默认 INBOUND（也支持 COMMINGLING 混储资格）。与 restock_preview_shipment 互补：preview 校验多宝鱼侧映射与箱规，本工具查 Amazon 侧商品资格。
+FBA 入库资格检查（实时，Inbound Eligibility 直通）: 「这个 ASIN 能进 FBA 吗」——建货件前先查，免得 createInboundPlan 才报错。返回 eligible 与不合格原因列表。program 默认 INBOUND（也支持 COMMINGLING 混储资格）。与 restock_preview_shipment 互补：preview 校验粒粒侧映射与箱规，本工具查 Amazon 侧商品资格。
 
 ### 输入参数（JSON Schema）
 
@@ -2307,7 +2307,7 @@ STEP 7 — generate + list carrier (承运) options per shipment for a placement
 
 ## restock_list_inbound_plans
 
-Inbound plans that exist on Amazon for this store, newest first — including ones created in Seller Central (Send to Amazon) or by other tools. status: ACTIVE / VOIDED / SHIPPED (default all). draft_id is set when the plan is a 多宝鱼 draft that MCP can continue. Read-only.
+Inbound plans that exist on Amazon for this store, newest first — including ones created in Seller Central (Send to Amazon) or by other tools. status: ACTIVE / VOIDED / SHIPPED (default all). draft_id is set when the plan is a 粒粒 draft that MCP can continue. Read-only.
 
 ### 输入参数（JSON Schema）
 
@@ -2327,7 +2327,7 @@ Inbound plans that exist on Amazon for this store, newest first — including on
 
 ## restock_list_mcf_orders
 
-MCF 履约单列表（实时，只读）: 最近 days 天内的多渠道履约单（含非多宝鱼建的），看单号/状态/速度。详情与追踪用 restock_get_mcf_order。
+MCF 履约单列表（实时，只读）: 最近 days 天内的多渠道履约单（含非粒粒建的），看单号/状态/速度。详情与追踪用 restock_get_mcf_order。
 
 ### 输入参数（JSON Schema）
 
@@ -2600,7 +2600,7 @@ Rename an inbound plan (default) or one of its shipments (shipment_id) on Amazon
 
 ## restock_set_inbound_settings
 
-Fix FBA inbound prerequisites without the web 后台. patch_json is a JSON object with any of: source_address (required: name/addressLine1/city/postalCode/countryCode/phoneNumber, plus stateOrProvinceCode for US/CA/AU/MX/BR/IN/CN/JP; optional addressLine2/companyName/email/districtOrCounty — incomplete address is rejected listing what's missing), contact {name, phoneNumber, email}, packing_specs [{style_code, box_qty, carton_length_in, carton_width_in, carton_height_in, carton_weight_lb}] and sku_mappings [{asin, seller_sku, style_code, color, size}]. Spec/mapping rows UPSERT by style_code/asin (rows not mentioned stay; max 200 per call). Writes only 多宝鱼's own database, never Amazon.
+Fix FBA inbound prerequisites without the web 后台. patch_json is a JSON object with any of: source_address (required: name/addressLine1/city/postalCode/countryCode/phoneNumber, plus stateOrProvinceCode for US/CA/AU/MX/BR/IN/CN/JP; optional addressLine2/companyName/email/districtOrCounty — incomplete address is rejected listing what's missing), contact {name, phoneNumber, email}, packing_specs [{style_code, box_qty, carton_length_in, carton_width_in, carton_height_in, carton_weight_lb}] and sku_mappings [{asin, seller_sku, style_code, color, size}]. Spec/mapping rows UPSERT by style_code/asin (rows not mentioned stay; max 200 per call). Writes only 粒粒's own database, never Amazon.
 
 ### 输入参数（JSON Schema）
 

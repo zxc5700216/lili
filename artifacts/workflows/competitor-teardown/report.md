@@ -1,6 +1,6 @@
 # 竞品全拆解 / Full competitor teardown
 
-模式：fixture。缺真实密钥时这是 fixture，不会假装已经调通多宝鱼。
+模式：fixture。缺真实密钥时这是 fixture，不会假装已经调通粒粒。
 
 ## 01｜步骤
 
@@ -20,11 +20,11 @@
 
 自己的水壶 4.4 星、在购物车。竞品样本沿用选品账本里的 SUNYA / LEGEND（fixture）。弱点：齐套和围度，不是再做一个普通口袋。
 
-西柚关键词反查需要 MCP Token。没有令牌时这里只保留多宝鱼 market_list_competitors 的计划，不把样本说成西柚实时结果。
+西柚关键词反查需要 MCP Token。没有令牌时这里只保留粒粒 market_list_competitors 的计划，不把样本说成西柚实时结果。
 
 ## 请求账本
 
-模式 `fixture`。fixture 下列出本应调用的多宝鱼工具名，响应是 NS 店种子，不是远程 JSON。
+模式 `fixture`。fixture 下列出本应调用的粒粒工具名，响应是 NS 店种子，不是远程 JSON。
 
 | 工具 | 用途 |
 | --- | --- |

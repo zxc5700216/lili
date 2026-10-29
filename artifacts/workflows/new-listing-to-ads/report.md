@@ -1,6 +1,6 @@
 # 新品从上架到开广告 / Launch: listing to ads
 
-模式：fixture。缺真实密钥时这是 fixture，不会假装已经调通多宝鱼。
+模式：fixture。缺真实密钥时这是 fixture，不会假装已经调通粒粒。
 
 ## 01｜步骤
 
@@ -28,7 +28,7 @@
 
 ## 请求账本
 
-模式 `fixture`。fixture 下列出本应调用的多宝鱼工具名，响应是 NS 店种子，不是远程 JSON。
+模式 `fixture`。fixture 下列出本应调用的粒粒工具名，响应是 NS 店种子，不是远程 JSON。
 
 | 工具 | 用途 |
 | --- | --- |
