@@ -1,6 +1,6 @@
 import type { MarketCall, Niche, ReviewRow } from "./types";
 
-/** Fixture replay of the published 27-call ledger. Not a live 多宝鱼 request. */
+/** Fixture replay of the published 27-call ledger. Not a live 粒粒lili request. */
 export const LEDGER: MarketCall[] = [
   { id: "M01", at: "10-27 01:55:59", tool: "market_mine_keywords", args: { keyword: "arrow quiver", marketplace: "US", size: 100, page: 1 }, purpose: "找 arrow quiver 相关表达；不是直接确定市场规模", step: 1, usedForConclusion: true },
   { id: "M02", at: "10-27 01:56:18", tool: "market_mine_keywords", args: { keyword: "arrow bag", marketplace: "US", size: 100, page: 1 }, purpose: "补 arrow bag 相关需求；相近词不相加为独立买家", step: 1, usedForConclusion: true },

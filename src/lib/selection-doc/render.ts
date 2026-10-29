@@ -16,7 +16,7 @@ export function renderFlowTree(input: SelectionInput, plans: ReturnType<typeof e
   const lines: string[] = [];
   lines.push(`# ${input.keyword} 全流程树、因果关系与数据血缘`);
   lines.push("");
-  lines.push("生成于学习沙盒；fixture 回放金样账本，新增付费请求 0 次。`inferred` 表示公开 skill 或金样行为推断，不是多宝鱼私有配置。");
+  lines.push("生成于学习沙盒；fixture 回放金样账本，新增付费请求 0 次。`inferred` 表示公开 skill 或金样行为推断，不是粒粒lili私有配置。");
   lines.push("");
   lines.push("## 01｜全流程树：包含分支、失败、暂停和后续归档");
   lines.push("");
@@ -46,9 +46,9 @@ export function renderFlowTree(input: SelectionInput, plans: ReturnType<typeof e
   lines.push("| 角色/层 | 真正负责的动作 | 不应混淆的事 |");
   lines.push("| --- | --- | --- |");
   lines.push("| 用户 | 给出方向、在门 1 选细分、确认试单数量 | 试单数量不是采购放行 |");
-  lines.push("| 学习沙盒执行器 | 按模板回放账本、算数、写 md/json/html | 不是多宝鱼远程会话 |");
+  lines.push("| 学习沙盒执行器 | 按模板回放账本、算数、写 md/json/html | 不是粒粒lili远程会话 |");
   lines.push("| Skill | 公开 nexscope 原文规定拆法；选品步标 inferred | 加载 skill 不等于已经取数 |");
-  lines.push("| 多宝鱼 MCP 形状 | market_* 名称和参数对齐金样 §04 | 本回合 fixture，没有付费调用 |");
+  lines.push("| 粒粒lili MCP 形状 | market_* 名称和参数对齐金样 §04 | 本回合 fixture，没有付费调用 |");
   lines.push("| 卖家精灵 / Sorftime | 金样说明的上游 | 沙盒没有密钥，也没有上游 HTTP 日志 |");
   lines.push("| 本地计算 | calculations.json 与 HTML | 不产生新的市场事实 |");
   lines.push("");
@@ -131,7 +131,7 @@ export function renderFlowTree(input: SelectionInput, plans: ReturnType<typeof e
   lines.push("");
   lines.push("## 09｜评分为什么没有直接变成“做”");
   lines.push("");
-  lines.push("六维权重：需求 25%、单位经济 25%、竞争 20%、差异 15%、物流 10%、风险 5%。`inferred` 权重来自金样公开说明，不是多宝鱼私有打分表。");
+  lines.push("六维权重：需求 25%、单位经济 25%、竞争 20%、差异 15%、物流 10%、风险 5%。`inferred` 权重来自金样公开说明，不是粒粒lili私有打分表。");
   lines.push("");
   lines.push("| 方案 | 原始分 | 加权分 | 单位贡献 | 最差广告格 | 结果 |");
   lines.push("| --- | --- | --- | --- | --- | --- |");
@@ -214,7 +214,7 @@ export function renderFlowTree(input: SelectionInput, plans: ReturnType<typeof e
   lines.push("npm run workflow:selection -- --keyword \"arrow bag quiver\"");
   lines.push("```");
   lines.push("");
-  lines.push("重跑不会刷新市场数据，也不会调用付费多宝鱼 API。");
+  lines.push("重跑不会刷新市场数据，也不会调用付费粒粒lili API。");
   return lines.join("\n");
 }
 
@@ -239,7 +239,7 @@ h1{font-size:28px;margin:0 0 8px} h2{font-size:18px;margin:28px 0 8px}
 table{width:100%;border-collapse:collapse;font-size:14px} td,th{border-top:1px solid #efe8e1;text-align:left;padding:8px 6px}
 .wm{position:fixed;inset:0;display:grid;place-items:center;font-size:42px;color:rgba(232,106,44,.08);transform:rotate(-18deg);pointer-events:none}
 footer{margin-top:24px;color:#8d847b;font-size:12px}
-</style></head><body><div class="wm">多宝鱼学习沙盒 · fixture</div><main>
+</style></head><body><div class="wm">粒粒lili · fixture</div><main>
 <p>来源：金样账本回放 + 本地计算。不是报价，不是放行。</p>
 <h1>${esc(input.keyword)} · 三管腰挂箭袋</h1>
 <p><span class="hold">${a1.verdict}</span> 评分 ${a1.score100}/100 不能覆盖缺报价、未核实税费和未测转化。</p>

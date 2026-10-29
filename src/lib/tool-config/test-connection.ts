@@ -14,7 +14,7 @@ export async function testProvider(id: ProviderId): Promise<TestResult> {
     return {
       ok: false,
       status: null,
-      message: "inferred：没有公开的 Sorftime 直连端点可供测试。选品里的 1688 请求应走已配置的多宝鱼 market_query_sorftime。保存令牌不会被当成连接成功。",
+      message: "inferred：没有公开的 Sorftime 直连端点可供测试。选品里的 1688 请求应走已配置的粒粒lili market_query_sorftime。保存令牌不会被当成连接成功。",
     };
   }
   if (!isProviderReady(id, config)) {
@@ -35,7 +35,7 @@ export async function testProvider(id: ProviderId): Promise<TestResult> {
       const res = await fetch(url, {
         method: "POST",
         headers: { authorization: `Bearer ${config.mcpToken}`, "content-type": "application/json" },
-        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "duobaoyu-study-sandbox", version: "0.1.0" } } }),
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "lili", version: "0.1.0" } } }),
         signal: AbortSignal.timeout(12000),
       });
       const body = await readBody(res);
@@ -47,11 +47,11 @@ export async function testProvider(id: ProviderId): Promise<TestResult> {
     const res = await fetch(url, {
       method: "POST",
       headers,
-      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "duobaoyu-study-sandbox", version: "0.1.0" } } }),
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "lili", version: "0.1.0" } } }),
       signal: AbortSignal.timeout(12000),
     });
     const body = await readBody(res);
-    return { ok: res.ok, status: res.status, message: res.ok ? "多宝鱼 MCP initialize 已响应。" : `多宝鱼 MCP 返回 ${res.status}。inferred：公开文档只说明浏览器登录。${body}` };
+    return { ok: res.ok, status: res.status, message: res.ok ? "粒粒lili MCP initialize 已响应。" : `粒粒lili MCP 返回 ${res.status}。inferred：公开文档只说明浏览器登录。${body}` };
   } catch (error) {
     return { ok: false, status: null, message: error instanceof Error ? error.message : "连接失败" };
   }
