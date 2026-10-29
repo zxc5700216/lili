@@ -3,8 +3,8 @@ import "./globals.css";
 import { getLocale } from "@/lib/locale";
 
 export const metadata: Metadata = {
-  title: "Duobaoyu AI Assistant",
-  description: "Local study sandbox modeled on the Duobaoyu assistant. Mock data only.",
+  title: "粒粒lili",
+  description: "粒粒lili — local study sandbox. Mock data only.",
 };
 
 export const dynamic = "force-dynamic";

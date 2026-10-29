@@ -40,7 +40,7 @@ const BOTTOM = [
 function titleFor(pathname: string, locale: Locale) {
   const all = [...TOP, ...BOTTOM, { href: "/v2/recharge", icon: Coins, zh: "充值", en: "Top Up" }, { href: "/v2/workflows", icon: Lightbulb, zh: "演示报告", en: "Demo reports" }, { href: "/v2/tools", icon: Sparkles, zh: "工具实验室", en: "Tool lab" }, { href: "/v2/approvals", icon: Settings, zh: "审批", en: "Approvals" }];
   const hit = all.find((item) => pathname === item.href || pathname.startsWith(item.href + "/"));
-  if (!hit) return { icon: Rocket, label: "Duobaoyu" };
+  if (!hit) return { icon: Rocket, label: "粒粒lili" };
   return { icon: hit.icon, label: tx(locale, hit.zh, hit.en) };
 }
 
@@ -86,7 +86,7 @@ export function Shell({
             </svg>
           </span>
           <div className="min-w-0">
-            <div className="text-[14px] font-semibold leading-5">Duobaoyu AI Assistant</div>
+            <div className="text-[14px] font-semibold leading-5">粒粒lili助手</div>
             <div className="mt-0.5 flex items-center gap-1 text-[11px] leading-4 text-muted">
               <span className="rounded bg-[#fde7da] px-1 py-px text-[10px] font-medium text-orange">Beta</span>
               <span>{tx(locale, "11 月 1 日正式发布", "Official launch Nov 1")}</span>
@@ -257,8 +257,8 @@ function SupportDialog({ locale, onClose }: { locale: Locale; onClose: () => voi
       <p className="text-sm leading-6 text-[#4a433d]">
         {tx(
           locale,
-          "这里不会接通多宝鱼客服，也不会提交工单到官方。学习问题可以写在反馈里。工具和审批在下面两个沙盒页面。",
-          "This does not reach Duobaoyu support and does not open a real ticket. Write study notes in Feedback. Tools and approvals live on the two sandbox pages below.",
+          "这里不会接通粒粒lili客服，也不会提交工单到官方。学习问题可以写在反馈里。工具和审批在下面两个沙盒页面。",
+          "This does not reach 粒粒lili support and does not open a real ticket. Write study notes in Feedback. Tools and approvals live on the two sandbox pages below.",
         )}
       </p>
       <label className="mt-4 flex items-center gap-2 text-sm">

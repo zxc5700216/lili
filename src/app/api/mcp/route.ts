@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       jsonrpc: "2.0",
       id,
-      result: { protocolVersion: "2025-06-18", serverInfo: { name: "duobaoyu-sandbox", version: "0.1.0" }, capabilities: { tools: {} } },
+      result: { protocolVersion: "2025-06-18", serverInfo: { name: "lili", version: "0.1.0" }, capabilities: { tools: {} } },
     });
   }
   if (body.method === "tools/list") {
