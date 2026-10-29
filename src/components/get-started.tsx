@@ -18,6 +18,7 @@ import {
   Unplug,
 } from "lucide-react";
 import { BASE_PATH, withBasePath } from "@/lib/base-path";
+import { buildCodexInstallPrompt, CODEX_COPY_TOAST_EN, CODEX_COPY_TOAST_ZH } from "@/lib/codex-install-prompt";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
 import { copyText, useUI } from "@/store/ui";
@@ -324,18 +325,16 @@ export function GetStarted({
 
   const installPrompt = useMemo(() => {
     const label = CLIENTS.find((item) => item.id === client)?.label ?? client;
-    return [
-      `Add an MCP server for 粒粒lili. Connection name: ${connName || label}.`,
-      `Client: ${label}.`,
-      `URL: ${mcpUrl}`,
+    const preface = [
+      `Client: ${label}. Connection name: ${connName || label}.`,
       "Prefer Streamable HTTP. Server key in config: lili.",
       "Reads use connected store / ads data when authorized on Get Started.",
       "Allow market research and Allow AI to execute actions stay off until toggled on Get Started.",
       "Any write returns a preview and waits for approval.",
-      "Start a new chat after installing. An old chat will say it has no store data.",
-      `Optional: download the full skill zip from ${typeof window !== "undefined" ? window.location.origin : ""}${BASE_PATH}/api/codex-bundle and copy skills/ into ~/.codex/skills/.`,
+      "",
     ].join("\n");
-  }, [client, connName, mcpUrl]);
+    return `${preface}${buildCodexInstallPrompt(mcpUrl, { skillCount })}`;
+  }, [client, connName, mcpUrl, skillCount]);
 
   return (
     <div className="mx-auto max-w-[980px]">
@@ -347,27 +346,38 @@ export function GetStarted({
         <div className="h-[3px] rounded-full bg-orange" style={{ width: `${(done / 3) * 100}%` }} />
       </div>
 
-      {/* First-class 授权 + 下载 */}
+      {/* First-class: copy Codex install prompt (zip secondary) */}
       <section className="card mt-4 border border-[#f0d4c2] bg-[#fffaf6] px-5 py-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex items-center gap-2 text-sm font-semibold text-[#3f3a36]">
-              <Download className="h-4 w-4 text-orange" />
-              {tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP · Download all skills")}
+              <Copy className="h-4 w-4 text-orange" />
+              {tx(locale, "一键配置 Codex MCP", "One-click Codex MCP setup")}
             </div>
             <p className="mt-1 text-[13px] leading-5 text-muted">
               {tx(
                 locale,
-                `下载 ZIP（INSTALL.md + config.snippet.toml + mcpServers.json + ${skillCount} 个 SKILL.md）。先完成下方店铺 / 广告授权，再把 MCP 接到 Codex。`,
-                `Download a ZIP (INSTALL.md + config.snippet.toml + mcpServers.json + ${skillCount} SKILL.md files). Authorize store & ads below, then wire MCP into Codex.`,
+                `点一下复制安装提示词，粘贴到 Codex 聊天框，让它自己加 MCP（lili）并同步约 ${skillCount} 个 Skill；装完后请新开对话。ZIP 配置包可选。`,
+                `Click to copy an install prompt — paste into a Codex chat so it adds MCP (lili) and syncs ~${skillCount} skills; then start a NEW chat. ZIP bundle is optional.`,
               )}
             </p>
             <pre className="mt-2 overflow-auto rounded-lg bg-white/80 px-3 py-2 text-[11px] leading-4 text-[#5c564f]">{mcpUrl}</pre>
           </div>
           <div className="flex flex-wrap gap-2">
-            <a className="btn-orange" href={withBasePath("/api/codex-bundle")} download>
+            <button
+              type="button"
+              className="btn-orange"
+              onClick={async () => {
+                await copyText(installPrompt);
+                flash(tx(locale, CODEX_COPY_TOAST_ZH, CODEX_COPY_TOAST_EN));
+              }}
+            >
+              <Copy className="h-3.5 w-3.5" />
+              {tx(locale, "复制安装提示词", "Copy install prompt")}
+            </button>
+            <a className="btn-ghost" href={withBasePath("/api/codex-bundle")} download>
               <Download className="h-3.5 w-3.5" />
-              {tx(locale, "下载配置包", "Download bundle")}
+              {tx(locale, "可选：下载 ZIP", "Optional: ZIP")}
             </a>
             <button
               type="button"
@@ -648,14 +658,27 @@ export function GetStarted({
               <div className="text-[13px] leading-5 text-[#5c564f]">
                 {tx(
                   locale,
-                  `也可直接下载含 ${skillCount} 个 Skill 的 Codex 配置包，或复制 MCP 地址。`,
-                  `Or download the Codex bundle with ${skillCount} skills, or copy the MCP URL.`,
+                  `也可一键复制安装提示词（含 MCP + 约 ${skillCount} 个 Skill）；ZIP 包可选。`,
+                  `Or copy the install prompt (MCP + ~${skillCount} skills); ZIP is optional.`,
                 )}
               </div>
-              <a className="btn-orange" href={withBasePath("/api/codex-bundle")} download>
-                <Download className="h-3.5 w-3.5" />
-                {tx(locale, "下载 Skill 包", "Download skill pack")}
-              </a>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  className="btn-orange"
+                  onClick={async () => {
+                    await copyText(installPrompt);
+                    flash(tx(locale, CODEX_COPY_TOAST_ZH, CODEX_COPY_TOAST_EN));
+                  }}
+                >
+                  <Copy className="h-3.5 w-3.5" />
+                  {tx(locale, "复制安装提示词", "Copy install prompt")}
+                </button>
+                <a className="btn-ghost" href={withBasePath("/api/codex-bundle")} download>
+                  <Download className="h-3.5 w-3.5" />
+                  {tx(locale, "可选 ZIP", "Optional ZIP")}
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
@@ -718,7 +741,7 @@ export function GetStarted({
                         onClick={async () => {
                           setPrompt(installPrompt);
                           await copyText(installPrompt);
-                          flash(tx(locale, "已复制", "Copied"));
+                          flash(tx(locale, CODEX_COPY_TOAST_ZH, CODEX_COPY_TOAST_EN));
                           if (connections[0]) await patchConn(connections[0].id, { name: connName || "Codex", client });
                           else await post("/api/connections", { name: connName || "Codex", client }, tx(locale, "连接已创建", "Connection created"));
                         }}

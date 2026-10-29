@@ -1,13 +1,15 @@
 "use client";
 
-import { withBasePath } from "@/lib/base-path";
+import { withBasePath, BASE_PATH } from "@/lib/base-path";
+import { buildCodexInstallPrompt, CODEX_COPY_TOAST_EN, CODEX_COPY_TOAST_ZH } from "@/lib/codex-install-prompt";
+import { copyText } from "@/store/ui";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   BookOpen,
   CircleHelp,
   Coins,
-  Download,
+  Copy,
   Globe,
   Headset,
   KeyRound,
@@ -59,7 +61,7 @@ export function Shell({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { navOpen, setNav, dialog, notice, openDialog, toast } = useUI();
+  const { navOpen, setNav, dialog, notice, openDialog, toast, flash } = useUI();
   const heading = titleFor(pathname, locale);
   const Icon = heading.icon;
 
@@ -132,16 +134,21 @@ export function Shell({
             {heading.label}
           </div>
           <div className="ml-auto flex items-center gap-1 sm:gap-3">
-            <a
-              href={withBasePath("/api/codex-bundle")}
+            <button
+              type="button"
               className="inline-flex items-center gap-1.5 rounded-full border border-[#f3ddcf] bg-white px-2.5 py-1.5 text-sm text-orange hover:bg-peach"
-              title={tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP setup · Download all skills")}
-              aria-label={tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP setup · Download all skills")}
+              title={tx(locale, "一键配置 Codex MCP · 复制安装提示词", "One-click Codex MCP · Copy install prompt")}
+              aria-label={tx(locale, "一键配置 Codex MCP · 复制安装提示词", "One-click Codex MCP · Copy install prompt")}
+              onClick={async () => {
+                const mcpUrl = `${window.location.origin}${BASE_PATH}/api/mcp`;
+                await copyText(buildCodexInstallPrompt(mcpUrl));
+                flash(tx(locale, CODEX_COPY_TOAST_ZH, CODEX_COPY_TOAST_EN));
+              }}
             >
-              <Download className="h-4 w-4 shrink-0" />
-              <span className="hidden lg:inline">{tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "Codex MCP · All skills")}</span>
+              <Copy className="h-4 w-4 shrink-0" />
+              <span className="hidden lg:inline">{tx(locale, "一键配置 Codex MCP", "Codex MCP setup")}</span>
               <span className="hidden sm:inline lg:hidden">{tx(locale, "Codex 配置", "Codex setup")}</span>
-            </a>
+            </button>
             <HeaderButton icon={MessageSquare} label={tx(locale, "反馈", "Feedback")} onClick={() => openDialog("feedback")} />
             <HeaderButton icon={Headset} label={tx(locale, "支持", "Support")} onClick={() => openDialog("support")} />
             <Link href="/v2/start" className="hidden items-center gap-1.5 text-sm text-[#5c564f] sm:flex">

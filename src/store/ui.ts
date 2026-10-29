@@ -29,7 +29,7 @@ export const useUI = create<UIState>()(
       openDialog: (dialog, notice = "") => set({ dialog, notice }),
       flash: (toast) => {
         set({ toast });
-        window.setTimeout(() => set({ toast: "" }), 1600);
+        window.setTimeout(() => set({ toast: "" }), 3200);
       },
       setSandboxExtras: (sandboxExtras) => set({ sandboxExtras }),
     }),
