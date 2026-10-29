@@ -1,5 +1,5 @@
 /** Must match next.config.ts basePath. Client fetch/form/redirects do not auto-prefix. */
-export const BASE_PATH = "/studylab";
+export const BASE_PATH = "/lili";
 
 export function withBasePath(path: string): string {
   if (!path.startsWith("/")) return `${BASE_PATH}/${path}`;

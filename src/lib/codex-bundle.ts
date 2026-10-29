@@ -60,8 +60,8 @@ export function resolvePublicMcpUrl(request: Request): {
 
   if (!basePath) {
     const referer = request.headers.get("referer") || "";
-    const match = referer.match(/https?:\/\/[^/]+(\/studylab)(?:\/|$)/i);
-    if (match) basePath = match[1];
+    const match = referer.match(/https?:\/\/[^/]+(\/(?:lili|studylab))(?:\/|$)/i);
+    if (match) basePath = match[1] === "/studylab" ? "/lili" : match[1];
   }
 
   // Next.js strips basePath from request.url inside route handlers; use config constant.

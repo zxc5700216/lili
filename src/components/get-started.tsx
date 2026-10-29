@@ -752,8 +752,8 @@ export function GetStarted({
                 <p className="text-[13px] leading-5 text-muted">
                   {tx(
                     locale,
-                    "把下面的地址加到客户端（Streamable HTTP）。生产环境带 /studylab 前缀；本机沙盒同样走 basePath。",
-                    "Add this URL in the client (Streamable HTTP). Production uses the /studylab prefix; local sandbox uses the same basePath.",
+                    "把下面的地址加到客户端（Streamable HTTP）。生产环境带 /lili 前缀；本机沙盒同样走 basePath。",
+                    "Add this URL in the client (Streamable HTTP). Production uses the /lili prefix; local sandbox uses the same basePath.",
                   )}
                 </p>
                 <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{manualJson}</pre>
