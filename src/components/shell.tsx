@@ -7,6 +7,7 @@ import {
   BookOpen,
   CircleHelp,
   Coins,
+  Download,
   Globe,
   Headset,
   KeyRound,
@@ -131,6 +132,16 @@ export function Shell({
             {heading.label}
           </div>
           <div className="ml-auto flex items-center gap-1 sm:gap-3">
+            <a
+              href={withBasePath("/api/codex-bundle")}
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#f3ddcf] bg-white px-2.5 py-1.5 text-sm text-orange hover:bg-peach"
+              title={tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP setup · Download all skills")}
+              aria-label={tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP setup · Download all skills")}
+            >
+              <Download className="h-4 w-4 shrink-0" />
+              <span className="hidden lg:inline">{tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "Codex MCP · All skills")}</span>
+              <span className="hidden sm:inline lg:hidden">{tx(locale, "Codex 配置", "Codex setup")}</span>
+            </a>
             <HeaderButton icon={MessageSquare} label={tx(locale, "反馈", "Feedback")} onClick={() => openDialog("feedback")} />
             <HeaderButton icon={Headset} label={tx(locale, "支持", "Support")} onClick={() => openDialog("support")} />
             <Link href="/v2/start" className="hidden items-center gap-1.5 text-sm text-[#5c564f] sm:flex">

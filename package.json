@@ -13,12 +13,14 @@
     "workflow:selection": "tsx scripts/run-selection-doc.ts",
     "workflow:all": "tsx scripts/run-workflow.ts --all",
     "workflow:run": "tsx scripts/run-workflow.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "smoke:codex-bundle": "tsx scripts/smoke-codex-bundle.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "dotenv": "^17.2.3",
+    "jszip": "^3.10.2",
     "lucide-react": "^0.546.0",
     "next": "^15.5.4",
     "pg": "^8.16.3",
