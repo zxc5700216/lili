@@ -1,4 +1,5 @@
 import { GetStarted } from "@/components/get-started";
+import { loadBundleSkills } from "@/lib/codex-bundle";
 import { getLocale } from "@/lib/locale";
 import { prisma } from "@/lib/prisma";
 
@@ -6,14 +7,16 @@ export const dynamic = "force-dynamic";
 
 export default async function StartPage() {
   const locale = await getLocale();
-  const [stores, profiles, connections] = await Promise.all([
+  const [stores, profiles, connections, skills] = await Promise.all([
     prisma.store.findMany({ orderBy: { code: "asc" } }),
     prisma.adsProfile.findMany({ orderBy: { name: "asc" } }),
     prisma.aiConnection.findMany({ orderBy: { connectedAt: "asc" } }),
+    loadBundleSkills(),
   ]);
   return (
     <GetStarted
       locale={locale}
+      skillCount={skills.length}
       stores={stores.map((s) => ({
         id: s.id,
         name: s.name,
@@ -31,6 +34,7 @@ export default async function StartPage() {
         countryCode: p.countryCode,
         enabled: p.enabled,
         neverSynced: p.neverSynced,
+        lastSyncedAt: p.lastSyncedAt?.toISOString() ?? null,
       }))}
       connections={connections.map((c) => ({
         id: c.id,

@@ -11,6 +11,31 @@ const MARKET_IDS: Record<string, string> = {
   Japan: "A1VC38T7YXB528",
 };
 
+async function ensureAdsProfiles(storeId: string, storeName: string) {
+  const rows: Array<[string, string]> = [
+    ["CA", "Canada"],
+    ["MX", "Mexico"],
+    ["US", "United States"],
+  ];
+  for (const [code, country] of rows) {
+    const id = `${storeId}-${code}`;
+    const exists = await prisma.adsProfile.findUnique({ where: { id } });
+    if (!exists) {
+      await prisma.adsProfile.create({
+        data: {
+          id,
+          storeId,
+          name: `${storeName} ${code}`,
+          country,
+          countryCode: code,
+          enabled: false,
+          neverSynced: true,
+        },
+      });
+    }
+  }
+}
+
 export async function POST(request: Request) {
   const body = await request.json();
   if (body.action === "disconnect") {
@@ -40,6 +65,7 @@ export async function POST(request: Request) {
         lastSyncedAt: new Date(),
       },
     });
+    await ensureAdsProfiles(id, name);
   }
   const connected = await prisma.store.count({ where: { spConnected: true } });
   await prisma.appSetting.update({ where: { id: "default" }, data: { spAuthorized: connected > 0 } });

@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   AlertTriangle,
   Check,
   ChevronDown,
   Copy,
+  Download,
   Lightbulb,
   Pencil,
   Plus,
@@ -16,6 +17,7 @@ import {
   Trash2,
   Unplug,
 } from "lucide-react";
+import { BASE_PATH, withBasePath } from "@/lib/base-path";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
 import { copyText, useUI } from "@/store/ui";
@@ -37,6 +39,7 @@ type Profile = {
   countryCode: string;
   enabled: boolean;
   neverSynced: boolean;
+  lastSyncedAt: string | null;
 };
 type Connection = {
   id: string;
@@ -63,9 +66,16 @@ const CLIENTS = [
   { id: "deepseek", label: "DeepSeek Harness (app)" },
 ] as const;
 
-function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
+type ClientId = (typeof CLIENTS)[number]["id"];
+
+function asClientId(value: string): ClientId {
+  return (CLIENTS.find((item) => item.id === value)?.id ?? "codex") as ClientId;
+}
+
+function ClientGlyph({ id }: { id: string }) {
   const common = "h-7 w-7";
-  if (id === "codex") {
+  const cid = asClientId(id);
+  if (cid === "codex") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <rect width="32" height="32" rx="8" fill="#4f7cff" />
@@ -74,7 +84,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "chatgpt") {
+  if (cid === "chatgpt") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <path d="M16 6.2l2.1 3.6 4.1.6-3 2.9.7 4.1L16 15.4l-3.9 2 0.7-4.1-3-2.9 4.1-.6z" fill="none" stroke="#111" strokeWidth="1.6" />
@@ -83,7 +93,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "workbuddy") {
+  if (cid === "workbuddy") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <circle cx="16" cy="16" r="8" fill="none" stroke="#16a34a" strokeWidth="2.2" />
@@ -91,14 +101,14 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "claude" || id === "claude-code") {
+  if (cid === "claude" || cid === "claude-code") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
-        <path d="M16 5l1.6 6.2L24 12l-5.2 2.4L18.6 21 16 15.8 13.4 21 12 14.4 6.8 12l6.4-.8z" fill={id === "claude" ? "#e07a3d" : "#ef9a4a"} />
+        <path d="M16 5l1.6 6.2L24 12l-5.2 2.4L18.6 21 16 15.8 13.4 21 12 14.4 6.8 12l6.4-.8z" fill={cid === "claude" ? "#e07a3d" : "#ef9a4a"} />
       </svg>
     );
   }
-  if (id === "grok") {
+  if (cid === "grok") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <path d="M8 16c0-4 3-7 7-7 2.4 0 4 .8 5.2 2.2" fill="none" stroke="#111" strokeWidth="2.2" strokeLinecap="round" />
@@ -106,7 +116,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "accio") {
+  if (cid === "accio") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <path d="M16 6l9 18H7z" fill="#1a1a1a" />
@@ -114,7 +124,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "coze") {
+  if (cid === "coze") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <rect x="6" y="6" width="20" height="20" rx="6" fill="#5b5bd6" />
@@ -123,7 +133,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "minimax") {
+  if (cid === "minimax") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <rect x="7" y="8" width="18" height="16" rx="5" fill="#3b82f6" />
@@ -133,7 +143,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "openclaw") {
+  if (cid === "openclaw") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <path d="M8 20c2-6 4-8 8-8s6 2 8 8" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" />
@@ -141,7 +151,7 @@ function ClientGlyph({ id }: { id: (typeof CLIENTS)[number]["id"] }) {
       </svg>
     );
   }
-  if (id === "hermes") {
+  if (cid === "hermes") {
     return (
       <svg viewBox="0 0 32 32" className={common} aria-hidden>
         <circle cx="16" cy="16" r="7" fill="none" stroke="#e07a3d" strokeWidth="2" />
@@ -186,16 +196,25 @@ const TRIES = [
   },
 ];
 
+function publicMcpUrl() {
+  if (typeof window === "undefined") {
+    return `http://127.0.0.1:43123${BASE_PATH}/api/mcp`;
+  }
+  return `${window.location.origin}${BASE_PATH}/api/mcp`;
+}
+
 export function GetStarted({
   locale,
   stores,
   profiles,
   connections,
+  skillCount,
 }: {
   locale: Locale;
   stores: StoreRow[];
   profiles: Profile[];
   connections: Connection[];
+  skillCount: number;
 }) {
   const router = useRouter();
   const flash = useUI((s) => s.flash);
@@ -205,61 +224,224 @@ export function GetStarted({
   const done = Number(storeOn) + Number(adsOn) + Number(aiOn);
   const [open, setOpen] = useState<"store" | "ads" | "ai" | null>(aiOn ? "ai" : !storeOn ? "store" : !adsOn ? "ads" : "ai");
   const [market, setMarket] = useState("United States");
-  const [adding, setAdding] = useState(false);
+  const [adding, setAdding] = useState(!storeOn);
   const [storeName, setStoreName] = useState("");
-  const [client, setClient] = useState<(typeof CLIENTS)[number]["id"]>("codex");
+  const [client, setClient] = useState<ClientId>("codex");
   const [mode, setMode] = useState<"install" | "manual">("install");
   const [connName, setConnName] = useState("Codex");
   const [prompt, setPrompt] = useState("");
   const [syncFor, setSyncFor] = useState<string | null>(null);
+  const [mcpUrl, setMcpUrl] = useState(() => publicMcpUrl());
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    setMcpUrl(publicMcpUrl());
+  }, []);
 
   const visibleStores = stores.filter((s) => s.spConnected && s.marketplace === market);
+  const connectedStoreCount = stores.filter((s) => s.spConnected).length;
 
-  async function post(url: string, body: unknown) {
-    await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
-    router.refresh();
+  const manualJson = useMemo(
+    () =>
+      JSON.stringify(
+        {
+          mcpServers: {
+            lili: { url: mcpUrl },
+          },
+        },
+        null,
+        2,
+      ),
+    [mcpUrl],
+  );
+
+  const tomlSnippet = useMemo(() => `[mcp_servers.lili]\nurl = "${mcpUrl}"\n`, [mcpUrl]);
+
+  async function post(url: string, body: unknown, okMsg?: string) {
+    setBusy(true);
+    try {
+      const res = await fetch(withBasePath(url), {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        flash(tx(locale, `请求失败 ${res.status}`, `Request failed ${res.status}`));
+        return false;
+      }
+      if (okMsg) flash(okMsg);
+      router.refresh();
+      return true;
+    } catch {
+      flash(tx(locale, "网络错误", "Network error"));
+      return false;
+    } finally {
+      setBusy(false);
+    }
   }
-  async function patchConn(id: string, body: unknown) {
-    await fetch(`/api/connections/${id}`, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
-    router.refresh();
+
+  async function patchConn(id: string, body: unknown, okMsg?: string) {
+    setBusy(true);
+    try {
+      const res = await fetch(withBasePath(`/api/connections/${id}`), {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        flash(tx(locale, `请求失败 ${res.status}`, `Request failed ${res.status}`));
+        return false;
+      }
+      if (okMsg) flash(okMsg);
+      router.refresh();
+      return true;
+    } catch {
+      flash(tx(locale, "网络错误", "Network error"));
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function deleteConn(id: string) {
+    setBusy(true);
+    try {
+      const res = await fetch(withBasePath(`/api/connections/${id}`), { method: "DELETE" });
+      if (!res.ok) {
+        flash(tx(locale, `请求失败 ${res.status}`, `Request failed ${res.status}`));
+        return;
+      }
+      flash(tx(locale, "已删除连接", "Connection removed"));
+      router.refresh();
+    } catch {
+      flash(tx(locale, "网络错误", "Network error"));
+    } finally {
+      setBusy(false);
+    }
   }
 
   const installPrompt = useMemo(() => {
     const label = CLIENTS.find((item) => item.id === client)?.label ?? client;
     return [
-      `Add an MCP server for the 粒粒lili sandbox. Connection name: ${connName || label}.`,
+      `Add an MCP server for 粒粒lili. Connection name: ${connName || label}.`,
       `Client: ${label}.`,
-      `URL: http://127.0.0.1:43123/api/mcp`,
-      "This URL is the local sandbox, not listingapp.duobaoyu.ai.",
-      "Reads are mock data. Allow market research and Allow AI to execute actions stay off until toggled on Get Started.",
+      `URL: ${mcpUrl}`,
+      "Prefer Streamable HTTP. Server key in config: lili.",
+      "Reads use connected store / ads data when authorized on Get Started.",
+      "Allow market research and Allow AI to execute actions stay off until toggled on Get Started.",
       "Any write returns a preview and waits for approval.",
       "Start a new chat after installing. An old chat will say it has no store data.",
+      `Optional: download the full skill zip from ${typeof window !== "undefined" ? window.location.origin : ""}${BASE_PATH}/api/codex-bundle and copy skills/ into ~/.codex/skills/.`,
     ].join("\n");
-  }, [client, connName]);
+  }, [client, connName, mcpUrl]);
 
   return (
     <div className="mx-auto max-w-[980px]">
-      <h1 className="text-[28px] font-semibold tracking-tight">{done === 3 ? tx(locale, "已全部连接", "All connected") : tx(locale, "开始使用", "Get started")}</h1>
+      <h1 className="text-[28px] font-semibold tracking-tight">
+        {done === 3 ? tx(locale, "已全部连接", "All connected") : tx(locale, "开始使用", "Get started")}
+      </h1>
       <p className="mt-4 text-sm text-muted">{tx(locale, `已完成 ${done} / 3`, `Completed ${done} of 3`)}</p>
       <div className="mt-2 h-[3px] rounded-full bg-[#f0e4da]">
         <div className="h-[3px] rounded-full bg-orange" style={{ width: `${(done / 3) * 100}%` }} />
       </div>
 
+      {/* First-class 授权 + 下载 */}
+      <section className="card mt-4 border border-[#f0d4c2] bg-[#fffaf6] px-5 py-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-sm font-semibold text-[#3f3a36]">
+              <Download className="h-4 w-4 text-orange" />
+              {tx(locale, "一键配置 Codex MCP · 全量下载 Skill", "One-click Codex MCP · Download all skills")}
+            </div>
+            <p className="mt-1 text-[13px] leading-5 text-muted">
+              {tx(
+                locale,
+                `下载 ZIP（INSTALL.md + config.snippet.toml + mcpServers.json + ${skillCount} 个 SKILL.md）。先完成下方店铺 / 广告授权，再把 MCP 接到 Codex。`,
+                `Download a ZIP (INSTALL.md + config.snippet.toml + mcpServers.json + ${skillCount} SKILL.md files). Authorize store & ads below, then wire MCP into Codex.`,
+              )}
+            </p>
+            <pre className="mt-2 overflow-auto rounded-lg bg-white/80 px-3 py-2 text-[11px] leading-4 text-[#5c564f]">{mcpUrl}</pre>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a className="btn-orange" href={withBasePath("/api/codex-bundle")} download>
+              <Download className="h-3.5 w-3.5" />
+              {tx(locale, "下载配置包", "Download bundle")}
+            </a>
+            <button
+              type="button"
+              className="btn-ghost"
+              onClick={async () => {
+                await copyText(tomlSnippet);
+                flash(tx(locale, "已复制 TOML", "TOML copied"));
+              }}
+            >
+              <Copy className="h-3.5 w-3.5" />
+              {tx(locale, "复制 TOML", "Copy TOML")}
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              onClick={async () => {
+                await copyText(manualJson);
+                flash(tx(locale, "已复制 JSON", "JSON copied"));
+              }}
+            >
+              <Copy className="h-3.5 w-3.5" />
+              {tx(locale, "复制 JSON", "Copy JSON")}
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              onClick={() => {
+                setOpen("store");
+                setAdding(true);
+              }}
+            >
+              <Store className="h-3.5 w-3.5" />
+              {tx(locale, "去授权店铺", "Authorize store")}
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section className="card mt-4 px-5 py-4">
-        <StepHead done={storeOn} title={tx(locale, "授权亚马逊店铺", "Authorize Amazon store")} sub={storeOn ? tx(locale, `${stores.filter((s) => s.spConnected).length} 个已连接`, `${stores.filter((s) => s.spConnected).length} connected`) : tx(locale, "尚未连接", "Not connected")} open={open === "store"} onClick={() => setOpen(open === "store" ? null : "store")} />
+        <StepHead
+          done={storeOn}
+          title={tx(locale, "授权亚马逊店铺", "Authorize Amazon store")}
+          sub={storeOn ? tx(locale, `${connectedStoreCount} 个已连接`, `${connectedStoreCount} connected`) : tx(locale, "尚未连接", "Not connected")}
+          open={open === "store"}
+          onClick={() => setOpen(open === "store" ? null : "store")}
+        />
         {open === "store" && (
           <div className="mt-4 space-y-3">
-            <Warn>{tx(locale, "大店第一次同步可能要 12 小时。这期间可以继续。", "The first sync can take up to 12 hours for large accounts. You can keep going in the meantime.")}</Warn>
+            <Warn>
+              {tx(
+                locale,
+                "大店第一次同步可能要 12 小时。这期间可以继续。沙盒可用「模拟授权」接好流程。",
+                "The first sync can take up to 12 hours for large accounts. You can keep going in the meantime. Sandbox: use Simulate authorization to wire the flow.",
+              )}
+            </Warn>
             {visibleStores.map((store) => (
               <div key={store.id} className="rounded-xl border border-line">
                 <div className="flex items-center gap-3 px-3 py-3">
                   <Store className="h-4 w-4 text-orange" />
                   <div className="min-w-0">
                     <div className="text-sm font-medium">{store.name}</div>
-                    <div className="text-xs text-muted">{store.sellerId} · {store.marketplace}</div>
+                    <div className="text-xs text-muted">
+                      {store.sellerId} · {store.marketplace}
+                    </div>
                   </div>
                   <span className="ml-auto text-sm text-emerald-600">{tx(locale, "已连接", "Connected")}</span>
-                  <button className="text-sm text-[#5c564f]" onClick={() => post("/api/stores", { action: "disconnect", id: store.id })}>{tx(locale, "断开", "Disconnect")}</button>
+                  <button
+                    type="button"
+                    className="text-sm text-[#5c564f]"
+                    disabled={busy}
+                    onClick={() => post("/api/stores", { action: "disconnect", id: store.id }, tx(locale, "已断开店铺", "Store disconnected"))}
+                  >
+                    {tx(locale, "断开", "Disconnect")}
+                  </button>
                 </div>
                 <div className="flex items-center gap-3 border-t border-line px-3 py-3 text-sm">
                   <div>
@@ -267,7 +449,7 @@ export function GetStarted({
                     <div className="text-xs text-muted">{hours(store.lastSyncedAt, locale)}</div>
                   </div>
                   <div className="relative ml-auto">
-                    <button className="btn-ghost" onClick={() => setSyncFor(syncFor === store.id ? null : store.id)}>
+                    <button type="button" className="btn-ghost" onClick={() => setSyncFor(syncFor === store.id ? null : store.id)}>
                       <RefreshCw className="h-3.5 w-3.5" /> {tx(locale, "立即同步", "Sync now")} <ChevronDown className="h-3.5 w-3.5" />
                     </button>
                     {syncFor === store.id && (
@@ -278,7 +460,15 @@ export function GetStarted({
                           ["inventory", "库存", "Inventory"],
                           ["ads", "广告", "Ads"],
                         ].map(([kind, zh, en]) => (
-                          <button key={kind} className="block w-full rounded-lg px-3 py-1.5 text-left hover:bg-canvas" onClick={() => { setSyncFor(null); post("/api/stores", { action: "sync", id: store.id, kind }); }}>
+                          <button
+                            key={kind}
+                            type="button"
+                            className="block w-full rounded-lg px-3 py-1.5 text-left hover:bg-canvas"
+                            onClick={() => {
+                              setSyncFor(null);
+                              post("/api/stores", { action: "sync", id: store.id, kind }, tx(locale, "同步已触发", "Sync started"));
+                            }}
+                          >
                             {tx(locale, zh, en)}
                           </button>
                         ))}
@@ -288,65 +478,199 @@ export function GetStarted({
                 </div>
               </div>
             ))}
-            {!visibleStores.length && <p className="text-sm text-muted">{tx(locale, "这个站点还没有店铺。", "No store on this marketplace yet.")}</p>}
+            {!visibleStores.length && (
+              <p className="text-sm text-muted">{tx(locale, "这个站点还没有店铺。选站点后点「再连一个店铺」或「模拟授权」。", "No store on this marketplace yet. Pick a market, then Connect another store / Simulate authorization.")}</p>
+            )}
             <div className="flex flex-wrap items-center gap-2">
               <select className="field" value={market} onChange={(e) => setMarket(e.target.value)}>
-                {MARKETS.map((item) => <option key={item}>{item}</option>)}
+                {MARKETS.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
               </select>
-              <button className="btn-ghost" onClick={() => setAdding(true)}><Plus className="h-3.5 w-3.5" /> {tx(locale, "再连一个店铺", "Connect another store")}</button>
+              <button type="button" className="btn-ghost" onClick={() => setAdding(true)}>
+                <Plus className="h-3.5 w-3.5" /> {tx(locale, "再连一个店铺", "Connect another store")}
+              </button>
             </div>
             {adding && (
-              <form className="flex flex-wrap gap-2" onSubmit={(e) => { e.preventDefault(); post("/api/stores", { action: "connect", name: storeName, marketplace: market }); setAdding(false); setStoreName(""); }}>
-                <input className="field" required value={storeName} onChange={(e) => setStoreName(e.target.value)} placeholder={tx(locale, "店铺名称", "Store name")} />
-                <button className="btn-orange" type="submit">{tx(locale, "模拟授权", "Simulate authorization")}</button>
+              <form
+                className="flex flex-wrap gap-2"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const ok = await post(
+                    "/api/stores",
+                    { action: "connect", name: storeName || "Sandbox store", marketplace: market },
+                    tx(locale, "店铺已授权（模拟）", "Store authorized (simulated)"),
+                  );
+                  if (ok) {
+                    setAdding(false);
+                    setStoreName("");
+                  }
+                }}
+              >
+                <input
+                  className="field"
+                  required
+                  value={storeName}
+                  onChange={(e) => setStoreName(e.target.value)}
+                  placeholder={tx(locale, "店铺名称", "Store name")}
+                />
+                <button className="btn-orange" type="submit" disabled={busy}>
+                  {tx(locale, "模拟授权", "Simulate authorization")}
+                </button>
+                <button type="button" className="btn-ghost" onClick={() => setAdding(false)}>
+                  {tx(locale, "取消", "Cancel")}
+                </button>
               </form>
             )}
-            <button className="btn-orange" onClick={() => setOpen("ads")}>{tx(locale, "下一步", "Next")}</button>
+            <button type="button" className="btn-orange" onClick={() => setOpen("ads")}>
+              {tx(locale, "下一步", "Next")}
+            </button>
           </div>
         )}
       </section>
 
       <section className="card mt-3 px-5 py-4">
-        <StepHead done={adsOn} title={tx(locale, "授权广告账户", "Authorize ads account")} sub={adsOn ? tx(locale, "已授权", "Authorized") : tx(locale, "尚未授权", "Not authorized")} open={open === "ads"} onClick={() => setOpen(open === "ads" ? null : "ads")} />
+        <StepHead
+          done={adsOn}
+          title={tx(locale, "授权广告账户", "Authorize ads account")}
+          sub={adsOn ? tx(locale, "已授权", "Authorized") : tx(locale, "尚未授权", "Not authorized")}
+          open={open === "ads"}
+          onClick={() => setOpen(open === "ads" ? null : "ads")}
+        />
         {open === "ads" && (
           <div className="mt-4 space-y-3">
+            {!profiles.length && (
+              <div className="space-y-2">
+                <Warn>
+                  {tx(
+                    locale,
+                    "还没有广告资料。请先授权店铺，再点「再连一个广告账户」生成 CA / MX / US 资料（沙盒）。",
+                    "No ads profiles yet. Authorize a store first, then Connect another ads account to seed CA / MX / US profiles (sandbox).",
+                  )}
+                </Warn>
+                <button
+                  type="button"
+                  className="btn-orange"
+                  disabled={busy || !stores.length}
+                  onClick={() =>
+                    post("/api/ads-profiles", { action: "another" }, tx(locale, "已生成广告资料", "Ads profiles created"))
+                  }
+                >
+                  <Plus className="h-3.5 w-3.5" /> {tx(locale, "授权 / 生成广告资料", "Authorize / seed ads profiles")}
+                </button>
+              </div>
+            )}
             {profiles.map((profile) => (
               <div key={profile.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-line px-3 py-3">
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-peach text-orange"><Store className="h-4 w-4" /></span>
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-peach text-orange">
+                  <Store className="h-4 w-4" />
+                </span>
                 <div className="min-w-[140px]">
                   <div className="text-sm font-medium">{profile.name}</div>
                   <div className="text-xs text-muted">{profile.countryCode}</div>
                 </div>
-                <label className="ml-auto flex items-center gap-2 text-sm text-muted">
-                  {tx(locale, "从未", "Never")}
-                  <input type="checkbox" checked={profile.neverSynced} onChange={(e) => post("/api/ads-profiles", { id: profile.id, neverSynced: e.target.checked, enabled: e.target.checked ? false : profile.enabled })} />
-                </label>
+                <span className="ml-auto text-sm text-muted">
+                  {profile.neverSynced || !profile.lastSyncedAt
+                    ? tx(locale, "从未", "Never")
+                    : hours(profile.lastSyncedAt, locale)}
+                </span>
                 <label className="flex items-center gap-2 text-sm">
                   {tx(locale, "启用", "Enabled")}
-                  <input type="checkbox" checked={profile.enabled} onChange={(e) => post("/api/ads-profiles", { id: profile.id, enabled: e.target.checked, neverSynced: e.target.checked ? false : profile.neverSynced })} />
+                  <input
+                    type="checkbox"
+                    checked={profile.enabled}
+                    disabled={busy}
+                    onChange={(e) =>
+                      post("/api/ads-profiles", {
+                        id: profile.id,
+                        enabled: e.target.checked,
+                        neverSynced: e.target.checked ? false : profile.neverSynced,
+                      })
+                    }
+                  />
                 </label>
-                <button className="btn-ghost" onClick={() => post("/api/ads-profiles", { id: profile.id, action: "sync" })}><RefreshCw className="h-3.5 w-3.5" /> {tx(locale, "立即同步", "Sync now")}</button>
+                <button
+                  type="button"
+                  className="btn-ghost"
+                  disabled={busy}
+                  onClick={() =>
+                    post("/api/ads-profiles", { id: profile.id, action: "sync" }, tx(locale, "广告同步已触发", "Ads sync started"))
+                  }
+                >
+                  <RefreshCw className="h-3.5 w-3.5" /> {tx(locale, "立即同步", "Sync now")}
+                </button>
               </div>
             ))}
             <div className="flex flex-wrap gap-2 text-sm">
-              <button className="btn-ghost" onClick={() => post("/api/ads-profiles", { action: "another" })}><Plus className="h-3.5 w-3.5" /> {tx(locale, "再连一个广告账户", "Connect another ads account")}</button>
-              <button className="btn-ghost" onClick={() => post("/api/ads-profiles", { action: "refresh" })}><RefreshCw className="h-3.5 w-3.5" /> {tx(locale, "刷新资料", "Refresh profiles")}</button>
-              <button className="btn-ghost" onClick={() => post("/api/ads-profiles", { action: "disconnect" })}><Unplug className="h-3.5 w-3.5" /> {tx(locale, "断开", "Disconnect")}</button>
+              <button
+                type="button"
+                className="btn-ghost"
+                disabled={busy}
+                onClick={() => post("/api/ads-profiles", { action: "another" }, tx(locale, "已添加广告账户", "Ads account added"))}
+              >
+                <Plus className="h-3.5 w-3.5" /> {tx(locale, "再连一个广告账户", "Connect another ads account")}
+              </button>
+              <button
+                type="button"
+                className="btn-ghost"
+                disabled={busy}
+                onClick={() => post("/api/ads-profiles", { action: "refresh" }, tx(locale, "资料已刷新", "Profiles refreshed"))}
+              >
+                <RefreshCw className="h-3.5 w-3.5" /> {tx(locale, "刷新资料", "Refresh profiles")}
+              </button>
+              <button
+                type="button"
+                className="btn-ghost"
+                disabled={busy}
+                onClick={() => post("/api/ads-profiles", { action: "disconnect" }, tx(locale, "广告已断开", "Ads disconnected"))}
+              >
+                <Unplug className="h-3.5 w-3.5" /> {tx(locale, "断开", "Disconnect")}
+              </button>
             </div>
-            <button className="btn-orange" onClick={() => setOpen("ai")}>{tx(locale, "下一步", "Next")}</button>
+            <button type="button" className="btn-orange" onClick={() => setOpen("ai")}>
+              {tx(locale, "下一步", "Next")}
+            </button>
           </div>
         )}
       </section>
 
       <section className="card mt-3 px-5 py-4">
-        <StepHead done={aiOn} title={tx(locale, "连接你的 AI", "Connect your AI")} sub={aiOn ? tx(locale, "连接已创建", "Connection created") : tx(locale, "尚未连接", "Not connected")} open={open === "ai"} onClick={() => setOpen(open === "ai" ? null : "ai")} />
+        <StepHead
+          done={aiOn}
+          title={tx(locale, "连接你的 AI", "Connect your AI")}
+          sub={aiOn ? tx(locale, "连接已创建", "Connection created") : tx(locale, "尚未连接", "Not connected")}
+          open={open === "ai"}
+          onClick={() => setOpen(open === "ai" ? null : "ai")}
+        />
         {open === "ai" && (
           <div className="mt-4">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-[#f0d4c2] bg-[#fffaf6] px-3 py-3">
+              <div className="text-[13px] leading-5 text-[#5c564f]">
+                {tx(
+                  locale,
+                  `也可直接下载含 ${skillCount} 个 Skill 的 Codex 配置包，或复制 MCP 地址。`,
+                  `Or download the Codex bundle with ${skillCount} skills, or copy the MCP URL.`,
+                )}
+              </div>
+              <a className="btn-orange" href={withBasePath("/api/codex-bundle")} download>
+                <Download className="h-3.5 w-3.5" />
+                {tx(locale, "下载 Skill 包", "Download skill pack")}
+              </a>
+            </div>
+
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
               {CLIENTS.map((item) => {
                 const selected = client === item.id;
                 return (
-                  <button key={item.id} onClick={() => { setClient(item.id); setConnName(item.label.split(" (")[0]); }} className={`flex min-h-[92px] flex-col items-center justify-center rounded-xl border bg-white px-2 py-3 text-center text-[12px] leading-4 ${selected ? "border-[#e36a33] text-orange shadow-[0_0_0_1px_#e36a33]" : "border-[#eee6df] text-[#3f3a36]"}`}>
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      setClient(item.id);
+                      setConnName(item.label.split(" (")[0]);
+                    }}
+                    className={`flex min-h-[92px] flex-col items-center justify-center rounded-xl border bg-white px-2 py-3 text-center text-[12px] leading-4 ${selected ? "border-[#e36a33] text-orange shadow-[0_0_0_1px_#e36a33]" : "border-[#eee6df] text-[#3f3a36]"}`}
+                  >
                     <ClientGlyph id={item.id} />
                     <span className="mt-1.5">{item.label}</span>
                   </button>
@@ -354,13 +678,29 @@ export function GetStarted({
               })}
             </div>
             <div className="mt-4 flex gap-2 text-[13px]">
-              <button className={`rounded-full px-3 py-1 ${mode === "install" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`} onClick={() => setMode("install")}>{tx(locale, "让 AI 自己安装", "Let the AI install it")}</button>
-              <button className={`rounded-full px-3 py-1 ${mode === "manual" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`} onClick={() => setMode("manual")}>{tx(locale, "手动添加", "Add it manually")}</button>
+              <button
+                type="button"
+                className={`rounded-full px-3 py-1 ${mode === "install" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`}
+                onClick={() => setMode("install")}
+              >
+                {tx(locale, "让 AI 自己安装", "Let the AI install it")}
+              </button>
+              <button
+                type="button"
+                className={`rounded-full px-3 py-1 ${mode === "manual" ? "bg-[#fde7da] text-orange" : "bg-[#f3eee8] text-[#5c564f]"}`}
+                onClick={() => setMode("manual")}
+              >
+                {tx(locale, "手动添加", "Add it manually")}
+              </button>
             </div>
             {mode === "install" ? (
               <div className="mt-4 text-sm">
                 <p className="text-[13px] leading-5 text-muted">
-                  {tx(locale, `把提示词贴进 ${connName || "Codex"}，它会自己写配置。不行就改用「手动添加」。`, `Paste a prompt into ${connName || "Codex"} and it writes its own config. Didn't work? Switch to "Add it manually".`)}
+                  {tx(
+                    locale,
+                    `把提示词贴进 ${connName || "Codex"}，它会自己写配置。不行就改用「手动添加」。`,
+                    `Paste a prompt into ${connName || "Codex"} and it writes its own config. Didn't work? Switch to "Add it manually".`,
+                  )}
                 </p>
                 <ol className="mt-4 space-y-4">
                   <li>
@@ -372,13 +712,15 @@ export function GetStarted({
                       <span className="text-sm text-muted">{tx(locale, "名称", "Name")}</span>
                       <input className="field w-44" value={connName} onChange={(e) => setConnName(e.target.value)} />
                       <button
-                        className="h-9 rounded-full bg-orange px-4 text-sm font-medium text-white"
+                        type="button"
+                        className="h-9 rounded-full bg-orange px-4 text-sm font-medium text-white disabled:opacity-60"
+                        disabled={busy}
                         onClick={async () => {
                           setPrompt(installPrompt);
                           await copyText(installPrompt);
                           flash(tx(locale, "已复制", "Copied"));
-                          if (connections[0]) await patchConn(connections[0].id, { name: connName || "Codex" });
-                          else await post("/api/connections", { name: connName || "Codex", client });
+                          if (connections[0]) await patchConn(connections[0].id, { name: connName || "Codex", client });
+                          else await post("/api/connections", { name: connName || "Codex", client }, tx(locale, "连接已创建", "Connection created"));
                         }}
                       >
                         {tx(locale, "生成", "Generate")}
@@ -397,40 +739,140 @@ export function GetStarted({
                 </ol>
                 <div className="mt-3">
                   <Warn>
-                    {tx(locale, "必须新开一个对话。粒粒lili只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。", "You must start a NEW chat! 粒粒lili only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.")}
+                    {tx(
+                      locale,
+                      "必须新开一个对话。粒粒lili只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。",
+                      "You must start a NEW chat! 粒粒lili only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.",
+                    )}
                   </Warn>
                 </div>
               </div>
             ) : (
               <div className="mt-4 text-sm">
-                <p className="text-[13px] leading-5 text-muted">{tx(locale, "把下面的地址加到客户端。这是本机沙盒，不是 listingapp.duobaoyu.ai。", "Add this URL in the client. It is this machine's sandbox, not listingapp.duobaoyu.ai.")}</p>
-                <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{`{\n  "mcpServers": {\n    "lili": {\n      "url": "http://127.0.0.1:43123/api/mcp"\n    }\n  }\n}`}</pre>
+                <p className="text-[13px] leading-5 text-muted">
+                  {tx(
+                    locale,
+                    "把下面的地址加到客户端（Streamable HTTP）。生产环境带 /studylab 前缀；本机沙盒同样走 basePath。",
+                    "Add this URL in the client (Streamable HTTP). Production uses the /studylab prefix; local sandbox uses the same basePath.",
+                  )}
+                </p>
+                <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{manualJson}</pre>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="btn-ghost"
+                    onClick={async () => {
+                      await copyText(manualJson);
+                      flash(tx(locale, "已复制 JSON", "JSON copied"));
+                    }}
+                  >
+                    <Copy className="h-3.5 w-3.5" /> {tx(locale, "复制 JSON", "Copy JSON")}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-ghost"
+                    onClick={async () => {
+                      await copyText(tomlSnippet);
+                      flash(tx(locale, "已复制 TOML", "TOML copied"));
+                    }}
+                  >
+                    <Copy className="h-3.5 w-3.5" /> {tx(locale, "复制 Codex TOML", "Copy Codex TOML")}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-orange"
+                    disabled={busy}
+                    onClick={() =>
+                      post(
+                        "/api/connections",
+                        { name: connName || CLIENTS.find((c) => c.id === client)?.label.split(" (")[0] || "Codex", client },
+                        tx(locale, "连接已创建", "Connection created"),
+                      )
+                    }
+                  >
+                    {tx(locale, "标记为已连接", "Mark as connected")}
+                  </button>
+                </div>
               </div>
             )}
 
             <div className="mt-5 text-sm font-medium">{tx(locale, "已连接的 AI", "Connected AI assistants")}</div>
             <div className="mt-2 space-y-2">
+              {!connections.length && (
+                <p className="text-sm text-muted">{tx(locale, "还没有连接。生成安装提示词或手动添加后点「标记为已连接」。", "No connections yet. Generate an install prompt or mark as connected after manual setup.")}</p>
+              )}
               {connections.map((conn) => (
                 <div key={conn.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-[#eee6df] px-3 py-3">
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#fff1e8] text-orange">
-                    <ClientGlyph id={client} />
+                    <ClientGlyph id={conn.client || client} />
                   </span>
                   <div className="min-w-[180px]">
-                    <div className="flex items-center gap-1 text-sm font-medium">{conn.name} <Pencil className="h-3.5 w-3.5 text-muted" /></div>
+                    {renamingId === conn.id ? (
+                      <form
+                        className="flex items-center gap-2"
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          const ok = await patchConn(conn.id, { name: renameValue || conn.name }, tx(locale, "已重命名", "Renamed"));
+                          if (ok) setRenamingId(null);
+                        }}
+                      >
+                        <input className="field h-8 w-40" value={renameValue} onChange={(e) => setRenameValue(e.target.value)} autoFocus />
+                        <button type="submit" className="btn-orange h-8 px-3 text-xs">
+                          {tx(locale, "保存", "Save")}
+                        </button>
+                        <button type="button" className="btn-ghost h-8 px-2 text-xs" onClick={() => setRenamingId(null)}>
+                          {tx(locale, "取消", "Cancel")}
+                        </button>
+                      </form>
+                    ) : (
+                      <button
+                        type="button"
+                        className="flex items-center gap-1 text-sm font-medium"
+                        onClick={() => {
+                          setRenamingId(conn.id);
+                          setRenameValue(conn.name);
+                        }}
+                      >
+                        {conn.name} <Pencil className="h-3.5 w-3.5 text-muted" />
+                      </button>
+                    )}
                     <div className="text-xs text-muted">
-                      {tx(locale, "连接于", "connected")} {conn.connectedAt.slice(0, 10)} · {tx(locale, "最近使用", "last used")} {conn.lastUsedAt.slice(0, 10)}
+                      {tx(locale, "连接于", "connected")} {conn.connectedAt.slice(0, 10)} · {tx(locale, "最近使用", "last used")}{" "}
+                      {conn.lastUsedAt.slice(0, 10)}
                     </div>
                   </div>
                   <label className="ml-auto flex items-center gap-2 text-sm">
-                    <input className="h-4 w-4 accent-[#e86a2c]" type="checkbox" checked={conn.allowMarketResearch} onChange={(e) => patchConn(conn.id, { allowMarketResearch: e.target.checked })} />
+                    <input
+                      className="h-4 w-4 accent-[#e86a2c]"
+                      type="checkbox"
+                      checked={conn.allowMarketResearch}
+                      disabled={busy}
+                      onChange={(e) => patchConn(conn.id, { allowMarketResearch: e.target.checked })}
+                    />
                     {tx(locale, "允许市场调研", "Allow market research")}
                   </label>
                   <label className="flex items-center gap-2 text-sm">
-                    <input className="h-4 w-4 accent-[#e86a2c]" type="checkbox" checked={conn.allowAiExecute} onChange={(e) => patchConn(conn.id, { allowAiExecute: e.target.checked })} />
+                    <input
+                      className="h-4 w-4 accent-[#e86a2c]"
+                      type="checkbox"
+                      checked={conn.allowAiExecute}
+                      disabled={busy}
+                      onChange={(e) => patchConn(conn.id, { allowAiExecute: e.target.checked })}
+                    />
                     {tx(locale, "允许 AI 执行操作", "Allow AI to execute actions")}
                   </label>
-                  <button aria-label="Refresh" className="text-muted" onClick={() => patchConn(conn.id, { name: conn.name })}><RefreshCw className="h-4 w-4" /></button>
-                  <button aria-label="Delete" className="text-muted" onClick={() => fetch(`/api/connections/${conn.id}`, { method: "DELETE" }).then(() => router.refresh())}><Trash2 className="h-4 w-4" /></button>
+                  <button
+                    type="button"
+                    aria-label="Refresh"
+                    className="text-muted"
+                    disabled={busy}
+                    onClick={() => patchConn(conn.id, { name: conn.name }, tx(locale, "已刷新", "Refreshed"))}
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                  </button>
+                  <button type="button" aria-label="Delete" className="text-muted" disabled={busy} onClick={() => deleteConn(conn.id)}>
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               ))}
             </div>
@@ -439,7 +881,9 @@ export function GetStarted({
                 <span className="grid h-7 w-7 place-items-center rounded-lg bg-white text-orange">AI</span>
                 {tx(locale, "刚接触这些 AI 工具？", "New to these AI tools?")}
               </span>
-              <span className="font-medium text-orange">{tx(locale, "AI 基础课", "AI basics class")} →</span>
+              <span className="font-medium text-orange">
+                {tx(locale, "AI 基础课", "AI basics class")} →
+              </span>
             </Link>
           </div>
         )}
@@ -447,7 +891,9 @@ export function GetStarted({
 
       <div className="mt-8 mb-3 flex items-center justify-between">
         <h2 className="text-lg font-semibold">{tx(locale, "试一试", "Try these")}</h2>
-        <Link href="/v2/cases" className="text-sm text-muted">{tx(locale, "全部工作流模板", "All workflow templates")}</Link>
+        <Link href="/v2/cases" className="text-sm text-muted">
+          {tx(locale, "全部工作流模板", "All workflow templates")}
+        </Link>
       </div>
       <div className="grid gap-3 md:grid-cols-3">
         {TRIES.map((item) => (
@@ -455,7 +901,14 @@ export function GetStarted({
             <Lightbulb className="h-4 w-4 text-orange" />
             <h3 className="mt-2 font-semibold">{tx(locale, item.titleZh, item.titleEn)}</h3>
             <p className="mt-1 line-clamp-3 text-sm leading-5 text-[#5c564f]">{tx(locale, item.bodyZh, item.bodyEn)}</p>
-            <button className="btn-orange mt-4" onClick={() => { copyText(tx(locale, item.promptZh, item.promptEn)); flash(tx(locale, "已复制", "Copied")); }}>
+            <button
+              type="button"
+              className="btn-orange mt-4"
+              onClick={() => {
+                copyText(tx(locale, item.promptZh, item.promptEn));
+                flash(tx(locale, "已复制", "Copied"));
+              }}
+            >
               <Copy className="h-3.5 w-3.5" /> {tx(locale, "复制提示词", "Copy prompt")}
             </button>
           </article>
@@ -465,9 +918,21 @@ export function GetStarted({
   );
 }
 
-function StepHead({ done, title, sub, open, onClick }: { done: boolean; title: string; sub: string; open: boolean; onClick: () => void }) {
+function StepHead({
+  done,
+  title,
+  sub,
+  open,
+  onClick,
+}: {
+  done: boolean;
+  title: string;
+  sub: string;
+  open: boolean;
+  onClick: () => void;
+}) {
   return (
-    <button className="flex w-full items-center gap-3 text-left" onClick={onClick}>
+    <button type="button" className="flex w-full items-center gap-3 text-left" onClick={onClick}>
       <span className={`grid h-6 w-6 place-items-center rounded-full ${done ? "bg-emerald-500 text-white" : "border border-[#eadfd6]"}`}>
         {done && <Check className="h-3.5 w-3.5" />}
       </span>
