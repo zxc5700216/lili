@@ -10,8 +10,8 @@ export async function GET() {
     sandbox: !sellfox,
     source: sellfox ? "sellfox" : "sandbox",
     message: sellfox
-      ? "StudyLab MCP reads Sellfox tables from amazon_bulk_ad when mapped tools are called. Not listingapp.duobaoyu.ai."
-      : "Local study MCP. Not listingapp.duobaoyu.ai.",
+      ? "粒粒lili MCP reads Sellfox tables from amazon_bulk_ad when mapped tools are called. Not a third-party listing app MCP."
+      : "Local 粒粒lili MCP. Not a third-party listing app MCP.",
     tools: tools.map((tool) => ({
       name: tool.name,
       description: tool.description,

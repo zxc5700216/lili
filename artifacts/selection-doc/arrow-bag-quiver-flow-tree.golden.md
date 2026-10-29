@@ -137,7 +137,7 @@ ROOT：把 arrow bag quiver 方向推进到可评审的开品文档
 
  | amazon-product-selection | 第5步 | 预筛、六维、利润、压力、停止线和验证计划 | 市场证据+成本假设+300件 | A1优先验证/HOLD | 评分不能覆盖缺报价或未验税费
 
- | duobaoyu-report-spec | 所有HTML交付 | 自包含HTML、来源、水印、配色、口径 | 已整理的章节与数据 | 静态单文件报告 | 不负责市场取数，也不验证数字真实性
+ | lili-report-spec | 所有HTML交付 | 自包含HTML、来源、水印、配色、口径 | 已整理的章节与数据 | 静态单文件报告 | 不负责市场取数，也不验证数字真实性
 
 五个业务skill在开始前先加载，用于评估流程与请求量；niche-finder执行时又加载过，报告规范在第1步写报告前加载。后续使用本地镜像阅读并应用。加载次数和付费市场取数次数是两套计数。原始skill全文与加载响应见完整代码档案，不会因本流程树省略正文而丢失。
 
@@ -960,7 +960,7 @@ css='''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;backgro
 head='<header><span class="label">ARROW BAG QUIVER / US / 300 件试单</span><h1>三管腰挂箭袋 · 开品决策评审稿</h1><p class="muted">2026-10-27 · USD · 第2—5步研究与拟开发规格 · 未释放采购订单</p></header>'
 verdict='<div class="verdict"><h2>建议验证 A1，300 件采购暂缓</h2><p>配件齐套、腰带有效围度与拉链可靠性值得打样验证。拟售价 $27.99、FOB 目标 $2.80 的情景下，单位贡献约 $4.23；真实采购价、完整税率及新品转化率未确定，当前结论是 HOLD。</p></div>'
 kpis='<div class="kpis">'+''.join(f'<div class="kpi"><span>{label}</span><b>{v}</b><small>{note}</small></div>' for label,v,note in [('月搜索估算','2,859','hip quiver · 2026.09'),('直接竞品样本','916 件','六个父体的月销量估算'),('低星有效正文','12 条','小样本，全部低置信度'),('用户计划','300 件','尚未下单')])+'</div>'
-foot='<footer>来源：🐟 粒粒AI · skills：amazon-niche-finder、amazon-product-research、amazon-review-analyzer、tariff-calculator-amazon、amazon-product-selection、duobaoyu-report-spec。实际数据源：粒粒 MCP 转接卖家精灵、Sorftime；USITC；CBP历史裁定镜像 CustomsMobile；用户选择与数量约束。市场数据拉取2026-10-27，关键词月度2026.09、趋势截至2026-10-17，评论日期各列UTC；生成2026-10-27。27次市场数据请求不等同于27 credits。内部评审稿，所有未验证假设均需补证。</footer>'
+foot='<footer>来源：🐟 粒粒AI · skills：amazon-niche-finder、amazon-product-research、amazon-review-analyzer、tariff-calculator-amazon、amazon-product-selection、lili-report-spec。实际数据源：粒粒 MCP 转接卖家精灵、Sorftime；USITC；CBP历史裁定镜像 CustomsMobile；用户选择与数量约束。市场数据拉取2026-10-27，关键词月度2026.09、趋势截至2026-10-17，评论日期各列UTC；生成2026-10-27。27次市场数据请求不等同于27 credits。内部评审稿，所有未验证假设均需补证。</footer>'
 def doc(title,parts,navlinks=True):
     nav='<nav>'+''.join(f'<a href="#{i}">{t}</a>' for i,t in [('market','市场'),('reviews','差评'),('tariff','关税成本'),('selection2','决策'),('selection5','利润'),('selection8','停止线'),('brief','规格与验收')])+'</nav>' if navlinks else ''
     return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title><style>'+css+'</style></head><body><div class="dby-watermark">🐟 粒粒AI</div><main>'+head+verdict+kpis+nav+''.join(parts)+foot+'</main></body></html>'

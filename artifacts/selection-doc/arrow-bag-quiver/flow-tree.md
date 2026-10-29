@@ -49,7 +49,7 @@ ROOT：把 arrow bag quiver 方向推进到可评审的开品文档
 | amazon-review-analyzer | 第 3 步 | 筛选、分母、主题、优先级 | 星级、日期、Vine 字段 | 痛点清单 | 人工编码，不是自动 NLP |
 | tariff-calculator-amazon | 第 4 步 | 归类情景与到岸拆项 | 材料假设、公开税目 | 三种税率情景 | 不用 skill 内过时税率脚本 |
 | amazon-product-selection | 第 5 步 | 预筛、六维、硬门槛 | 证据 + 成本假设 + 数量 | HOLD / NO-GO | `inferred`：公开库无同名 skill |
-| duobaoyu-report-spec | HTML | 自包含、来源、水印、口径 | 已整理章节 | 静态单文件 | 不负责取数 |
+| lili-report-spec | HTML | 自包含、来源、水印、口径 | 已整理章节 | 静态单文件 | 不负责取数 |
 
 ## 04｜每一次市场请求：为何调用、具体发了什么、如何使用
 

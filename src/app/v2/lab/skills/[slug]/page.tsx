@@ -13,18 +13,20 @@ type Step = { skill: string | null };
 export default async function SkillDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const locale = await getLocale();
-  const row = await prisma.skill.findUnique({ where: { slug } });
+  const short = slug.replace(/^(?:duobaoyu-|lili-)/, "");
+  const row =
+    (await prisma.skill.findUnique({ where: { slug: short } })) ||
+    (await prisma.skill.findUnique({ where: { slug } }));
   if (!row) notFound();
   const steps = (locale === "en" ? row.stepsEn : row.stepsZh) as string[];
   const toolNames = row.relatedTools as string[];
-  const short = slug.replace(/^duobaoyu-/, "");
   const [tools, workflows] = await Promise.all([
     prisma.toolDef.findMany({ where: { name: { in: toolNames } } }),
     prisma.workflowTemplate.findMany({ orderBy: { index: "asc" } }),
   ]);
   const toolByName = new Map(tools.map((tool) => [tool.name, tool]));
   const usedBy = workflows.filter((workflow) =>
-    (workflow.steps as Step[]).some((step) => step.skill === short),
+    (workflow.steps as Step[]).some((step) => step.skill === row.slug || step.skill === short),
   );
 
   return (

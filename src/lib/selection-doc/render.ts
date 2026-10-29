@@ -61,7 +61,7 @@ export function renderFlowTree(input: SelectionInput, plans: ReturnType<typeof e
   lines.push("| amazon-review-analyzer | 第 3 步 | 筛选、分母、主题、优先级 | 星级、日期、Vine 字段 | 痛点清单 | 人工编码，不是自动 NLP |");
   lines.push("| tariff-calculator-amazon | 第 4 步 | 归类情景与到岸拆项 | 材料假设、公开税目 | 三种税率情景 | 不用 skill 内过时税率脚本 |");
   lines.push("| amazon-product-selection | 第 5 步 | 预筛、六维、硬门槛 | 证据 + 成本假设 + 数量 | HOLD / NO-GO | `inferred`：公开库无同名 skill |");
-  lines.push("| duobaoyu-report-spec | HTML | 自包含、来源、水印、口径 | 已整理章节 | 静态单文件 | 不负责取数 |");
+  lines.push("| lili-report-spec | HTML | 自包含、来源、水印、口径 | 已整理章节 | 静态单文件 | 不负责取数 |");
   lines.push("");
   lines.push("## 04｜每一次市场请求：为何调用、具体发了什么、如何使用");
   lines.push("");
@@ -249,7 +249,7 @@ footer{margin-top:24px;color:#8d847b;font-size:12px}
 <table><thead><tr><th>方案</th><th>分数</th><th>单位贡献</th><th>最差格</th><th>结论</th></tr></thead><tbody>${rows}</tbody></table>
 <h2>口径</h2>
 <p>税率情景 17.6% / 42.6% / 62.6%。主计算用 42.6%，标为假设。评论有效正文 12 条，低置信度，频次不是故障率。</p>
-<footer>duobaoyu-report-spec 口径：单文件、内联 CSS、无远程资源。水印表示学习沙盒。inferred：选品 skill 由 private-label 与 profit-analyzer 加金样硬门槛合成。</footer>
+<footer>lili-report-spec 口径：单文件、内联 CSS、无远程资源。水印表示学习沙盒。inferred：选品 skill 由 private-label 与 profit-analyzer 加金样硬门槛合成。</footer>
 </main></body></html>`;
 }
 

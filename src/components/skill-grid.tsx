@@ -30,14 +30,14 @@ const PLAYBOOK = {
 };
 
 function triggerKeywords(item: SkillCard, short: string) {
-  if (item.slug === "duobaoyu-ads-playbook-interview") return PLAYBOOK.keywords;
+  if (item.slug === "ads-playbook-interview" || item.slug.endsWith("ads-playbook-interview")) return PLAYBOOK.keywords;
   const words = item.nameEn.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((word) => word.length > 2);
   const phrase = words.slice(0, 3).join(" ");
   return [...new Set([phrase, words[0], short.replace(/-/g, " "), `my ${words[0] || "workflow"}`])].filter(Boolean).slice(0, 5);
 }
 
 function exampleRequest(item: SkillCard, short: string, locale: Locale) {
-  if (item.slug === "duobaoyu-ads-playbook-interview") return tx(locale, PLAYBOOK.exampleZh, PLAYBOOK.exampleEn);
+  if (item.slug === "ads-playbook-interview" || item.slug.endsWith("ads-playbook-interview")) return tx(locale, PLAYBOOK.exampleZh, PLAYBOOK.exampleEn);
   const summary = tx(locale, item.summaryZh, item.summaryEn);
   return tx(
     locale,
@@ -99,7 +99,7 @@ export function SkillGrid({ locale, items }: { locale: Locale; items: SkillCard[
       {shown.length === 0 && <p className="text-sm text-muted">{tx(locale, "没有匹配的技能。", "No skills match.")}</p>}
       <div className="grid items-start gap-3 md:grid-cols-2 xl:grid-cols-3">
         {shown.map((item) => {
-          const short = item.slug.replace(/^duobaoyu-/, "");
+          const short = item.slug.replace(/^(?:duobaoyu-|lili-)/, "");
           const label = short.length > 18 ? `${short.slice(0, 16)}…` : short;
           const expanded = open === item.slug;
           const example = exampleRequest(item, short, locale);

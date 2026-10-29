@@ -1,6 +1,6 @@
 [
   {
-    "slug": "duobaoyu-acos-reduction-plan",
+    "slug": "acos-reduction-plan",
     "zh": "ACOS 压降计划",
     "en": "ACOS reduction plan",
     "cat": "ads",
@@ -25,7 +25,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-acos-spike-triage",
+    "slug": "acos-spike-triage",
     "zh": "ACOS 飙升分诊",
     "en": "ACOS spike triage",
     "cat": "ads",
@@ -50,7 +50,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-acos-target-setting",
+    "slug": "acos-target-setting",
     "zh": "ACOS 目标设定",
     "en": "ACOS target setting",
     "cat": "ads",
@@ -75,7 +75,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-build-from-scratch",
+    "slug": "ads-build-from-scratch",
     "zh": "从零搭建广告",
     "en": "Build ads from scratch",
     "cat": "ads",
@@ -100,7 +100,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-data-health-interpretation",
+    "slug": "ads-data-health-interpretation",
     "zh": "广告数据健康解读",
     "en": "Ads data health readout",
     "cat": "ads",
@@ -125,7 +125,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-data-pull",
+    "slug": "ads-data-pull",
     "zh": "广告数据拉取",
     "en": "Ads data pull",
     "cat": "ads",
@@ -150,7 +150,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-metrics-glossary",
+    "slug": "ads-metrics-glossary",
     "zh": "广告指标词典",
     "en": "Ads metrics glossary",
     "cat": "ads",
@@ -175,7 +175,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-playbook-interview",
+    "slug": "ads-playbook-interview",
     "zh": "广告打法访谈",
     "en": "Ads playbook interview",
     "cat": "ads",
@@ -200,7 +200,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-sunset-wind-down",
+    "slug": "ads-sunset-wind-down",
     "zh": "广告退坡收尾",
     "en": "Ads sunset wind-down",
     "cat": "ads",
@@ -225,7 +225,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-ads-tune-live",
+    "slug": "ads-tune-live",
     "zh": "在投广告微调",
     "en": "Tune live ads",
     "cat": "ads",
@@ -250,7 +250,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-a-plus-content",
+    "slug": "amazon-a-plus-content",
     "zh": "A+ 内容",
     "en": "A+ content",
     "cat": "listing",
@@ -275,7 +275,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-analysis-operator",
+    "slug": "amazon-ads-analysis-operator",
     "zh": "广告分析操作员",
     "en": "Ads analysis operator",
     "cat": "ads",
@@ -300,7 +300,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-funnel-sop",
+    "slug": "amazon-ads-funnel-sop",
     "zh": "广告漏斗 SOP",
     "en": "Ads funnel SOP",
     "cat": "ads",
@@ -325,7 +325,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-funnel-sop-keywords-negatives",
+    "slug": "amazon-ads-funnel-sop-keywords-negatives",
     "zh": "漏斗：关键词与否定",
     "en": "Funnel: keywords and negatives",
     "cat": "ads",
@@ -350,7 +350,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-funnel-sop-pitfalls",
+    "slug": "amazon-ads-funnel-sop-pitfalls",
     "zh": "漏斗：常见坑",
     "en": "Funnel pitfalls",
     "cat": "ads",
@@ -375,7 +375,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-funnel-sop-report-rules",
+    "slug": "amazon-ads-funnel-sop-report-rules",
     "zh": "漏斗：报表规则",
     "en": "Funnel report rules",
     "cat": "ads",
@@ -400,7 +400,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-funnel-sop-structure-bids",
+    "slug": "amazon-ads-funnel-sop-structure-bids",
     "zh": "漏斗：结构与出价",
     "en": "Funnel structure and bids",
     "cat": "ads",
@@ -425,7 +425,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ads-performance-report",
+    "slug": "amazon-ads-performance-report",
     "zh": "广告业绩报告",
     "en": "Ads performance report",
     "cat": "report",
@@ -450,7 +450,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-advertising-strategy",
+    "slug": "amazon-advertising-strategy",
     "zh": "广告策略",
     "en": "Advertising strategy",
     "cat": "ads",
@@ -475,7 +475,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-backend-keywords",
+    "slug": "amazon-backend-keywords",
     "zh": "后台搜索词",
     "en": "Backend search terms",
     "cat": "listing",
@@ -500,7 +500,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-boutique-rank-tracker",
+    "slug": "amazon-boutique-rank-tracker",
     "zh": "精品排名追踪",
     "en": "Boutique rank tracker",
     "cat": "research",
@@ -525,7 +525,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-brand-analytics",
+    "slug": "amazon-brand-analytics",
     "zh": "品牌分析",
     "en": "Brand analytics",
     "cat": "research",
@@ -550,7 +550,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-buy-box",
+    "slug": "amazon-buy-box",
     "zh": "购物车",
     "en": "Buy Box",
     "cat": "ops",
@@ -575,7 +575,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-competitor-analysis",
+    "slug": "amazon-competitor-analysis",
     "zh": "竞品分析",
     "en": "Competitor analysis",
     "cat": "research",
@@ -600,7 +600,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-competitor-monitoring",
+    "slug": "amazon-competitor-monitoring",
     "zh": "竞品监控",
     "en": "Competitor monitoring",
     "cat": "research",
@@ -625,7 +625,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-deal-finder",
+    "slug": "amazon-deal-finder",
     "zh": "Deal 机会发现",
     "en": "Deal finder",
     "cat": "promo",
@@ -650,7 +650,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-display-ads",
+    "slug": "amazon-display-ads",
     "zh": "展示广告 SD",
     "en": "Sponsored Display",
     "cat": "ads",
@@ -675,7 +675,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-fba-calculator",
+    "slug": "amazon-fba-calculator",
     "zh": "FBA 费用计算",
     "en": "FBA fee calculator",
     "cat": "profit",
@@ -700,7 +700,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-fba-prep",
+    "slug": "amazon-fba-prep",
     "zh": "FBA 预处理",
     "en": "FBA prep",
     "cat": "inventory",
@@ -725,7 +725,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-fba-shipment-kit",
+    "slug": "amazon-fba-shipment-kit",
     "zh": "FBA 发货资料包",
     "en": "FBA shipment kit",
     "cat": "inventory",
@@ -750,7 +750,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-global-selling",
+    "slug": "amazon-global-selling",
     "zh": "全球开店",
     "en": "Global selling",
     "cat": "ops",
@@ -775,7 +775,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-keyword-research",
+    "slug": "amazon-keyword-research",
     "zh": "关键词调研",
     "en": "Keyword research",
     "cat": "research",
@@ -800,7 +800,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-keyword-tracker",
+    "slug": "amazon-keyword-tracker",
     "zh": "关键词排名追踪",
     "en": "Keyword rank tracker",
     "cat": "research",
@@ -825,7 +825,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-listing-images",
+    "slug": "amazon-listing-images",
     "zh": "Listing 图片",
     "en": "Listing images",
     "cat": "listing",
@@ -850,7 +850,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-listing-optimization",
+    "slug": "amazon-listing-optimization",
     "zh": "Listing 优化",
     "en": "Listing optimization",
     "cat": "listing",
@@ -875,7 +875,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-negative-keywords",
+    "slug": "amazon-negative-keywords",
     "zh": "否定关键词",
     "en": "Negative keywords",
     "cat": "ads",
@@ -900,7 +900,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-niche-finder",
+    "slug": "amazon-niche-finder",
     "zh": "细分市场发现",
     "en": "Niche finder",
     "cat": "research",
@@ -925,7 +925,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-ppc-campaign",
+    "slug": "amazon-ppc-campaign",
     "zh": "PPC 广告活动",
     "en": "PPC campaigns",
     "cat": "ads",
@@ -950,7 +950,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-product-intelligence-report",
+    "slug": "amazon-product-intelligence-report",
     "zh": "产品情报报告",
     "en": "Product intelligence report",
     "cat": "report",
@@ -975,7 +975,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-product-photography",
+    "slug": "amazon-product-photography",
     "zh": "产品摄影",
     "en": "Product photography",
     "cat": "listing",
@@ -1000,7 +1000,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-product-research",
+    "slug": "amazon-product-research",
     "zh": "产品调研",
     "en": "Product research",
     "cat": "research",
@@ -1025,7 +1025,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-product-selection",
+    "slug": "amazon-product-selection",
     "zh": "选品决策",
     "en": "Product selection decision",
     "cat": "research",
@@ -1050,7 +1050,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-profit-analysis",
+    "slug": "amazon-profit-analysis",
     "zh": "利润分析",
     "en": "Profit analysis",
     "cat": "profit",
@@ -1075,7 +1075,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-rank-tracker",
+    "slug": "amazon-rank-tracker",
     "zh": "排名追踪",
     "en": "Rank tracker",
     "cat": "research",
@@ -1100,7 +1100,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-repricing-strategy",
+    "slug": "amazon-repricing-strategy",
     "zh": "调价策略",
     "en": "Repricing strategy",
     "cat": "ops",
@@ -1125,7 +1125,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-return-weekly-analysis",
+    "slug": "amazon-return-weekly-analysis",
     "zh": "退货周报",
     "en": "Weekly returns analysis",
     "cat": "report",
@@ -1150,7 +1150,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-review-analyzer",
+    "slug": "amazon-review-analyzer",
     "zh": "评论分析",
     "en": "Review analyzer",
     "cat": "research",
@@ -1175,7 +1175,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-sales-estimator",
+    "slug": "amazon-sales-estimator",
     "zh": "销量估算",
     "en": "Sales estimator",
     "cat": "research",
@@ -1200,7 +1200,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-search-optimization",
+    "slug": "amazon-search-optimization",
     "zh": "搜索优化",
     "en": "Search optimization",
     "cat": "listing",
@@ -1225,7 +1225,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-seller-analytics",
+    "slug": "amazon-seller-analytics",
     "zh": "卖家数据分析",
     "en": "Seller analytics",
     "cat": "report",
@@ -1250,7 +1250,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-shipping-calculator",
+    "slug": "amazon-shipping-calculator",
     "zh": "头程运费计算",
     "en": "Inbound freight calculator",
     "cat": "profit",
@@ -1275,7 +1275,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-amazon-trending-products",
+    "slug": "amazon-trending-products",
     "zh": "趋势产品",
     "en": "Trending products",
     "cat": "research",
@@ -1300,7 +1300,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-auto-campaign-strategy",
+    "slug": "auto-campaign-strategy",
     "zh": "自动广告策略",
     "en": "Auto campaign strategy",
     "cat": "ads",
@@ -1325,7 +1325,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-bid-adjustment-strategy",
+    "slug": "bid-adjustment-strategy",
     "zh": "出价调整策略",
     "en": "Bid adjustment strategy",
     "cat": "ads",
@@ -1350,7 +1350,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-bid-floor-ceiling-guardrails",
+    "slug": "bid-floor-ceiling-guardrails",
     "zh": "出价上下限护栏",
     "en": "Bid floor and ceiling",
     "cat": "ads",
@@ -1375,7 +1375,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-branded-vs-generic-split",
+    "slug": "branded-vs-generic-split",
     "zh": "品牌词与通用词拆分",
     "en": "Branded vs generic split",
     "cat": "ads",
@@ -1400,7 +1400,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-budget-capped-campaigns",
+    "slug": "budget-capped-campaigns",
     "zh": "预算撞线活动",
     "en": "Budget-capped campaigns",
     "cat": "ads",
@@ -1425,7 +1425,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-budget-pacing-review",
+    "slug": "budget-pacing-review",
     "zh": "预算节奏复盘",
     "en": "Budget pacing review",
     "cat": "ads",
@@ -1450,7 +1450,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-buybox-competition-watch",
+    "slug": "buybox-competition-watch",
     "zh": "购物车竞争监控",
     "en": "Buy Box competition watch",
     "cat": "ops",
@@ -1475,7 +1475,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-campaign-structure-audit",
+    "slug": "campaign-structure-audit",
     "zh": "广告结构审计",
     "en": "Campaign structure audit",
     "cat": "ads",
@@ -1500,7 +1500,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-category-node-scan",
+    "slug": "category-node-scan",
     "zh": "类目节点扫描",
     "en": "Category node scan",
     "cat": "research",
@@ -1525,7 +1525,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-clearance-aging-decision",
+    "slug": "clearance-aging-decision",
     "zh": "库龄清仓决策",
     "en": "Aged-inventory clearance",
     "cat": "inventory",
@@ -1550,7 +1550,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-competitor-playbook-teardown",
+    "slug": "competitor-playbook-teardown",
     "zh": "竞品打法拆解",
     "en": "Competitor playbook teardown",
     "cat": "research",
@@ -1575,7 +1575,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-cross-border-bestseller-radar",
+    "slug": "cross-border-bestseller-radar",
     "zh": "跨境爆款雷达",
     "en": "Cross-border bestseller radar",
     "cat": "research",
@@ -1600,7 +1600,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-fba-inbound-shipment",
+    "slug": "fba-inbound-shipment",
     "zh": "FBA 入库货件",
     "en": "FBA inbound shipment",
     "cat": "inventory",
@@ -1625,7 +1625,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-harvest-search-terms",
+    "slug": "harvest-search-terms",
     "zh": "搜索词收割",
     "en": "Harvest search terms",
     "cat": "ads",
@@ -1650,7 +1650,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-impression-drop-diagnosis",
+    "slug": "impression-drop-diagnosis",
     "zh": "曝光下跌诊断",
     "en": "Impression drop diagnosis",
     "cat": "ads",
@@ -1675,7 +1675,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-keyword-benchmark-diagnosis",
+    "slug": "keyword-benchmark-diagnosis",
     "zh": "关键词基准诊断",
     "en": "Keyword benchmark diagnosis",
     "cat": "ads",
@@ -1700,7 +1700,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-keyword-match-type-strategy",
+    "slug": "keyword-match-type-strategy",
     "zh": "匹配方式策略",
     "en": "Match type strategy",
     "cat": "ads",
@@ -1725,7 +1725,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-keyword-role-taxonomy",
+    "slug": "keyword-role-taxonomy",
     "zh": "关键词角色分类",
     "en": "Keyword role taxonomy",
     "cat": "ads",
@@ -1750,7 +1750,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-listing-direct-creation",
+    "slug": "listing-direct-creation",
     "zh": "Listing 直接创建",
     "en": "Direct listing creation",
     "cat": "listing",
@@ -1775,7 +1775,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-listing-new-product-oneshot",
+    "slug": "listing-new-product-oneshot",
     "zh": "新品 Listing 一次成型",
     "en": "New listing in one pass",
     "cat": "listing",
@@ -1800,7 +1800,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-low-conversion-diagnosis",
+    "slug": "low-conversion-diagnosis",
     "zh": "低转化诊断",
     "en": "Low conversion diagnosis",
     "cat": "ads",
@@ -1825,7 +1825,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-low-ctr-diagnosis",
+    "slug": "low-ctr-diagnosis",
     "zh": "低点击率诊断",
     "en": "Low CTR diagnosis",
     "cat": "ads",
@@ -1850,7 +1850,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-mcf-fulfillment",
+    "slug": "mcf-fulfillment",
     "zh": "多渠道配送 MCF",
     "en": "Multi-channel fulfillment",
     "cat": "inventory",
@@ -1875,7 +1875,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-multi-marketplace-ads-review",
+    "slug": "multi-marketplace-ads-review",
     "zh": "多站点广告复盘",
     "en": "Multi-marketplace ads review",
     "cat": "report",
@@ -1900,7 +1900,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-negative-keyword-strategy",
+    "slug": "negative-keyword-strategy",
     "zh": "否定词策略",
     "en": "Negative keyword strategy",
     "cat": "ads",
@@ -1925,7 +1925,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-new-product-launch-ads",
+    "slug": "new-product-launch-ads",
     "zh": "新品期广告",
     "en": "New-product launch ads",
     "cat": "ads",
@@ -1950,7 +1950,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-placement-optimization",
+    "slug": "placement-optimization",
     "zh": "广告位优化",
     "en": "Placement optimization",
     "cat": "ads",
@@ -1975,7 +1975,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-post-peak-wind-down",
+    "slug": "post-peak-wind-down",
     "zh": "旺季后收尾",
     "en": "Post-peak wind-down",
     "cat": "ads",
@@ -2000,7 +2000,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-product-selection",
+    "slug": "product-selection",
     "zh": "选品",
     "en": "Product selection",
     "cat": "research",
@@ -2025,7 +2025,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-profit-fee-analysis",
+    "slug": "profit-fee-analysis",
     "zh": "费用与利润拆解",
     "en": "Fee and profit breakdown",
     "cat": "profit",
@@ -2050,7 +2050,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-promotions-review",
+    "slug": "promotions-review",
     "zh": "促销复盘",
     "en": "Promotions review",
     "cat": "promo",
@@ -2075,7 +2075,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-recommendation-review-workflow",
+    "slug": "recommendation-review-workflow",
     "zh": "建议审核工作流",
     "en": "Recommendation review",
     "cat": "ads",
@@ -2100,7 +2100,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-reimbursement-recovery",
+    "slug": "reimbursement-recovery",
     "zh": "索赔追回",
     "en": "Reimbursement recovery",
     "cat": "profit",
@@ -2125,7 +2125,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-report-spec",
+    "slug": "report-spec",
     "zh": "报表口径",
     "en": "Report specification",
     "cat": "report",
@@ -2150,7 +2150,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-review-solicitation",
+    "slug": "review-solicitation",
     "zh": "邀评",
     "en": "Review solicitation",
     "cat": "ops",
@@ -2175,7 +2175,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-search-term-cleanup",
+    "slug": "search-term-cleanup",
     "zh": "搜索词清理",
     "en": "Search term cleanup",
     "cat": "ads",
@@ -2200,7 +2200,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-seasonal-peak-preparation",
+    "slug": "seasonal-peak-preparation",
     "zh": "旺季广告备战",
     "en": "Seasonal ads preparation",
     "cat": "ads",
@@ -2225,7 +2225,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-sorftime-multiplatform",
+    "slug": "sorftime-multiplatform",
     "zh": "Sorftime 多平台",
     "en": "Sorftime multi-platform",
     "cat": "research",
@@ -2250,7 +2250,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-sponsored-products-funnel-metrics",
+    "slug": "sponsored-products-funnel-metrics",
     "zh": "SP 漏斗指标",
     "en": "Sponsored Products funnel metrics",
     "cat": "ads",
@@ -2275,7 +2275,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-store-weekly-review",
+    "slug": "store-weekly-review",
     "zh": "店铺周复盘",
     "en": "Store weekly review",
     "cat": "report",
@@ -2300,7 +2300,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-sync-cadence-and-freshness",
+    "slug": "sync-cadence-and-freshness",
     "zh": "同步节奏与新鲜度",
     "en": "Sync cadence and freshness",
     "cat": "ops",
@@ -2325,7 +2325,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-tariff-calculator-amazon",
+    "slug": "tariff-calculator-amazon",
     "zh": "关税计算器",
     "en": "Tariff calculator",
     "cat": "profit",
@@ -2350,7 +2350,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-traffic-conversion-triage",
+    "slug": "traffic-conversion-triage",
     "zh": "流量转化分诊",
     "en": "Traffic and conversion triage",
     "cat": "report",
@@ -2375,7 +2375,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-account-health-appeal",
+    "slug": "turbot-account-health-appeal",
     "zh": "账户健康申诉",
     "en": "Account health appeal",
     "cat": "ops",
@@ -2400,7 +2400,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-ad-scheduling",
+    "slug": "turbot-ad-scheduling",
     "zh": "广告分时",
     "en": "Ad scheduling",
     "cat": "ads",
@@ -2425,7 +2425,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-brand-promotions",
+    "slug": "turbot-brand-promotions",
     "zh": "品牌促销",
     "en": "Brand promotions",
     "cat": "promo",
@@ -2450,7 +2450,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-brand-registry",
+    "slug": "turbot-brand-registry",
     "zh": "品牌备案",
     "en": "Brand registry",
     "cat": "ops",
@@ -2475,7 +2475,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-bundling",
+    "slug": "turbot-bundling",
     "zh": "捆绑销售",
     "en": "Bundling",
     "cat": "listing",
@@ -2500,7 +2500,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-coupon-strategy",
+    "slug": "turbot-coupon-strategy",
     "zh": "优惠券策略",
     "en": "Coupon strategy",
     "cat": "promo",
@@ -2525,7 +2525,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-inventory-restock",
+    "slug": "turbot-inventory-restock",
     "zh": "库存补货",
     "en": "Inventory restock",
     "cat": "inventory",
@@ -2550,7 +2550,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-listing-localization",
+    "slug": "turbot-listing-localization",
     "zh": "Listing 本地化",
     "en": "Listing localization",
     "cat": "listing",
@@ -2575,7 +2575,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-private-label",
+    "slug": "turbot-private-label",
     "zh": "自有品牌",
     "en": "Private label",
     "cat": "ops",
@@ -2600,7 +2600,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-product-compliance",
+    "slug": "turbot-product-compliance",
     "zh": "产品合规",
     "en": "Product compliance",
     "cat": "ops",
@@ -2625,7 +2625,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-return-reduction",
+    "slug": "turbot-return-reduction",
     "zh": "降低退货",
     "en": "Return reduction",
     "cat": "ops",
@@ -2650,7 +2650,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-review-compliance",
+    "slug": "turbot-review-compliance",
     "zh": "评价合规",
     "en": "Review compliance",
     "cat": "ops",
@@ -2675,7 +2675,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-seasonal-planning",
+    "slug": "turbot-seasonal-planning",
     "zh": "季节性规划",
     "en": "Seasonal planning",
     "cat": "inventory",
@@ -2700,7 +2700,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-storefront",
+    "slug": "turbot-storefront",
     "zh": "品牌旗舰店",
     "en": "Brand storefront",
     "cat": "listing",
@@ -2725,7 +2725,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-subscribe-save",
+    "slug": "turbot-subscribe-save",
     "zh": "订购省",
     "en": "Subscribe and Save",
     "cat": "promo",
@@ -2750,7 +2750,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-variation-strategy",
+    "slug": "turbot-variation-strategy",
     "zh": "变体策略",
     "en": "Variation strategy",
     "cat": "listing",
@@ -2775,7 +2775,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-vine",
+    "slug": "turbot-vine",
     "zh": "Vine 计划",
     "en": "Vine program",
     "cat": "promo",
@@ -2800,7 +2800,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-turbot-wholesale-sourcing",
+    "slug": "turbot-wholesale-sourcing",
     "zh": "批发采购",
     "en": "Wholesale sourcing",
     "cat": "profit",
@@ -2825,7 +2825,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-wasted-spend-audit",
+    "slug": "wasted-spend-audit",
     "zh": "浪费花费审计",
     "en": "Wasted spend audit",
     "cat": "ads",
@@ -2850,7 +2850,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-weekday-dayparting-review",
+    "slug": "weekday-dayparting-review",
     "zh": "工作日分时复盘",
     "en": "Weekday dayparting review",
     "cat": "ads",
@@ -2875,7 +2875,7 @@
     ]
   },
   {
-    "slug": "duobaoyu-weekly-ads-review-routine",
+    "slug": "weekly-ads-review-routine",
     "zh": "广告周检例行",
     "en": "Weekly ads review",
     "cat": "ads",

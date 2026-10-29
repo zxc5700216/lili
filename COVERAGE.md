@@ -40,122 +40,122 @@
 
 | 状态 | slug | 中文名 | 分类 |
 | --- | --- | --- | --- |
-| done | `duobaoyu-acos-reduction-plan` | ACOS 压降计划 | ads |
-| done | `duobaoyu-acos-spike-triage` | ACOS 飙升分诊 | ads |
-| done | `duobaoyu-acos-target-setting` | ACOS 目标设定 | ads |
-| done | `duobaoyu-ads-build-from-scratch` | 从零搭建广告 | ads |
-| done | `duobaoyu-ads-data-health-interpretation` | 广告数据健康解读 | ads |
-| done | `duobaoyu-ads-data-pull` | 广告数据拉取 | ads |
-| done | `duobaoyu-ads-metrics-glossary` | 广告指标词典 | ads |
-| done | `duobaoyu-ads-playbook-interview` | 广告打法访谈 | ads |
-| done | `duobaoyu-ads-sunset-wind-down` | 广告退坡收尾 | ads |
-| done | `duobaoyu-ads-tune-live` | 在投广告微调 | ads |
-| done | `duobaoyu-amazon-a-plus-content` | A+ 内容 | listing |
-| done | `duobaoyu-amazon-ads-analysis-operator` | 广告分析操作员 | ads |
-| done | `duobaoyu-amazon-ads-funnel-sop` | 广告漏斗 SOP | ads |
-| done | `duobaoyu-amazon-ads-funnel-sop-keywords-negatives` | 漏斗：关键词与否定 | ads |
-| done | `duobaoyu-amazon-ads-funnel-sop-pitfalls` | 漏斗：常见坑 | ads |
-| done | `duobaoyu-amazon-ads-funnel-sop-report-rules` | 漏斗：报表规则 | ads |
-| done | `duobaoyu-amazon-ads-funnel-sop-structure-bids` | 漏斗：结构与出价 | ads |
-| done | `duobaoyu-amazon-ads-performance-report` | 广告业绩报告 | data |
-| done | `duobaoyu-amazon-advertising-strategy` | 广告策略 | ads |
-| done | `duobaoyu-amazon-backend-keywords` | 后台搜索词 | keywords |
-| done | `duobaoyu-amazon-boutique-rank-tracker` | 精品排名追踪 | market |
-| done | `duobaoyu-amazon-brand-analytics` | 品牌分析 | market |
-| done | `duobaoyu-amazon-buy-box` | 购物车 | data |
-| done | `duobaoyu-amazon-competitor-analysis` | 竞品分析 | market |
-| done | `duobaoyu-amazon-competitor-monitoring` | 竞品监控 | market |
-| done | `duobaoyu-amazon-deal-finder` | Deal 机会发现 | market |
-| done | `duobaoyu-amazon-display-ads` | 展示广告 SD | ads |
-| done | `duobaoyu-amazon-fba-calculator` | FBA 费用计算 | profit |
-| done | `duobaoyu-amazon-fba-prep` | FBA 预处理 | restock |
-| done | `duobaoyu-amazon-fba-shipment-kit` | FBA 发货资料包 | restock |
-| done | `duobaoyu-amazon-global-selling` | 全球开店 | market |
-| done | `duobaoyu-amazon-keyword-research` | 关键词调研 | keywords |
-| done | `duobaoyu-amazon-keyword-tracker` | 关键词排名追踪 | keywords |
-| done | `duobaoyu-amazon-listing-images` | Listing 图片 | listing |
-| done | `duobaoyu-amazon-listing-optimization` | Listing 优化 | listing |
-| done | `duobaoyu-amazon-negative-keywords` | 否定关键词 | ads |
-| done | `duobaoyu-amazon-niche-finder` | 细分市场发现 | market |
-| done | `duobaoyu-amazon-ppc-campaign` | PPC 广告活动 | ads |
-| done | `duobaoyu-amazon-product-intelligence-report` | 产品情报报告 | market |
-| done | `duobaoyu-amazon-product-photography` | 产品摄影 | listing |
-| done | `duobaoyu-amazon-product-research` | 产品调研 | market |
-| done | `duobaoyu-amazon-product-selection` | 选品决策 | market |
-| done | `duobaoyu-amazon-profit-analysis` | 利润分析 | profit |
-| done | `duobaoyu-amazon-rank-tracker` | 排名追踪 | market |
-| done | `duobaoyu-amazon-repricing-strategy` | 调价策略 | profit |
-| done | `duobaoyu-amazon-return-weekly-analysis` | 退货周报 | returns |
-| done | `duobaoyu-amazon-review-analyzer` | 评论分析 | market |
-| done | `duobaoyu-amazon-sales-estimator` | 销量估算 | market |
-| done | `duobaoyu-amazon-search-optimization` | 搜索优化 | keywords |
-| done | `duobaoyu-amazon-seller-analytics` | 卖家数据分析 | data |
-| done | `duobaoyu-amazon-shipping-calculator` | 头程运费计算 | profit |
-| done | `duobaoyu-amazon-trending-products` | 趋势产品 | market |
-| done | `duobaoyu-auto-campaign-strategy` | 自动广告策略 | ads |
-| done | `duobaoyu-bid-adjustment-strategy` | 出价调整策略 | ads |
-| done | `duobaoyu-bid-floor-ceiling-guardrails` | 出价上下限护栏 | ads |
-| done | `duobaoyu-branded-vs-generic-split` | 品牌词与通用词拆分 | ads |
-| done | `duobaoyu-budget-capped-campaigns` | 预算撞线活动 | ads |
-| done | `duobaoyu-budget-pacing-review` | 预算节奏复盘 | ads |
-| done | `duobaoyu-buybox-competition-watch` | 购物车竞争监控 | data |
-| done | `duobaoyu-campaign-structure-audit` | 广告结构审计 | ads |
-| done | `duobaoyu-category-node-scan` | 类目节点扫描 | market |
-| done | `duobaoyu-clearance-aging-decision` | 库龄清仓决策 | restock |
-| done | `duobaoyu-competitor-playbook-teardown` | 竞品打法拆解 | market |
-| done | `duobaoyu-cross-border-bestseller-radar` | 跨境爆款雷达 | market |
-| done | `duobaoyu-fba-inbound-shipment` | FBA 入库货件 | restock |
-| done | `duobaoyu-harvest-search-terms` | 搜索词收割 | keywords |
-| done | `duobaoyu-impression-drop-diagnosis` | 曝光下跌诊断 | ads |
-| done | `duobaoyu-keyword-benchmark-diagnosis` | 关键词基准诊断 | keywords |
-| done | `duobaoyu-keyword-match-type-strategy` | 匹配方式策略 | keywords |
-| done | `duobaoyu-keyword-role-taxonomy` | 关键词角色分类 | keywords |
-| done | `duobaoyu-listing-direct-creation` | Listing 直接创建 | listing |
-| done | `duobaoyu-listing-new-product-oneshot` | 新品 Listing 一次成型 | listing |
-| done | `duobaoyu-low-conversion-diagnosis` | 低转化诊断 | ads |
-| done | `duobaoyu-low-ctr-diagnosis` | 低点击率诊断 | ads |
-| done | `duobaoyu-mcf-fulfillment` | 多渠道配送 MCF | restock |
-| done | `duobaoyu-multi-marketplace-ads-review` | 多站点广告复盘 | ads |
-| done | `duobaoyu-negative-keyword-strategy` | 否定词策略 | ads |
-| done | `duobaoyu-new-product-launch-ads` | 新品期广告 | ads |
-| done | `duobaoyu-placement-optimization` | 广告位优化 | ads |
-| done | `duobaoyu-post-peak-wind-down` | 旺季后收尾 | ads |
-| done | `duobaoyu-product-selection` | 选品 | market |
-| done | `duobaoyu-profit-fee-analysis` | 费用与利润拆解 | profit |
-| done | `duobaoyu-promotions-review` | 促销复盘 | data |
-| done | `duobaoyu-recommendation-review-workflow` | 建议审核工作流 | ads |
-| done | `duobaoyu-reimbursement-recovery` | 索赔追回 | profit |
-| done | `duobaoyu-report-spec` | 报表口径 | data |
-| done | `duobaoyu-review-solicitation` | 邀评 | orders |
-| done | `duobaoyu-search-term-cleanup` | 搜索词清理 | ads |
-| done | `duobaoyu-seasonal-peak-preparation` | 旺季广告备战 | ads |
-| done | `duobaoyu-sorftime-multiplatform` | Sorftime 多平台 | market |
-| done | `duobaoyu-sponsored-products-funnel-metrics` | SP 漏斗指标 | ads |
-| done | `duobaoyu-store-weekly-review` | 店铺周复盘 | data |
-| done | `duobaoyu-sync-cadence-and-freshness` | 同步节奏与新鲜度 | data |
-| done | `duobaoyu-tariff-calculator-amazon` | 关税计算器 | profit |
-| done | `duobaoyu-traffic-conversion-triage` | 流量转化分诊 | data |
-| done | `duobaoyu-turbot-account-health-appeal` | 账户健康申诉 | compliance |
-| done | `duobaoyu-turbot-ad-scheduling` | 广告分时 | ads |
-| done | `duobaoyu-turbot-brand-promotions` | 品牌促销 | ads |
-| done | `duobaoyu-turbot-brand-registry` | 品牌备案 | compliance |
-| done | `duobaoyu-turbot-bundling` | 捆绑销售 | listing |
-| done | `duobaoyu-turbot-coupon-strategy` | 优惠券策略 | profit |
-| done | `duobaoyu-turbot-inventory-restock` | 库存补货 | restock |
-| done | `duobaoyu-turbot-listing-localization` | Listing 本地化 | listing |
-| done | `duobaoyu-turbot-private-label` | 自有品牌 | listing |
-| done | `duobaoyu-turbot-product-compliance` | 产品合规 | compliance |
-| done | `duobaoyu-turbot-return-reduction` | 降低退货 | returns |
-| done | `duobaoyu-turbot-review-compliance` | 评价合规 | compliance |
-| done | `duobaoyu-turbot-seasonal-planning` | 季节性规划 | restock |
-| done | `duobaoyu-turbot-storefront` | 品牌旗舰店 | listing |
-| done | `duobaoyu-turbot-subscribe-save` | 订购省 | profit |
-| done | `duobaoyu-turbot-variation-strategy` | 变体策略 | listing |
-| done | `duobaoyu-turbot-vine` | Vine 计划 | returns |
-| done | `duobaoyu-turbot-wholesale-sourcing` | 批发采购 | profit |
-| done | `duobaoyu-wasted-spend-audit` | 浪费花费审计 | ads |
-| done | `duobaoyu-weekday-dayparting-review` | 工作日分时复盘 | ads |
-| done | `duobaoyu-weekly-ads-review-routine` | 广告周检例行 | ads |
+| done | `acos-reduction-plan` | ACOS 压降计划 | ads |
+| done | `acos-spike-triage` | ACOS 飙升分诊 | ads |
+| done | `acos-target-setting` | ACOS 目标设定 | ads |
+| done | `ads-build-from-scratch` | 从零搭建广告 | ads |
+| done | `ads-data-health-interpretation` | 广告数据健康解读 | ads |
+| done | `ads-data-pull` | 广告数据拉取 | ads |
+| done | `ads-metrics-glossary` | 广告指标词典 | ads |
+| done | `ads-playbook-interview` | 广告打法访谈 | ads |
+| done | `ads-sunset-wind-down` | 广告退坡收尾 | ads |
+| done | `ads-tune-live` | 在投广告微调 | ads |
+| done | `amazon-a-plus-content` | A+ 内容 | listing |
+| done | `amazon-ads-analysis-operator` | 广告分析操作员 | ads |
+| done | `amazon-ads-funnel-sop` | 广告漏斗 SOP | ads |
+| done | `amazon-ads-funnel-sop-keywords-negatives` | 漏斗：关键词与否定 | ads |
+| done | `amazon-ads-funnel-sop-pitfalls` | 漏斗：常见坑 | ads |
+| done | `amazon-ads-funnel-sop-report-rules` | 漏斗：报表规则 | ads |
+| done | `amazon-ads-funnel-sop-structure-bids` | 漏斗：结构与出价 | ads |
+| done | `amazon-ads-performance-report` | 广告业绩报告 | data |
+| done | `amazon-advertising-strategy` | 广告策略 | ads |
+| done | `amazon-backend-keywords` | 后台搜索词 | keywords |
+| done | `amazon-boutique-rank-tracker` | 精品排名追踪 | market |
+| done | `amazon-brand-analytics` | 品牌分析 | market |
+| done | `amazon-buy-box` | 购物车 | data |
+| done | `amazon-competitor-analysis` | 竞品分析 | market |
+| done | `amazon-competitor-monitoring` | 竞品监控 | market |
+| done | `amazon-deal-finder` | Deal 机会发现 | market |
+| done | `amazon-display-ads` | 展示广告 SD | ads |
+| done | `amazon-fba-calculator` | FBA 费用计算 | profit |
+| done | `amazon-fba-prep` | FBA 预处理 | restock |
+| done | `amazon-fba-shipment-kit` | FBA 发货资料包 | restock |
+| done | `amazon-global-selling` | 全球开店 | market |
+| done | `amazon-keyword-research` | 关键词调研 | keywords |
+| done | `amazon-keyword-tracker` | 关键词排名追踪 | keywords |
+| done | `amazon-listing-images` | Listing 图片 | listing |
+| done | `amazon-listing-optimization` | Listing 优化 | listing |
+| done | `amazon-negative-keywords` | 否定关键词 | ads |
+| done | `amazon-niche-finder` | 细分市场发现 | market |
+| done | `amazon-ppc-campaign` | PPC 广告活动 | ads |
+| done | `amazon-product-intelligence-report` | 产品情报报告 | market |
+| done | `amazon-product-photography` | 产品摄影 | listing |
+| done | `amazon-product-research` | 产品调研 | market |
+| done | `amazon-product-selection` | 选品决策 | market |
+| done | `amazon-profit-analysis` | 利润分析 | profit |
+| done | `amazon-rank-tracker` | 排名追踪 | market |
+| done | `amazon-repricing-strategy` | 调价策略 | profit |
+| done | `amazon-return-weekly-analysis` | 退货周报 | returns |
+| done | `amazon-review-analyzer` | 评论分析 | market |
+| done | `amazon-sales-estimator` | 销量估算 | market |
+| done | `amazon-search-optimization` | 搜索优化 | keywords |
+| done | `amazon-seller-analytics` | 卖家数据分析 | data |
+| done | `amazon-shipping-calculator` | 头程运费计算 | profit |
+| done | `amazon-trending-products` | 趋势产品 | market |
+| done | `auto-campaign-strategy` | 自动广告策略 | ads |
+| done | `bid-adjustment-strategy` | 出价调整策略 | ads |
+| done | `bid-floor-ceiling-guardrails` | 出价上下限护栏 | ads |
+| done | `branded-vs-generic-split` | 品牌词与通用词拆分 | ads |
+| done | `budget-capped-campaigns` | 预算撞线活动 | ads |
+| done | `budget-pacing-review` | 预算节奏复盘 | ads |
+| done | `buybox-competition-watch` | 购物车竞争监控 | data |
+| done | `campaign-structure-audit` | 广告结构审计 | ads |
+| done | `category-node-scan` | 类目节点扫描 | market |
+| done | `clearance-aging-decision` | 库龄清仓决策 | restock |
+| done | `competitor-playbook-teardown` | 竞品打法拆解 | market |
+| done | `cross-border-bestseller-radar` | 跨境爆款雷达 | market |
+| done | `fba-inbound-shipment` | FBA 入库货件 | restock |
+| done | `harvest-search-terms` | 搜索词收割 | keywords |
+| done | `impression-drop-diagnosis` | 曝光下跌诊断 | ads |
+| done | `keyword-benchmark-diagnosis` | 关键词基准诊断 | keywords |
+| done | `keyword-match-type-strategy` | 匹配方式策略 | keywords |
+| done | `keyword-role-taxonomy` | 关键词角色分类 | keywords |
+| done | `listing-direct-creation` | Listing 直接创建 | listing |
+| done | `listing-new-product-oneshot` | 新品 Listing 一次成型 | listing |
+| done | `low-conversion-diagnosis` | 低转化诊断 | ads |
+| done | `low-ctr-diagnosis` | 低点击率诊断 | ads |
+| done | `mcf-fulfillment` | 多渠道配送 MCF | restock |
+| done | `multi-marketplace-ads-review` | 多站点广告复盘 | ads |
+| done | `negative-keyword-strategy` | 否定词策略 | ads |
+| done | `new-product-launch-ads` | 新品期广告 | ads |
+| done | `placement-optimization` | 广告位优化 | ads |
+| done | `post-peak-wind-down` | 旺季后收尾 | ads |
+| done | `product-selection` | 选品 | market |
+| done | `profit-fee-analysis` | 费用与利润拆解 | profit |
+| done | `promotions-review` | 促销复盘 | data |
+| done | `recommendation-review-workflow` | 建议审核工作流 | ads |
+| done | `reimbursement-recovery` | 索赔追回 | profit |
+| done | `report-spec` | 报表口径 | data |
+| done | `review-solicitation` | 邀评 | orders |
+| done | `search-term-cleanup` | 搜索词清理 | ads |
+| done | `seasonal-peak-preparation` | 旺季广告备战 | ads |
+| done | `sorftime-multiplatform` | Sorftime 多平台 | market |
+| done | `sponsored-products-funnel-metrics` | SP 漏斗指标 | ads |
+| done | `store-weekly-review` | 店铺周复盘 | data |
+| done | `sync-cadence-and-freshness` | 同步节奏与新鲜度 | data |
+| done | `tariff-calculator-amazon` | 关税计算器 | profit |
+| done | `traffic-conversion-triage` | 流量转化分诊 | data |
+| done | `turbot-account-health-appeal` | 账户健康申诉 | compliance |
+| done | `turbot-ad-scheduling` | 广告分时 | ads |
+| done | `turbot-brand-promotions` | 品牌促销 | ads |
+| done | `turbot-brand-registry` | 品牌备案 | compliance |
+| done | `turbot-bundling` | 捆绑销售 | listing |
+| done | `turbot-coupon-strategy` | 优惠券策略 | profit |
+| done | `turbot-inventory-restock` | 库存补货 | restock |
+| done | `turbot-listing-localization` | Listing 本地化 | listing |
+| done | `turbot-private-label` | 自有品牌 | listing |
+| done | `turbot-product-compliance` | 产品合规 | compliance |
+| done | `turbot-return-reduction` | 降低退货 | returns |
+| done | `turbot-review-compliance` | 评价合规 | compliance |
+| done | `turbot-seasonal-planning` | 季节性规划 | restock |
+| done | `turbot-storefront` | 品牌旗舰店 | listing |
+| done | `turbot-subscribe-save` | 订购省 | profit |
+| done | `turbot-variation-strategy` | 变体策略 | listing |
+| done | `turbot-vine` | Vine 计划 | returns |
+| done | `turbot-wholesale-sourcing` | 批发采购 | profit |
+| done | `wasted-spend-audit` | 浪费花费审计 | ads |
+| done | `weekday-dayparting-review` | 工作日分时复盘 | ads |
+| done | `weekly-ads-review-routine` | 广告周检例行 | ads |
 
 ## 工具 107/107
 

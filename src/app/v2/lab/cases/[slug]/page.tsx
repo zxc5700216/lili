@@ -20,7 +20,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
   const prompt = tx(locale, row.promptZh, row.promptEn);
   const fills = [...row.promptZh.matchAll(/【[^】]+】/g)].map((match) => match[0]);
   const skills = await prisma.skill.findMany({
-    where: { slug: { in: steps.map((step) => (step.skill ? `duobaoyu-${step.skill}` : "")).filter(Boolean) } },
+    where: { slug: { in: steps.map((step) => step.skill || "").filter(Boolean) } },
     select: { slug: true, nameZh: true, nameEn: true },
   });
   const skillName = new Map(skills.map((skill) => [skill.slug, tx(locale, skill.nameZh, skill.nameEn)]));
@@ -44,7 +44,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
       <h2 className="mb-3 mt-8 text-lg font-semibold">{tx(locale, "按这个顺序做", "Run steps")}</h2>
       <ol className="space-y-3">
         {steps.map((step) => {
-          const skillSlug = step.skill ? `duobaoyu-${step.skill}` : "";
+          const skillSlug = step.skill || "";
           return (
             <li key={step.n} className="card px-4 py-4">
               <div className="flex flex-wrap items-center gap-2">

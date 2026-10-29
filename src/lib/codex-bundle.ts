@@ -19,7 +19,7 @@ function asStringArray(value: unknown): string[] {
 }
 
 export function skillFolderName(slug: string): string {
-  const stripped = String(slug || "").replace(/^duobaoyu-/i, "");
+  const stripped = String(slug || "").replace(/^(?:duobaoyu-|lili-)/i, "");
   const safe = stripped
     .toLowerCase()
     .replace(/[^a-z0-9._-]+/g, "-")
