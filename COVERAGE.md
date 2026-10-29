@@ -1,6 +1,6 @@
 # 覆盖清单
 
-12 条工作流都能在 `/v2/workflows` 用 fixture 跑出报告。选品开品文档仍是金样粒度。其余 11 条是同一套交付物（步骤、技能表、NS 店数字、请求账本、HTML），经营数字来自种子，不是远程 MCP。`--live` 缺密钥会失败并说明原因。真钥验收：卖家精灵 `secret-key`、西柚 MCP Token、多宝鱼访问令牌（inferred）。Sorftime 无公开直连，不作为真调通过条件。
+12 条工作流都能在 `/v2/workflows` 用 fixture 跑出报告。选品开品文档仍是金样粒度。其余 11 条是同一套交付物（步骤、技能表、NS 店数字、请求账本、HTML），经营数字来自种子，不是远程 MCP。`--live` 缺密钥会失败并说明原因。真钥验收：卖家精灵 `secret-key`、西柚 MCP Token、粒粒lili访问令牌（inferred）。Sorftime 无公开直连，不作为真调通过条件。
 
 `done` 表示这条能在沙盒里打开，并按清单完成主路径。写入类的主路径是生成审批预览，不调用亚马逊。
 
@@ -21,18 +21,18 @@
 
 | 状态 | slug | 标题 |
 | --- | --- | --- |
-| done（fixture 可演示；真调要多宝鱼令牌） | `monday-review` | 周一经营例会 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `ads-stop-bleeding` | 广告止血 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `sales-drop` | 销量下滑诊断 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `new-listing-to-ads` | 新品上架到开广告 |
-| done（金样粒度；真调要多宝鱼 + 卖家精灵） | `selection-doc` | 选品开品文档 |
-| done（fixture 可演示；真调要多宝鱼 + 西柚） | `competitor-teardown` | 竞品全拆解 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `restock-to-ship` | 补货到发货 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `profit-checkup` | 利润体检 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `peak-prep` | 大促备战 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `sunset-sku` | 老品清退 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `returns-push` | 退货攻坚 |
-| done（fixture 可演示；真调要多宝鱼令牌） | `monthly-report` | 月度经营报告 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `monday-review` | 周一经营例会 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `ads-stop-bleeding` | 广告止血 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `sales-drop` | 销量下滑诊断 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `new-listing-to-ads` | 新品上架到开广告 |
+| done（金样粒度；真调要粒粒lili + 卖家精灵） | `selection-doc` | 选品开品文档 |
+| done（fixture 可演示；真调要粒粒lili + 西柚） | `competitor-teardown` | 竞品全拆解 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `restock-to-ship` | 补货到发货 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `profit-checkup` | 利润体检 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `peak-prep` | 大促备战 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `sunset-sku` | 老品清退 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `returns-push` | 退货攻坚 |
+| done（fixture 可演示；真调要粒粒lili令牌） | `monthly-report` | 月度经营报告 |
 
 ## 技能 116/116
 

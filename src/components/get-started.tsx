@@ -165,24 +165,24 @@ const TRIES = [
     titleEn: "Improve your best seller's listing",
     bodyZh: "找出近 30 天卖得最好的款，重写标题、五点和搜索词里最弱的三处。",
     bodyEn: "Picks your best seller of the last 30 days and rewrites the three weakest parts of its title, bullets and search terms.",
-    promptZh: "使用多宝鱼。找出近 30 天卖得最好的 ASIN，重写标题、五点和后台搜索词里最弱的三处。先给我预览，我确认后再准备变更。",
-    promptEn: "Use Duobaoyu. Pick the best seller of the last 30 days and rewrite the three weakest parts of its title, bullets and search terms. Show me a preview and wait for confirmation.",
+    promptZh: "使用粒粒lili。找出近 30 天卖得最好的 ASIN，重写标题、五点和后台搜索词里最弱的三处。先给我预览，我确认后再准备变更。",
+    promptEn: "Use 粒粒lili. Pick the best seller of the last 30 days and rewrite the three weakest parts of its title, bullets and search terms. Show me a preview and wait for confirmation.",
   },
   {
     titleZh: "找出浪费的广告花费",
     titleEn: "Find wasted ad spend",
     bodyZh: "找出近 30 天花了钱但没有订单的搜索词，汇总每月浪费，并列出要加的否定词。",
     bodyEn: "Finds search terms that spent without orders in the last 30 days, totals the monthly waste and lists negatives to add.",
-    promptZh: "使用多宝鱼。找出近 30 天花了钱但没有订单的搜索词，汇总每月浪费，列出要加的否定词。先给预览，不要直接改广告。",
-    promptEn: "Use Duobaoyu. Find search terms that spent without orders in the last 30 days, total the monthly waste, and list negatives to add. Preview first. Do not change ads until I confirm.",
+    promptZh: "使用粒粒lili。找出近 30 天花了钱但没有订单的搜索词，汇总每月浪费，列出要加的否定词。先给预览，不要直接改广告。",
+    promptEn: "Use 粒粒lili. Find search terms that spent without orders in the last 30 days, total the monthly waste, and list negatives to add. Preview first. Do not change ads until I confirm.",
   },
   {
     titleZh: "店铺周复盘",
     titleEn: "Weekly store review",
     bodyZh: "把上周的销售、流量、广告和库存风险和前一周对比，输出一份 HTML 报告。",
     bodyEn: "Last week's sales, traffic, ads and inventory risks against the week before, as an HTML report.",
-    promptZh: "使用多宝鱼。对比上周和前一周的销售、流量、广告和库存风险，输出一份 HTML 报告。",
-    promptEn: "Use Duobaoyu. Compare last week's sales, traffic, ads and inventory risks with the week before, and deliver an HTML report.",
+    promptZh: "使用粒粒lili。对比上周和前一周的销售、流量、广告和库存风险，输出一份 HTML 报告。",
+    promptEn: "Use 粒粒lili. Compare last week's sales, traffic, ads and inventory risks with the week before, and deliver an HTML report.",
   },
 ];
 
@@ -227,7 +227,7 @@ export function GetStarted({
   const installPrompt = useMemo(() => {
     const label = CLIENTS.find((item) => item.id === client)?.label ?? client;
     return [
-      `Add an MCP server for the Duobaoyu study sandbox. Connection name: ${connName || label}.`,
+      `Add an MCP server for the 粒粒lili sandbox. Connection name: ${connName || label}.`,
       `Client: ${label}.`,
       `URL: http://127.0.0.1:43123/api/mcp`,
       "This URL is the local sandbox, not listingapp.duobaoyu.ai.",
@@ -397,14 +397,14 @@ export function GetStarted({
                 </ol>
                 <div className="mt-3">
                   <Warn>
-                    {tx(locale, "必须新开一个对话。多宝鱼只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。", "You must start a NEW chat! Duobaoyu only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.")}
+                    {tx(locale, "必须新开一个对话。粒粒lili只会出现在添加之后打开的对话里。在旧对话里问，AI 会说没有店铺数据。", "You must start a NEW chat! 粒粒lili only shows up in chats opened after you add it. Ask in the old chat and the AI will say it has no store data.")}
                   </Warn>
                 </div>
               </div>
             ) : (
               <div className="mt-4 text-sm">
                 <p className="text-[13px] leading-5 text-muted">{tx(locale, "把下面的地址加到客户端。这是本机沙盒，不是 listingapp.duobaoyu.ai。", "Add this URL in the client. It is this machine's sandbox, not listingapp.duobaoyu.ai.")}</p>
-                <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{`{\n  "mcpServers": {\n    "duobaoyu-sandbox": {\n      "url": "http://127.0.0.1:43123/api/mcp"\n    }\n  }\n}`}</pre>
+                <pre className="mt-2 overflow-auto rounded-xl bg-canvas p-3 text-xs">{`{\n  "mcpServers": {\n    "lili": {\n      "url": "http://127.0.0.1:43123/api/mcp"\n    }\n  }\n}`}</pre>
               </div>
             )}
 

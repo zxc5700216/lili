@@ -26,8 +26,8 @@ export const CLASSES: ClassItem[] = [
   {
     slug: "setup-qa",
     kind: "live",
-    titleZh: "多宝鱼安装与使用答疑",
-    titleEn: "Duobaoyu setup and usage Q&A",
+    titleZh: "粒粒lili安装与使用答疑",
+    titleEn: "粒粒lili setup and usage Q&A",
     summaryZh: "每周四晚，把安装、授权和第一次提问里卡住的地方过一遍。",
     summaryEn: "Every Thursday. Install, authorization, and the first questions people get stuck on.",
     whenZh: "10 月 29 日 · 周四",

@@ -292,7 +292,7 @@ async function main() {
       const nameEn = tax?.nameEn ?? skill.en;
       const summaryEn = tax?.summaryEn ?? skill.enSum;
       const promptEn = [
-        `Use the Duobaoyu skill ${skill.slug.replace(/^duobaoyu-/, "")}.`,
+        `Use the 粒粒lili skill ${skill.slug.replace(/^duobaoyu-/, "")}.`,
         summaryEn,
         "",
         "Do it in this order:",
@@ -301,7 +301,7 @@ async function main() {
         "If a step would change the store or spend money, show a preview and wait for confirmation.",
       ].join("\n");
       const promptZh = [
-        `使用多宝鱼技能 ${skill.slug.replace(/^duobaoyu-/, "")}。`,
+        `使用粒粒lili技能 ${skill.slug.replace(/^duobaoyu-/, "")}。`,
         skill.zhSum,
         "",
         "按这个顺序做：",
@@ -342,7 +342,7 @@ async function main() {
         skill: skillOf(zh) ?? skillOf(en.steps[i] ?? ""),
       }));
       const promptEn = [
-        "Use Duobaoyu and follow this order:",
+        "Use 粒粒lili and follow this order:",
         ...en.steps.map((step, i) => `${i + 1}. ${step}`),
         "",
         en.close,
