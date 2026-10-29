@@ -114,7 +114,24 @@ function escapeYamlDoubleQuoted(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " ");
 }
 
+function loadExpandedSkillMarkdown(slug: string): string | null {
+  const folder = skillFolderName(slug);
+  const candidates = [
+    path.join(process.cwd(), "data", "skill-bodies", `${slug}.md`),
+    path.join(process.cwd(), "data", "skill-bodies", `${folder}.md`),
+  ];
+  for (const file of candidates) {
+    if (fs.existsSync(file)) return fs.readFileSync(file, "utf8");
+  }
+  return null;
+}
+
 export function skillToMarkdown(skill: BundleSkill): string {
+  const expanded = loadExpandedSkillMarkdown(skill.slug);
+  if (expanded && expanded.trim().length > 500) {
+    return expanded.replace(/\r\n/g, "\n").trim() + "\n";
+  }
+
   const name = skillFolderName(skill.slug);
   const description = escapeYamlDoubleQuoted(
     `${skill.zhSum} ${skill.enSum} Use when running 粒粒lili / Codex workflows that mention this skill; call tools via MCP server lili.`.trim(),
