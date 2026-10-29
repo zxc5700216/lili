@@ -1,3 +1,4 @@
+import { BASE_PATH as CONFIG_BASE_PATH } from "@/lib/base-path";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -61,6 +62,11 @@ export function resolvePublicMcpUrl(request: Request): {
     const referer = request.headers.get("referer") || "";
     const match = referer.match(/https?:\/\/[^/]+(\/studylab)(?:\/|$)/i);
     if (match) basePath = match[1];
+  }
+
+  // Next.js strips basePath from request.url inside route handlers; use config constant.
+  if (!basePath && CONFIG_BASE_PATH) {
+    basePath = String(CONFIG_BASE_PATH).replace(/\/$/, "");
   }
 
   const mcpUrl = `${proto}://${host}${basePath}/api/mcp`;
