@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 type Field = { key: string; labelZh: string; labelEn: string; secret?: boolean; defaultValue?: string; helpZh: string; helpEn: string; inferred?: boolean };
 type Provider = { id: string; nameZh: string; nameEn: string; docs: { href: string; label: string }[]; fields: Field[]; noteZh: string; noteEn: string };
@@ -16,7 +17,7 @@ export function ToolConfigView({ locale }: { locale: Locale }) {
   const [message, setMessage] = useState<Record<string, { ok: boolean; text: string }>>({});
 
   async function reload() {
-    const res = await fetch("/api/tool-config");
+    const res = await fetch(withBasePath("/api/tool-config"));
     const data = await res.json();
     setProviders(data.providers);
     setBuy(data.buy);
@@ -61,7 +62,7 @@ export function ToolConfigView({ locale }: { locale: Locale }) {
                   if (field.secret && !typed) fields[field.key] = values[provider.id]?.[field.key] ? "__keep__" : "";
                   else fields[field.key] = typed ?? field.defaultValue ?? values[provider.id]?.[field.key] ?? "";
                 }
-                const res = await fetch("/api/tool-config", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: provider.id, fields }) });
+                const res = await fetch(withBasePath("/api/tool-config"), { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: provider.id, fields }) });
                 const data = await res.json();
                 if (data.values) setValues(data.values);
                 setMessage((prev) => ({ ...prev, [provider.id]: { ok: res.ok, text: res.ok ? tx(locale, "已保存", "Saved") : data.message } }));
@@ -86,7 +87,7 @@ export function ToolConfigView({ locale }: { locale: Locale }) {
                   className="btn-ghost"
                   type="button"
                   onClick={async () => {
-                    const res = await fetch("/api/tool-config/test", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: provider.id }) });
+                    const res = await fetch(withBasePath("/api/tool-config/test"), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: provider.id }) });
                     const data = await res.json();
                     setMessage((prev) => ({ ...prev, [provider.id]: { ok: Boolean(data.ok), text: data.message || tx(locale, "没有返回说明", "No message") } }));
                   }}

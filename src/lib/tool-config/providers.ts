@@ -58,8 +58,8 @@ export const PROVIDERS: ProviderDef[] = [
   },
   {
     id: "duobaoyu",
-    nameZh: "多宝鱼 MCP",
-    nameEn: "Duobaoyu MCP",
+    nameZh: "粒粒lili MCP",
+    nameEn: "粒粒lili MCP",
     docs: [{ href: "https://duobaoyu.ai", label: "duobaoyu.ai" }],
     noteZh: "inferred：公开营销页给出的连接地址是 https://listingapp.duobaoyu.ai/mcp，鉴权是浏览器登录，没有公开的静态 API Key 字段。下面的访问令牌是按常见 Bearer 方式预留的假设。",
     noteEn: "inferred: the public marketing page publishes https://listingapp.duobaoyu.ai/mcp and browser login. No static API key field is documented. The access token below assumes a Bearer header.",
@@ -73,8 +73,8 @@ export const PROVIDERS: ProviderDef[] = [
     nameZh: "Sorftime",
     nameEn: "Sorftime",
     docs: [{ href: "https://www.sorftime.com", label: "sorftime.com" }],
-    noteZh: "inferred：没有查到给卖家单独使用的公开 MCP URL。12 条工作流里的 1688 / 多平台数据走多宝鱼工具 market_query_sorftime。这里的令牌只作保存，测试不会假装连上。",
-    noteEn: "inferred: no public seller MCP URL was found. The workflows call Sorftime through Duobaoyu market_query_sorftime. A saved token is not treated as a successful connection.",
+    noteZh: "inferred：没有查到给卖家单独使用的公开 MCP URL。12 条工作流里的 1688 / 多平台数据走粒粒lili工具 market_query_sorftime。这里的令牌只作保存，测试不会假装连上。",
+    noteEn: "inferred: no public seller MCP URL was found. The workflows call Sorftime through 粒粒lili market_query_sorftime. A saved token is not treated as a successful connection.",
     fields: [
       { key: "token", labelZh: "Sorftime 令牌（可选）", labelEn: "Sorftime token (optional)", secret: true, helpZh: "inferred：无公开直连端点。", helpEn: "inferred: no public direct endpoint.", inferred: true },
     ],

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 export function RunLiveButton({ slug, locale }: { slug: string; locale: Locale }) {
   const [text, setText] = useState("");
@@ -12,7 +13,7 @@ export function RunLiveButton({ slug, locale }: { slug: string; locale: Locale }
       <button
         className="btn-ghost"
         onClick={async () => {
-          const res = await fetch("/api/workflows/pack", {
+          const res = await fetch(withBasePath("/api/workflows/pack"), {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ slug, mode: "live" }),

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
+import { withBasePath } from "@/lib/base-path";
 
-export function GET(request: Request) {
-  return NextResponse.redirect(new URL("/v2/start", request.url));
+export async function GET(request: Request) {
+  return NextResponse.redirect(new URL(withBasePath("/v2/start"), request.url));
 }

@@ -24,8 +24,8 @@ export type SkillCard = {
 };
 
 const PLAYBOOK = {
-  exampleEn: "Using the Duobaoyu MCP skill ads-playbook-interview: Interview me and write down how I run my Amazon ads.",
-  exampleZh: "使用多宝鱼技能 ads-playbook-interview：采访我，并写下我是怎么投亚马逊广告的。",
+  exampleEn: "Using the 粒粒lili MCP skill ads-playbook-interview: Interview me and write down how I run my Amazon ads.",
+  exampleZh: "使用粒粒lili技能 ads-playbook-interview：采访我，并写下我是怎么投亚马逊广告的。",
   keywords: ["grill me", "ads playbook", "ads playbook interview", "interview me", "document my ads process"],
 };
 
@@ -41,8 +41,8 @@ function exampleRequest(item: SkillCard, short: string, locale: Locale) {
   const summary = tx(locale, item.summaryZh, item.summaryEn);
   return tx(
     locale,
-    `使用多宝鱼 MCP 技能 ${short}：${summary}`,
-    `Using the Duobaoyu MCP skill ${short}: ${summary}`,
+    `使用粒粒lili MCP 技能 ${short}：${summary}`,
+    `Using the 粒粒lili MCP skill ${short}: ${summary}`,
   );
 }
 

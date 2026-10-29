@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 type Member = { id: string; name: string; email: string; role: string; status: string };
 
@@ -15,7 +16,7 @@ export function TeamView({ locale, members }: { locale: Locale; members: Member[
   const [name, setName] = useState("");
   const admin = members.find((m) => m.role === "admin") ?? members[0];
   async function send(body: unknown, method = "POST") {
-    await fetch("/api/team", { method, headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    await fetch(withBasePath("/api/team"), { method, headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
     router.refresh();
   }
   return (

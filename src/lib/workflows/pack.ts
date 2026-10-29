@@ -58,12 +58,12 @@ function mdTable(headers: string[], rows: string[][]) {
 }
 
 function shell(title: string, mode: string, body: string) {
-  return [`# ${title}`, "", `模式：${mode}。缺真实密钥时这是 fixture，不会假装已经调通多宝鱼。`, "", body, "", "推断处标 `inferred`。没有采购放行，也没有改真实店铺。"].join("\n");
+  return [`# ${title}`, "", `模式：${mode}。缺真实密钥时这是 fixture，不会假装已经调通粒粒lili。`, "", body, "", "推断处标 `inferred`。没有采购放行，也没有改真实店铺。"].join("\n");
 }
 
 function htmlOf(title: string, markdown: string) {
   const escaped = markdown.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>${title}</title><style>body{margin:0;background:#f6f3ef;color:#1f1a17;font:15px/1.6 sans-serif}main{max-width:880px;margin:24px auto;background:#fff;border:1px solid #efe8e1;border-radius:16px;padding:24px}pre{white-space:pre-wrap}.wm{position:fixed;inset:0;display:grid;place-items:center;font-size:40px;color:rgba(232,106,44,.08);transform:rotate(-16deg);pointer-events:none}</style></head><body><div class="wm">多宝鱼学习沙盒</div><main><pre>${escaped}</pre></main></body></html>`;
+  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>${title}</title><style>body{margin:0;background:#f6f3ef;color:#1f1a17;font:15px/1.6 sans-serif}main{max-width:880px;margin:24px auto;background:#fff;border:1px solid #efe8e1;border-radius:16px;padding:24px}pre{white-space:pre-wrap}.wm{position:fixed;inset:0;display:grid;place-items:center;font-size:40px;color:rgba(232,106,44,.08);transform:rotate(-16deg);pointer-events:none}</style></head><body><div class="wm">粒粒lili</div><main><pre>${escaped}</pre></main></body></html>`;
 }
 
 function reportFor(slug: WorkflowSlug, mode: string) {
@@ -91,7 +91,7 @@ function reportFor(slug: WorkflowSlug, mode: string) {
   } else if (slug === "new-listing-to-ads") {
     body += `\n## 03｜Listing 预览（inferred 文案，未提交）\n\n标题：Northshore 1.7L stainless kettle。五点先写容量、自动断电、材质，搜索词不重复标题。\n\n## 04｜起步广告\n\n自动组 + 精确词 electric kettle。新品期 ACOS 按成本倒推，目标先放宽到 45%（inferred）。预算 $25/天。否定词等收割后再加。`;
   } else if (slug === "competitor-teardown") {
-    body += `\n## 03｜对照\n\n自己的水壶 4.4 星、在购物车。竞品样本沿用选品账本里的 SUNYA / LEGEND（fixture）。弱点：齐套和围度，不是再做一个普通口袋。\n\n西柚关键词反查需要 MCP Token。没有令牌时这里只保留多宝鱼 market_list_competitors 的计划，不把样本说成西柚实时结果。`;
+    body += `\n## 03｜对照\n\n自己的水壶 4.4 星、在购物车。竞品样本沿用选品账本里的 SUNYA / LEGEND（fixture）。弱点：齐套和围度，不是再做一个普通口袋。\n\n西柚关键词反查需要 MCP Token。没有令牌时这里只保留粒粒lili market_list_competitors 的计划，不把样本说成西柚实时结果。`;
   } else if (slug === "restock-to-ship") {
     body += `\n## 03｜建议发货\n\n${mdTable(["SKU", "可售天", "建议量"], stock.map((p) => [p.sku, String(p.days), String(p.suggest)]))}\n\n分仓和承运费必须等人确认。箱规不明不猜。批准后只在沙盒生成货件草稿。`;
   } else if (slug === "profit-checkup") {
@@ -106,7 +106,7 @@ function reportFor(slug: WorkflowSlug, mode: string) {
     body += `\n## 03｜一个月的四块\n\n广告花费与销售分开列，不和别的币种相加。NS 店只有美元。促销本月没有第二档秒杀（fixture）。下月三件事：补两周内会断货的 SKU、清浪费词、看台灯购物车。`;
   }
 
-  body += `\n\n## 请求账本\n\n模式 \`${mode}\`。fixture 下列出本应调用的多宝鱼工具名，响应是 NS 店种子，不是远程 JSON。\n\n| 工具 | 用途 |\n| --- | --- |\n| meta_list_stores | 确认店铺 |\n| data_query | 销售与流量 |\n| ads_list_entities | 广告花费 |\n| restock_get_stockout_alerts | 断货 |\n`;
+  body += `\n\n## 请求账本\n\n模式 \`${mode}\`。fixture 下列出本应调用的粒粒lili工具名，响应是 NS 店种子，不是远程 JSON。\n\n| 工具 | 用途 |\n| --- | --- |\n| meta_list_stores | 确认店铺 |\n| data_query | 销售与流量 |\n| ads_list_entities | 广告花费 |\n| restock_get_stockout_alerts | 断货 |\n`;
   return shell(`${meta.title} / ${meta.titleEn}`, mode, body);
 }
 

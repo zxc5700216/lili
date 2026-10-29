@@ -13,7 +13,7 @@ export default async function LoginPage({
     <main className="grid min-h-screen place-items-center px-4">
       <div className="card w-full max-w-md p-8">
         <div className="text-sm font-medium text-orange">Beta · {tx(locale, "学习沙盒", "Study sandbox")}</div>
-        <h1 className="mt-2 text-2xl font-semibold">Duobaoyu AI Assistant</h1>
+        <h1 className="mt-2 text-2xl font-semibold">粒粒lili助手</h1>
         <p className="mt-2 text-sm leading-6 text-muted">
           {tx(
             locale,

@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { runTool } from "@/lib/sandbox/engine";
+import { isSellfoxConfigured } from "@/lib/sellfox/db";
 
 export async function GET() {
   const tools = await prisma.toolDef.findMany({ orderBy: { name: "asc" } });
+  const sellfox = isSellfoxConfigured();
   return NextResponse.json({
-    sandbox: true,
-    message: "Local study MCP. Not listingapp.duobaoyu.ai.",
+    sandbox: !sellfox,
+    source: sellfox ? "sellfox" : "sandbox",
+    message: sellfox
+      ? "StudyLab MCP reads Sellfox tables from amazon_bulk_ad when mapped tools are called. Not listingapp.duobaoyu.ai."
+      : "Local study MCP. Not listingapp.duobaoyu.ai.",
     tools: tools.map((tool) => ({
       name: tool.name,
       description: tool.description,
@@ -22,7 +27,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       jsonrpc: "2.0",
       id,
-      result: { protocolVersion: "2025-06-18", serverInfo: { name: "duobaoyu-sandbox", version: "0.1.0" }, capabilities: { tools: {} } },
+      result: { protocolVersion: "2025-06-18", serverInfo: { name: "lili", version: "0.1.0" }, capabilities: { tools: {} } },
     });
   }
   if (body.method === "tools/list") {

@@ -1,6 +1,16 @@
 import { randomUUID } from "node:crypto";
 import { prisma } from "../prisma";
 import { fixtureFor } from "./fixtures";
+import { isSellfoxConfigured } from "../sellfox/db";
+import {
+  adsCampaignDaily,
+  adsProductDaily,
+  fbaInventory,
+  listStores,
+  listingSnapshots,
+  productDaily,
+  salesDailyByStore,
+} from "../sellfox/reads";
 
 const PREPARE = new Set([
   "ads_prepare_changes",
@@ -659,6 +669,184 @@ export function buildPreview(
   };
 }
 
+
+function resolveSellfoxStoreId(input: Json): string | null {
+  // Prefer explicit Sellfox ids. Ignore sandbox adsProfileId stuffed into store_scope.
+  for (const key of ["store_id", "storeId"] as const) {
+    const raw = input[key];
+    if (typeof raw === "string" && raw.trim()) return raw.trim();
+  }
+  const scope = input.store_scope;
+  if (typeof scope === "string" && scope.trim().startsWith("sellfox-store-")) {
+    return scope.trim();
+  }
+  return null;
+}
+
+/** Prefer Sellfox ERP reads when SELLFOX_DATABASE_URL is set. Returns null if tool not mapped. */
+async function trySellfoxRead(name: string, input: Json): Promise<Json | null> {
+  if (!isSellfoxConfigured()) return null;
+  const storeId = resolveSellfoxStoreId(input);
+  const limit = input.limit;
+
+  if (name === "meta_list_stores") {
+    const stores = await listStores(limit ?? 100);
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      stores,
+      count: stores.length,
+    };
+  }
+
+  if (name === "orders_get_recent") {
+    const rows = await salesDailyByStore({ storeId, limit: limit ?? 100 });
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      orders: rows,
+      count: rows.length,
+    };
+  }
+
+  if (
+    name === "restock_get_stockout_alerts" ||
+    name === "restock_get_plan" ||
+    name === "restock_get_forecast"
+  ) {
+    const [inventory, products] = await Promise.all([
+      fbaInventory({ storeId, limit: limit ?? 200 }),
+      productDaily({ storeId, limit: limit ?? 100 }),
+    ]);
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      rows: inventory,
+      product_daily: products,
+      count: inventory.length,
+    };
+  }
+
+  if (name === "listing_get_live" || name === "listing_check_restrictions") {
+    const sku = typeof input.sku === "string" ? input.sku : null;
+    const asin = typeof input.asin === "string" ? input.asin : null;
+    const listings = await listingSnapshots({
+      storeId,
+      sku,
+      asin,
+      limit: limit ?? 100,
+    });
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      listings,
+      restrictions: listings.map((p: { asin?: string; sku?: string }) => ({
+        asin: p.asin,
+        sku: p.sku,
+        restricted: false,
+      })),
+      count: listings.length,
+    };
+  }
+
+  if (name === "ads_list_entities") {
+    const rows = await adsCampaignDaily({ storeId, limit: limit ?? 200 });
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      campaigns: rows.map((c: Record<string, unknown>) => ({
+        id: c.campaignId,
+        name: c.campaignName,
+        type: c.adType,
+        report_date: c.reportDate,
+        store_id: c.storeId,
+        asin: c.asin,
+        msku: c.msku,
+        impressions: c.impressions,
+        clicks: c.clicks,
+        spend: c.cost,
+        sales: c.adSales,
+        orders: c.adOrders,
+        acos:
+          c.adSales && Number(c.adSales) > 0
+            ? Number(c.cost) / Number(c.adSales)
+            : null,
+        currency: c.currency,
+      })),
+      count: rows.length,
+    };
+  }
+
+  if (name === "ads_get_data_health" || name === "ads_get_sync_status" || name === "data_sync_status") {
+    const stores = await listStores(50);
+    const withSync = stores.filter((s) => s.last_synced_at);
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      fresh: withSync.length > 0,
+      complete: withSync.length > 0,
+      trustworthy: withSync.length > 0,
+      store_count: stores.length,
+      synced_store_count: withSync.length,
+      stores: stores.slice(0, 20).map((s) => ({
+        id: s.id,
+        name: s.name,
+        last_synced_at: s.last_synced_at,
+      })),
+    };
+  }
+
+  if (name === "data_list_tables") {
+    return {
+      ok: true,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      tables: [
+        "SellfoxStore",
+        "SellfoxSalesDailySnapshot",
+        "SellfoxProductDailySnapshot",
+        "SellfoxFbaInventorySnapshot",
+        "SellfoxListingSnapshot",
+        "SellfoxAdsCampaignDaily",
+        "SellfoxAdsProductDaily",
+      ],
+    };
+  }
+
+  // Explicit sellfox helper aliases if tool defs ever add them
+  if (name === "sellfox_sales_daily") {
+    const rows = await salesDailyByStore({ storeId, limit: limit ?? 200 });
+    return { ok: true, source: "sellfox", sandbox: false, tool: name, rows, count: rows.length };
+  }
+  if (name === "sellfox_ads_product_daily") {
+    const rows = await adsProductDaily({ storeId, limit: limit ?? 200 });
+    return { ok: true, source: "sellfox", sandbox: false, tool: name, rows, count: rows.length };
+  }
+  if (name === "sellfox_product_daily") {
+    const rows = await productDaily({
+      storeId,
+      reportDate: typeof input.report_date === "string" ? input.report_date : null,
+      limit: limit ?? 200,
+    });
+    return { ok: true, source: "sellfox", sandbox: false, tool: name, rows, count: rows.length };
+  }
+
+  return null;
+}
+
 export async function runTool(name: string, rawInput: Json, storeId?: string | null) {
   const tool = await prisma.toolDef.findUnique({ where: { name } });
   if (!tool) return { status: 404, body: { ok: false, message: `Unknown tool ${name}` } };
@@ -668,6 +856,47 @@ export async function runTool(name: string, rawInput: Json, storeId?: string | n
   const input: Json = { ...rawInput };
   if (schema.properties?.store_scope && (input.store_scope === undefined || input.store_scope === "")) {
     input.store_scope = ctx.store.adsProfileId;
+  }
+
+  // Sellfox-mapped reads: prefer ERP data before sandbox required-field checks.
+  if (isSellfoxConfigured() && !needsApproval(tool)) {
+    try {
+      const sellfoxEarly = await trySellfoxRead(name, input);
+      if (sellfoxEarly) {
+        await prisma.toolRun.create({
+          data: {
+            id: randomUUID(),
+            storeId: ctx.store.id,
+            toolName: name,
+            input,
+            output: sellfoxEarly,
+            status: "completed",
+          },
+        });
+        return { status: 200, body: sellfoxEarly };
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      const body = {
+        ok: false,
+        source: "sellfox",
+        sandbox: false,
+        tool: name,
+        error: message,
+        message: "Sellfox query failed",
+      };
+      await prisma.toolRun.create({
+        data: {
+          id: randomUUID(),
+          storeId: ctx.store.id,
+          toolName: name,
+          input,
+          output: body,
+          status: "error",
+        },
+      });
+      return { status: 500, body };
+    }
   }
 
   const missing = missingRequired(tool.inputSchema, input);
@@ -751,7 +980,32 @@ export async function runTool(name: string, rawInput: Json, storeId?: string | n
     };
   }
 
-  const output = readPayload(name, input, ctx);
+  let output: Json;
+  try {
+    const sellfox = await trySellfoxRead(name, input);
+    output = sellfox ?? readPayload(name, input, ctx);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    const body = {
+      ok: false,
+      source: "sellfox",
+      sandbox: false,
+      tool: name,
+      error: message,
+      message: "Sellfox query failed",
+    };
+    await prisma.toolRun.create({
+      data: {
+        id: randomUUID(),
+        storeId: ctx.store.id,
+        toolName: name,
+        input,
+        output: body,
+        status: "error",
+      },
+    });
+    return { status: 500, body };
+  }
   if (cost > 0) {
     await prisma.appSetting.update({
       where: { id: "default" },
