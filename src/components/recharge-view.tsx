@@ -6,6 +6,7 @@ import { Lock, RefreshCw } from "lucide-react";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
 import { useUI } from "@/store/ui";
+import { withBasePath } from "@/lib/base-path";
 
 const PRESETS = [5, 50, 100, 300, 500];
 
@@ -96,7 +97,7 @@ export function RechargeView({ locale, credits, orders }: { locale: Locale; cred
               onClick={async () => {
                 setPending(true);
                 setError("");
-                const res = await fetch("/api/credits", {
+                const res = await fetch(withBasePath("/api/credits"), {
                   method: "POST",
                   headers: { "content-type": "application/json" },
                   body: JSON.stringify({ yuan: amount }),

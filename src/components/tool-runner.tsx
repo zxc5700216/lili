@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 type Schema = {
   properties?: Record<string, { type?: string; description?: string }>;
@@ -58,7 +59,7 @@ export function ToolRunner({
             else input[key] = raw;
           }
           setPending(true);
-          const res = await fetch("/api/tools/run", {
+          const res = await fetch(withBasePath("/api/tools/run"), {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ name, input, storeId }),

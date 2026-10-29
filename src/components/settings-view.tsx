@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 export function SettingsView({ locale, shop, connected }: { locale: Locale; shop: string; connected: boolean }) {
   const router = useRouter();
@@ -32,7 +33,7 @@ export function SettingsView({ locale, shop, connected }: { locale: Locale; shop
           onSubmit={async (event) => {
             event.preventDefault();
             setError("");
-            const res = await fetch("/api/shopify", {
+            const res = await fetch(withBasePath("/api/shopify"), {
               method: "POST",
               headers: { "content-type": "application/json" },
               body: JSON.stringify({ shop: domain }),
@@ -52,7 +53,7 @@ export function SettingsView({ locale, shop, connected }: { locale: Locale; shop
               type="button"
               className="btn-ghost"
               onClick={async () => {
-                await fetch("/api/shopify", { method: "DELETE" });
+                await fetch(withBasePath("/api/shopify"), { method: "DELETE" });
                 setDomain("");
                 router.refresh();
               }}

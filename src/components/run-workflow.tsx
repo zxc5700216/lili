@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Locale } from "@/lib/tx";
 import { tx } from "@/lib/tx";
+import { withBasePath } from "@/lib/base-path";
 
 type Log = { n: number; skill: string | null; note: string; text: string };
 
@@ -21,7 +22,7 @@ export function RunWorkflow({ slug, locale }: { slug: string; locale: Locale }) 
         onClick={async () => {
           setPending(true);
           setError("");
-          const res = await fetch("/api/workflows/run", {
+          const res = await fetch(withBasePath("/api/workflows/run"), {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ slug }),

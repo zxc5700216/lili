@@ -1,5 +1,6 @@
 "use client";
 
+import { withBasePath } from "@/lib/base-path";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -62,7 +63,7 @@ export function Shell({
   const Icon = heading.icon;
 
   async function setLocale(next: Locale) {
-    await fetch("/api/preferences", {
+    await fetch(withBasePath("/api/preferences"), {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ locale: next }),
@@ -71,8 +72,8 @@ export function Shell({
   }
 
   async function signOut() {
-    await fetch("/api/session", { method: "DELETE" });
-    window.location.href = "/login";
+    await fetch(withBasePath("/api/session"), { method: "DELETE" });
+    window.location.href = withBasePath("/login");
   }
 
   return (
@@ -228,7 +229,7 @@ function FeedbackDialog({ locale, onClose }: { locale: Locale; onClose: () => vo
           event.preventDefault();
           const form = new FormData(event.currentTarget);
           setPending(true);
-          await fetch("/api/feedback", {
+          await fetch(withBasePath("/api/feedback"), {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ kind: form.get("kind"), body: form.get("body"), contact: form.get("contact") }),
