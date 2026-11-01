@@ -49,7 +49,7 @@ if (process.argv[2] === 'plan') {
   }
   // Keep the tracked source and configuration available for audit and handover.
   for (const file of run('git', ['ls-files']).split('\n')) {
-    if (!file || /^(data\/|artifacts\/|public\/)/.test(file)) continue;
+    if (!file || /^(data\/|artifacts\/|public\/|\.env(?:\.|$))/.test(file)) continue;
     fs.mkdirSync(path.dirname(`${stage}/${file}`), { recursive: true });
     fs.copyFileSync(file, `${stage}/${file}`);
   }
