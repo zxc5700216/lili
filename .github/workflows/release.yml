@@ -1,0 +1,45 @@
+name: Lili release artifact
+on:
+  workflow_dispatch:
+    inputs:
+      base_sha:
+        description: Exact deployed commit
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: lili-release
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Plan release
+        env:
+          BASE_SHA: ${{ inputs.base_sha }}
+        run: node scripts/ci-release.mjs plan
+      - run: npm ci
+      - name: Validate changed UI and existing skill bundle
+        run: |
+          git diff --check "$BASE_SHA" HEAD
+          npx tsc --project tsconfig.tool-config.json --pretty false
+          npm run smoke:codex-bundle
+        env:
+          BASE_SHA: ${{ inputs.base_sha }}
+      - run: npm run build
+      - name: Package and verify standalone
+        run: node scripts/ci-release.mjs package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lili-release-${{ github.sha }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14

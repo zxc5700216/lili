@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": ["next-env.d.ts", "src/components/tool-config-view.tsx", "src/lib/tool-config/providers.ts"],
+  "exclude": ["node_modules"]
+}

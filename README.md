@@ -38,6 +38,8 @@ npm run workflow:run -- --slug monday-review --live
 
 `postgresql://duobaoyu:duobaoyu@localhost:54329/duobaoyu`
 
+西柚卡片按[官方 MCP 接入文档](https://platform.xydc.com/docs/mcp-access)展示自动接入、JSON 配置和 MCP 链接示例。当前页面采用官方地址 `https://mcp.xydc.com/mcp` 加单独的 MCP Token 输入框，通过 `Authorization: Bearer` 连接；Token 不包含 `Bearer` 前缀。示例使用 `YOUR_MCP_TOKEN` 占位符，不嵌入已保存令牌。独立 OpenAPI 字段位于可选折叠区，原有配置继续保留；保存未编辑字段时优先保留已存值，不用默认地址覆盖。
+
 ## 页面
 
 | 路径 | 对应实拍 |
@@ -109,3 +111,11 @@ npm run workflow:run -- --slug monday-review --live
 ## 技术栈
 
 Next.js 15 App Router、React 19、TypeScript 5、Prisma 7、PostgreSQL、`@prisma/adapter-pg`、Tailwind CSS 4、Zustand、lucide-react。Postgres 由 `docker-compose.yml` 提供。
+
+## CI 产物发布（123 服务器）
+
+`.github/workflows/release.yml` 由 `workflow_dispatch` 触发，输入线上精确 `base_sha`。CI 先生成部署清单，再执行 `npm ci`、工具配置页面严格类型检查、技能包冒烟检查及生产构建。项目当前的 `next lint` 命令不兼容 Next 15，且全量 TypeScript 在 sandbox engine/report 存在历史 Prisma JSON 类型错误；本链路暂沿用现有 Next 构建配置，对本次修改页面单独进行严格类型检查。涉及其他模块时须补充对应验证，不应将局部检查视为全库类型检查。
+
+CI 上传带 commit/base SHA、SHA256 和 release-check 的 standalone 产物；仅包含 Next 追踪的运行依赖，不复制开发 node_modules。数据库和依赖变更会主动阻止此初始发布链路，需单独审核扩展。发布者下载成功运行的 artifact，在服务器执行产物内 `deploy-ci-release.sh <artifact目录> <线上commit> --reviewed`。该步骤通过 SSH 接收 CI 产物，不在本机或服务器构建。首次启用前必须审核脚本。
+
+仅面向 `/opt/study-lab-app` 与 `study-lab` 服务，不影响 Amazon、Caddy 或数据库。发布先校验清单、校验和及线上基线，再提取到 `/opt/study-lab-releases/<时间>-<commit>`。首次保留原程序目录作为备份，`.env`、`.env.local`、`.secrets`、uploads、artifacts 保留在 `/opt/study-lab-runtime` 并由各版本共享。原程序备份不删除。健康检查失败则切回旧程序并重启 study-lab，数据库不回滚。结果保存在版本目录的 `RELEASE-RESULT.json` 和 `/opt/study-lab-release-log.jsonl`。后续发布以当前 `RELEASE.json` 为基线，不以旧源码目录推断版本。发布后人工核对真实页面。

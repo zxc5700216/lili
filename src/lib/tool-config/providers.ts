@@ -9,6 +9,7 @@ export type FieldDef = {
   helpZh: string;
   helpEn: string;
   inferred?: boolean;
+  advanced?: boolean;
 };
 
 export type ProviderDef = {
@@ -41,19 +42,19 @@ export const PROVIDERS: ProviderDef[] = [
   {
     id: "xiyou",
     nameZh: "西柚洞察（西柚找词）",
-    nameEn: "Xiyou",
+    nameEn: "Xiyou Insights (Xiyou Keywords)",
     docs: [
       { href: "https://platform.xydc.com/docs/mcp-access", label: "MCP 接入" },
       { href: "https://platform.xydc.com/mcp", label: "MCP 控制台" },
     ],
-    noteZh: "MCP 用 Authorization: Bearer <MCP Token>，或 URL 上的 mcp_token。OpenAPI（openapi.xiyouzhaoci.com）是另一套 Client ID / Secret，用于开放接口而不是这条 MCP。",
-    noteEn: "MCP uses Authorization: Bearer <MCP Token>, or mcp_token on the URL. OpenAPI at openapi.xiyouzhaoci.com is a separate Client ID / Secret pair.",
+    noteZh: "按官方 MCP 接入教程，优先使用自动接入；也可使用 JSON 配置或 MCP 链接。本页填写官方 MCP 地址和控制台生成的 MCP Token，通过 Authorization: Bearer 请求头连接。OpenAPI 的 Client ID / Secret 不用于 MCP 接入。",
+    noteEn: "The official guide recommends automatic setup, with JSON configuration and an MCP link as alternatives. On this page, enter the official MCP URL and the MCP Token from the console; the connection uses an Authorization: Bearer header. OpenAPI Client ID / Secret credentials are not used for MCP.",
     fields: [
-      { key: "mcpUrl", labelZh: "MCP URL", labelEn: "MCP URL", defaultValue: "https://mcp.xydc.com/mcp", helpZh: "官网 MCP 端点。", helpEn: "Official MCP endpoint." },
-      { key: "mcpToken", labelZh: "MCP Token", labelEn: "MCP Token", secret: true, helpZh: "Bearer 令牌。", helpEn: "Bearer token." },
-      { key: "openapiBase", labelZh: "OpenAPI 根地址", labelEn: "OpenAPI base", defaultValue: "https://openapi.xiyouzhaoci.com", helpZh: "与 MCP Token 分开。", helpEn: "Separate from the MCP token." },
-      { key: "clientId", labelZh: "OpenAPI Client ID", labelEn: "OpenAPI Client ID", helpZh: "开放接口客户端。", helpEn: "OpenAPI client id." },
-      { key: "clientSecret", labelZh: "OpenAPI Client Secret", labelEn: "OpenAPI Client Secret", secret: true, helpZh: "开放接口密钥。", helpEn: "OpenAPI client secret." },
+      { key: "mcpUrl", labelZh: "远程 MCP 地址", labelEn: "Remote MCP URL", defaultValue: "https://mcp.xydc.com/mcp", helpZh: "本页使用请求头鉴权，地址不需要附带 Token；与下方 JSON 示例的 url 一致。", helpEn: "This page uses header authentication. Use the URL from the JSON example without adding a token to it." },
+      { key: "mcpToken", labelZh: "MCP Token", labelEn: "MCP Token", secret: true, helpZh: "从西柚 MCP 控制台复制真实 Token，只填 Token 原文，不含 Bearer 前缀；不要填示例占位符或 OpenAPI 密钥。先保存，再测试连接。", helpEn: "Copy the real token from the Xiyou MCP console. Enter only the token, without the Bearer prefix; do not enter a placeholder or an OpenAPI key. Save before testing the connection." },
+      { key: "openapiBase", labelZh: "OpenAPI 根地址", labelEn: "OpenAPI base", defaultValue: "https://openapi.xiyouzhaoci.com", advanced: true, helpZh: "独立 OpenAPI 配置，可选，不参与 MCP 连接测试。", helpEn: "Optional, separate OpenAPI configuration; not used by the MCP connection test." },
+      { key: "clientId", labelZh: "OpenAPI Client ID", labelEn: "OpenAPI Client ID", advanced: true, helpZh: "仅供独立 OpenAPI 使用，不是 MCP Token。", helpEn: "For the separate OpenAPI only; this is not an MCP Token." },
+      { key: "clientSecret", labelZh: "OpenAPI Client Secret", labelEn: "OpenAPI Client Secret", secret: true, advanced: true, helpZh: "仅供独立 OpenAPI 使用；已有配置继续保留。", helpEn: "For the separate OpenAPI only. Existing saved configuration is preserved." },
     ],
   },
   {
