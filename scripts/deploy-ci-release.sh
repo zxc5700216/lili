@@ -51,6 +51,13 @@ node - "$release" "$head_sha" "$expected_base" <<'JS'
 const fs = require('fs'); const m = JSON.parse(fs.readFileSync(process.argv[2] + '/RELEASE-METADATA.json'));
 if (m.commit !== process.argv[3] || m.baseSha !== process.argv[4]) throw new Error('Packaged identity mismatch');
 JS
+# Provision empty shared stores too, so credentials saved after this deployment
+# survive a subsequent application rollback.
+for name in .env.local .secrets uploads; do
+  if [[ ! -e "$shared/$name" && ! -e "$app/$name" ]]; then
+    if [[ "$name" == .env.local ]]; then touch "$shared/$name"; else mkdir "$shared/$name"; fi
+  fi
+done
 # Copy runtime values once; all new releases share these preserved values.
 for name in .env .env.local .secrets uploads artifacts; do
   if [[ ! -e "$shared/$name" && -e "$app/$name" ]]; then cp -a "$app/$name" "$shared/$name"; fi
